@@ -1,4 +1,14 @@
 <x-guest-layout>
+
+    <!-- Logo and Title -->
+    <div class="flex justify-center mb-6">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo" style="width: 50px; height: auto;"> <!-- Adjusted size with inline CSS -->
+    </div>
+    <div class="flex justify-center mb-6">
+        <h2 class="text-lg font-semibold">OCD MIMAROPA CLMS</h2> <!-- Title below the logo -->
+    </div>
+
+
     <div class="mb-4 text-sm text-gray-600">
         {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
     </div>
