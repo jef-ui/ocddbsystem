@@ -31,7 +31,7 @@
         }
 
         .topbar a:hover {
-            text-decoration: underline;
+            color: orange;
         }
 
         .main-content {

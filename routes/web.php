@@ -1,6 +1,8 @@
 <?php
 
+
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RadioLogController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,7 +21,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //OCD MIMAROPA Radio logs
-    
+    Route::get('/radiolog', [RadioLogController::class, 'index'])->name('radiolog.index');
+    Route::get('/radiolog/create', [RadioLogController::class,'create'])->name('radiolog.create');
+    Route::post('/radiolog',[RadioLogController::class,'store'])->name('radiolog.store');
+    Route::get('/radiolog/{radiolog}/edit', [RadioLogController::class, 'edit'])->name('radiolog.edit');
+    Route::put('/radiolog/{radiolog}/update', [RadioLogController::class, 'update'])->name('radiolog.update');
+    Route::delete('/radiolog/{radiolog}/delete', [RadioLogController::class, 'delete'])->name('radiolog.delete');
+
 });
 
 require __DIR__.'/auth.php';

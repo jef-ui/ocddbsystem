@@ -52,36 +52,37 @@
 </head>
 <body>
 
+    
     <div class="register-card">
-        <!-- Logo -->
+        
         <div class="logo">
             <img src="{{ asset('images/logo.png') }}" alt="Logo" style="width: 60px; height: auto;">
         </div>
 
-        <!-- Title -->
+       
         <div class="title">
             OCD MIMAROPA CLMS
         </div>
 
-        <!-- Registration Form -->
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-            <!-- Name -->
+        <!--
+
             <div>
                 <x-input-label for="name" :value="__('Name')" />
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
 
-            <!-- Email -->
+            
             <div class="mt-4">
                 <x-input-label for="email" :value="__('Email')" />
                 <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
             </div>
 
-            <!-- Password -->
+           
             <div class="mt-4">
                 <x-input-label for="password" :value="__('Password')" />
                 <x-text-input id="password" class="block mt-1 w-full"
@@ -91,7 +92,7 @@
                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
             </div>
 
-            <!-- Confirm Password -->
+            
             <div class="mt-4">
                 <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
                 <x-text-input id="password_confirmation" class="block mt-1 w-full"
@@ -110,7 +111,14 @@
                 </x-primary-button>
             </div>
         </form>
+    </div>  -->
+
+    <div class="text-center mt-6 text-lg text-black font-bold border border-white rounded p-4 shadow" style="background-color: rgba(246, 244, 244, 0.5);">
+        Registration is currently restricted. For account requests, please contact the system administrator.<br><br>
+        <strong>Contact:</strong> +63 995 975 3095
     </div>
+    
+    
 
     <!-- Footer -->
     <footer class="footer">
