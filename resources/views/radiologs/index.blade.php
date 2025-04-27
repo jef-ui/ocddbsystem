@@ -164,12 +164,17 @@
     </h2>
     <a href="{{ url('/dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a>
     <a href="{{ url('/radiolog/create') }}"><i class="bi bi-journal-plus"></i> Add Radio Log</a>
+    <a href="{{ route('radiolog.exportPDF') }}">
+      <i class="bi bi-printer"></i> Print Logs
+    </a>
+    {{-- <a href="{{ route('radiolog.print') }}" target="_blank"><i class="bi bi-printer"></i> Preview</a>  --}}
     <a href="#"><i class="bi bi-box-arrow-right"></i> Logout</a>
   </div>
+  
 
   <!-- Main Content -->
   <div class="content">
-    <h1><i class="bi bi-broadcast"></i> OCD MIMAROPA RADIO LOGS SYSTEM</h1>
+    <h1> OCD MIMAROPA RADIO LOGS SYSTEM</h1>
 
     @if(session()->has('success'))
       <div class="success-message">
@@ -200,7 +205,7 @@
             <th><i class="bi bi-person-lines-fill"></i> Receiver Name</th>
             <th><i class="bi bi-file-earmark-text"></i> Notes / Remarks</th>
             <th><i class="bi bi-pencil-square"></i> Edit</th>
-            <th><i class="bi bi-trash"></i> Delete</th>
+            <th><i class="bi bi-trash"></i> Delete</th> 
           </tr>
         </thead>
         <tbody id="radiolog-table">
@@ -219,6 +224,7 @@
                   <i class="bi bi-pencil-square"></i>
                 </a>
               </td>
+              
               <td>
                 <form method="post" action="{{ route('radiolog.delete', ['radiolog' => $radiolog]) }}">
                   @csrf
@@ -228,10 +234,13 @@
                   </button>
                 </form>
               </td>
+              
             </tr>
           @endforeach
         </tbody>
       </table>
+
+   
 
       <!-- jQuery and search functionality -->
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

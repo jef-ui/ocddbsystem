@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RadioLog;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 
 class RadioLogController extends Controller
@@ -83,4 +84,20 @@ class RadioLogController extends Controller
 
         return redirect(route('radiolog.index'))->with('success', 'Radio Log Deleted Successfully');
     }
+
+    public function print()
+        {
+            $radiologs = RadioLog::all(); // Get all radio logs from the database
+            return view('radiologs.print', compact('radiologs')); // Pass data to the print view
+        }
+
+        public function exportPDF()
+        {
+            $radiologs = RadioLog::all();
+            $pdf = Pdf::loadView('radiologs.print', compact('radiologs'))
+                      ->setPaper('a4', 'landscape'); // <-- Add this to make it landscape
+                      
+            return $pdf->download('radiologs.pdf');
+        }
+
 }

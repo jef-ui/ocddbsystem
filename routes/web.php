@@ -27,6 +27,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/radiolog/{radiolog}/edit', [RadioLogController::class, 'edit'])->name('radiolog.edit');
     Route::put('/radiolog/{radiolog}/update', [RadioLogController::class, 'update'])->name('radiolog.update');
     Route::delete('/radiolog/{radiolog}/delete', [RadioLogController::class, 'delete'])->name('radiolog.delete');
+    Route::get('/radiolog/print', [RadioLogController::class, 'print'])->name('radiolog.print');
+    Route::get('/radiolog/export-pdf', [RadioLogController::class, 'exportPDF'])->name('radiolog.exportPDF');
+    
+
 
 });
 
