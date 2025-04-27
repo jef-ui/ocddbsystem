@@ -7,10 +7,32 @@ use App\Models\RadioLog;
 
 class RadioLogController extends Controller
 {
-    public function index(){
-        $radiologs = RadioLog::all();
-        return view('radiologs.index', ['radiologs' => $radiologs]);
+    public function index(Request $request)
+{
+    $search = $request->input('search');
+
+    $radiologs = RadioLog::query()
+        ->when($search, function($query, $search) {
+            $query->where('received_date', 'like', "%{$search}%")
+                ->orWhere('received_time', 'like', "%{$search}%")
+                ->orWhere('sender_name', 'like', "%{$search}%")
+                ->orWhere('band', 'like', "%{$search}%")
+                ->orWhere('mode', 'like', "%{$search}%")
+                ->orWhere('signal_strength', 'like', "%{$search}%")
+                ->orWhere('receiver_name', 'like', "%{$search}%")
+                ->orWhere('notes_remarks', 'like', "%{$search}%");
+        })
+        ->orderBy('created_at', 'desc')
+        ->simplePaginate(15);
+
+    if ($request->ajax()) {
+        return view('radiologs.index', compact('radiologs'))->render();
     }
+
+    return view('radiologs.index', compact('radiologs'));
+}
+
+
 
     public function create(){
         return view ('radiologs.create');
