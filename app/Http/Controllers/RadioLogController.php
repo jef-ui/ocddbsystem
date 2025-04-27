@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RadioLog;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
+
 
 
 class RadioLogController extends Controller
 {
-   public function index(Request $request)
+   
+public function index(Request $request)
 {
     $search = $request->input('search');
 
@@ -26,16 +29,21 @@ class RadioLogController extends Controller
         ->orderBy('created_at', 'desc')
         ->simplePaginate(15);
 
-    $totalRadioLogs = RadioLog::count(); // Total of all radio logs
-
-    // Correct: get count of all radio logs where sender_name contains 'Central Office'
+    $totalRadioLogs = RadioLog::count(); 
+    
     $totalIncomingCentral = RadioLog::where('sender_name', 'like', '%Central Office%')->count();
 
+    $currentUserName = "OCD MIMAROPA | " . Auth::user()->name;
+    $totalMyComsLogs = RadioLog::where('sender_name', $currentUserName)
+    ->orWhere('receiver_name', $currentUserName)
+    ->count();
+
+
     if ($request->ajax()) {
-        return view('radiologs.index', compact('radiologs', 'totalRadioLogs', 'totalIncomingCentral'))->render();
+        return view('radiologs.index', compact('radiologs', 'totalRadioLogs', 'totalIncomingCentral', 'totalMyComsLogs'))->render();
     }
 
-    return view('radiologs.index', compact('radiologs', 'totalRadioLogs', 'totalIncomingCentral'));
+    return view('radiologs.index', compact('radiologs', 'totalRadioLogs', 'totalIncomingCentral', 'totalMyComsLogs'));
 }
 
 

@@ -207,48 +207,53 @@
 
 
     <!-- Dashboard Cards and Search Bar -->
-    <div style="display: flex; gap: 20px; margin-bottom: 1rem; align-items: center;">
-      <div style="background-color: #b16100; color: white; padding: 0.8rem 1.2rem; border-radius: 8px;
-                  box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center;
-                  min-width: 200px; height: 70px; display: flex; flex-direction: column; justify-content: center;">
-        <a href="{{ url('/radiolog/create') }}" style="color: white; text-decoration: none; font-weight: bold;">
-          <i class="bi bi-journal-plus" style="margin-right: 5px;"></i> Add Radio Log
-        </a>
-      </div>
+    <!-- Dashboard Cards and Search Bar -->
+<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 1rem;">
 
-      
+  <div style="flex: 1 1 150px; background-color: #b16100; color: white; padding: 0.8rem; border-radius: 8px;
+              text-align: center; height: 70px; display: flex; flex-direction: column; justify-content: center;">
+    <a href="{{ url('/radiolog/create') }}" style="color: white; text-decoration: none; font-weight: bold;">
+      <i class="bi bi-journal-plus" style="margin-right: 5px;"></i> Add Radio Log
+    </a>
+  </div>
 
-      <div style="background-color: #001F5B; color: white; padding: 0.8rem 1.2rem; border-radius: 8px;
-                  box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center;
-                  min-width: 200px; height: 70px; display: flex; flex-direction: column; justify-content: center;">
-        <div style="font-size: 1.2rem; font-weight: bold; line-height: 1;">
-          <i class="bi bi-collection" style="margin-right: 5px;"></i> {{ $totalRadioLogs }}
-        </div>
-        <div style="font-size: 0.8rem;">Total Radio Logs</div>
-      </div>
-
-      <div style="background-color: #353535; color: white; padding: 0.8rem 1.2rem; border-radius: 8px;
-                  box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center;
-                  min-width: 240px; height: 70px; display: flex; flex-direction: column; justify-content: center;">
-        <div style="font-size: 1.2rem; font-weight: bold; line-height: 1;">
-          <i class="bi bi-broadcast-pin" style="margin-right: 5px;"></i> {{ $totalIncomingCentral }}
-        </div>
-        <div style="font-size: 0.8rem;">Incoming Radio from CO</div>
-      </div>
-
-      <div style="display: flex; align-items: center; gap: 10px; height: 42px;">
-        <div style="position: relative; display: flex; align-items: center;">
-          <input type="text" id="search" placeholder="Search Radio Logs..." 
-            style="padding: 8px 12px; width: 300px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px; height: 42px;">
-        </div>
-        <button type="button" id="clearSearch"
-          style="background-color: #007517; color: white; border: none; border-radius: 5px;
-                padding: 0 20px; font-size: 14px; height: 42px; display: flex;
-                align-items: center; justify-content: center; cursor: pointer;">
-          <i class="bi bi-x-circle" style="margin-right: 5px;"></i> Clear
-        </button>
-      </div>
+  <div style="flex: 1 1 180px; background-color: #005a8d; color: white; padding: 0.8rem; border-radius: 8px;
+              text-align: center; height: 70px; display: flex; flex-direction: column; justify-content: center;">
+    <div style="font-size: 1.2rem; font-weight: bold;">
+      <i class="bi bi-chat-dots" style="margin-right: 5px;"></i> {{ $totalMyComsLogs }}
     </div>
+    <div style="font-size: 0.8rem;">My COMS Logs</div>
+  </div>
+
+  <div style="flex: 1 1 180px; background-color: #001F5B; color: white; padding: 0.8rem; border-radius: 8px;
+              text-align: center; height: 70px; display: flex; flex-direction: column; justify-content: center;">
+    <div style="font-size: 1.2rem; font-weight: bold;">
+      <i class="bi bi-collection" style="margin-right: 5px;"></i> {{ $totalRadioLogs }}
+    </div>
+    <div style="font-size: 0.8rem;">Total Radio Logs</div>
+  </div>
+
+  <div style="flex: 1 1 220px; background-color: #353535; color: white; padding: 0.8rem; border-radius: 8px;
+              text-align: center; height: 70px; display: flex; flex-direction: column; justify-content: center;">
+    <div style="font-size: 1.2rem; font-weight: bold;">
+      <i class="bi bi-broadcast-pin" style="margin-right: 5px;"></i> {{ $totalIncomingCentral }}
+    </div>
+    <div style="font-size: 0.8rem;">Incoming Radio from CO</div>
+  </div>
+
+  <div style="flex: 1 1 300px; display: flex; align-items: center; gap: 5px; height: 70px;">
+    <input type="text" id="search" placeholder="Search Radio Logs..."
+           style="flex: 1; padding: 8px 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px; height: 42px;">
+    <button type="button" id="clearSearch"
+            style="background-color: #007517; color: white; border: none; border-radius: 5px;
+                   padding: 0 20px; font-size: 14px; height: 42px; display: flex;
+                   align-items: center; justify-content: center; cursor: pointer;">
+      <i class="bi bi-x-circle" style="margin-right: 5px;"></i> Clear
+    </button>
+  </div>
+
+</div>
+
 
     <!-- Table -->
     <div class="table-container">
