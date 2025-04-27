@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/radiolog/print', [RadioLogController::class, 'print'])->name('radiolog.print');
     Route::get('/radiolog/export-pdf', [RadioLogController::class, 'exportPDF'])->name('radiolog.exportPDF');
     
+    
 
 
 });

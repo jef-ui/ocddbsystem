@@ -6,13 +6,12 @@
     <title>OCD CLMS</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- Add this in your <head> -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <style>
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif; /* Changed font-family to Arial */
             background: url('{{ asset('images/bg_1.png') }}') no-repeat center center fixed;
             background-size: cover;
         }
@@ -24,6 +23,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-family: Arial, sans-serif; /* Changed font-family to Arial */
         }
 
         .topbar a {
@@ -31,11 +31,11 @@
             margin-left: 1rem;
             text-decoration: none;
             font-size: 0.875rem;
+            font-family: Arial, sans-serif; /* Changed font-family to Arial */
         }
 
         .topbar a:hover {
             color: orange;
-        
         }
 
         .main-content {
@@ -47,16 +47,18 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            font-family: Arial, sans-serif; /* Changed font-family to Arial */
         }
 
         .main-content h1 {
-            font-family: Arial, sans-serif; /* Changed to Arial */
+            font-family: Arial, sans-serif; /* Changed font-family to Arial */
             font-size: 3rem;
             font-weight: 800;
             margin: 1rem 0;
         }
 
         .main-content p {
+            font-family: Arial, sans-serif; /* Changed font-family to Arial */
             font-size: 1rem; /* Reduced font size */
             max-width: 700px;
             margin: 0 auto 2rem auto;
@@ -64,6 +66,7 @@
 
         .btn {
             display: inline-block;
+            font-family: Arial, sans-serif; /* Changed font-family to Arial */
             font-weight: bold;
             padding: 0.75rem 2rem;
             border-radius: 0.375rem;
@@ -93,6 +96,7 @@
             text-align: center;
             font-size: 12px;
             padding: 10px 0;
+            font-family: Arial, sans-serif; /* Changed font-family to Arial */
         }
 
         html, body {
@@ -112,25 +116,24 @@
 <body>
 
     <!-- Topbar -->
-<div class="topbar">
-    <div class="flex items-center space-x-3">
-        <strong>OCD CLMS</strong>
-    </div>
-    <div>
-        <a href="https://ocd.gov.ph/about-ocd.html">
-            <i class="bi bi-globe"></i> OCD OFFICIAL WEBPAGE
-        </a>
-        <a href="#">
-            <i class="bi bi-envelope-at"></i> CONTACT
-        </a>
-        @if (Route::has('login'))
-            <a href="{{ route('login') }}">
-                <i class="bi bi-box-arrow-in-right"></i> LOGIN
+    <div class="topbar">
+        <div class="flex items-center space-x-3">
+            <strong>OCD CLMS</strong>
+        </div>
+        <div>
+            <a href="https://ocd.gov.ph/about-ocd.html">
+                <i class="bi bi-globe"></i> OCD OFFICIAL WEBPAGE
             </a>
-        @endif
+            <a href="#">
+                <i class="bi bi-envelope-at"></i> CONTACT
+            </a>
+            @if (Route::has('login'))
+                <a href="{{ route('login') }}">
+                    <i class="bi bi-box-arrow-in-right"></i> LOGIN
+                </a>
+            @endif
+        </div>
     </div>
-</div>
-
 
     <!-- Main content -->
     <div class="main-content">

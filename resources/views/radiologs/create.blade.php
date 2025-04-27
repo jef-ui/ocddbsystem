@@ -187,7 +187,6 @@
                     <option value="OCD Region II">OCD Region II</option>
                     <option value="OCD Region III">OCD Region III</option>
                     <option value="OCD Region IV-A (CALABARZON)">OCD Region IV-A (CALABARZON)</option>
-                    <option value="OCD Region IV-B (MIMAROPA)">OCD Region IV-B (MIMAROPA)</option>
                     <option value="OCD Region V">OCD Region V</option>
                     <option value="OCD Region VI">OCD Region VI</option>
                     <option value="OCD Region VII">OCD Region VII</option>
@@ -245,7 +244,6 @@
                     <option value="OCD Region II">OCD Region II</option>
                     <option value="OCD Region III">OCD Region III</option>
                     <option value="OCD Region IV-A (CALABARZON)">OCD Region IV-A (CALABARZON)</option>
-                    <option value="OCD Region IV-B (MIMAROPA)">OCD Region IV-B (MIMAROPA)</option>
                     <option value="OCD Region V">OCD Region V</option>
                     <option value="OCD Region VI">OCD Region VI</option>
                     <option value="OCD Region VII">OCD Region VII</option>

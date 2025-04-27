@@ -12,9 +12,15 @@
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
+      flex-direction: column;
       background-color: #f4f6f8;
+    }
+
+    .main {
+      flex: 1;
+      display: flex;
     }
 
     .sidebar {
@@ -24,6 +30,12 @@
       padding: 2rem 1rem;
       display: flex;
       flex-direction: column;
+      box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease-in-out;
+    }
+
+    .sidebar:hover {
+      box-shadow: 6px 0 12px rgba(0, 0, 0, 0.2);
     }
 
     .sidebar h2 {
@@ -56,7 +68,7 @@
     }
 
     .sidebar a:hover {
-      background-color: #003366;
+      color: orange;
     }
 
     .content {
@@ -79,12 +91,11 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
-    /* Updated table style */
     table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 1rem;
-      font-size: 0.8rem; /* smaller text */
+      font-size: 0.8rem;
     }
 
     table, th, td {
@@ -92,7 +103,7 @@
     }
 
     th, td {
-      padding: 0.4rem; /* reduced padding */
+      padding: 0.4rem;
       text-align: center;
     }
 
@@ -101,7 +112,6 @@
       color: white;
     }
 
-    /* Success message */
     .success-message {
       color: green;
       margin-bottom: 1rem;
@@ -123,7 +133,6 @@
       background-color: #e67300;
     }
 
-    /* Edit and Delete icon smaller */
     td a i.bi-pencil-square,
     td form button i.bi-trash {
       font-size: 0.9rem;
@@ -153,45 +162,95 @@
     .delete-icon:hover {
       color: darkred;
     }
+
+    .footer {
+      background-color: white;
+      color: #003366;
+      text-align: center;
+      font-size: 12px;
+      padding: 10px 0;
+    }
   </style>
 </head>
 <body>
+
+<div class="main">
 
   <!-- Sidebar -->
   <div class="sidebar">
     <h2>
       <img src="{{ asset('images/logo.png') }}" alt="Logo"> OCD CLMS
     </h2>
-    <a href="{{ url('/dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a>
-    <a href="{{ url('/radiolog/create') }}"><i class="bi bi-journal-plus"></i> Add Radio Log</a>
+    <a href="{{ url('/dashboard') }}"><i class="bi bi-speedometer2"></i> DASHBOARD</a>
+    {{-- <a href="{{ url('/radiolog/create') }}"><i class="bi bi-journal-plus"></i> Add Radio Log</a>  --}}
     <a href="{{ route('radiolog.exportPDF') }}">
-      <i class="bi bi-printer"></i> Print Logs
+      <i class="bi bi-printer"></i> PRINT LOGS
     </a>
-    {{-- <a href="{{ route('radiolog.print') }}" target="_blank"><i class="bi bi-printer"></i> Preview</a>  --}}
-    <a href="#"><i class="bi bi-box-arrow-right"></i> Logout</a>
+    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+      <i class="bi bi-box-arrow-right"></i> LOG OUT
+    </a>
+    
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+      @csrf
+    </form>
+
+    
   </div>
-  
 
   <!-- Main Content -->
   <div class="content">
-    <h1> OCD MIMAROPA RADIO LOGS SYSTEM</h1>
-
     @if(session()->has('success'))
       <div class="success-message">
         {{ session('success') }}
       </div>
     @endif
 
-    <!-- Live Search Bar -->
-    <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem; gap: 10px;">
-      <input type="text" id="search" placeholder="Search Radio Logs..." 
-          style="padding: 8px 12px; height: 42px; width: 300px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px;">
-      <button type="button" id="clearSearch" class="btn-add" 
-          style="height: 42px; padding: 8px 20px; display: flex; align-items: center; justify-content: center; font-size: 14px; border: none; border-radius: 5px;">
+
+    <!-- Dashboard Cards and Search Bar -->
+    <div style="display: flex; gap: 20px; margin-bottom: 1rem; align-items: center;">
+      <div style="background-color: #b16100; color: white; padding: 0.8rem 1.2rem; border-radius: 8px;
+                  box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center;
+                  min-width: 200px; height: 70px; display: flex; flex-direction: column; justify-content: center;">
+        <a href="{{ url('/radiolog/create') }}" style="color: white; text-decoration: none; font-weight: bold;">
+          <i class="bi bi-journal-plus" style="margin-right: 5px;"></i> Add Radio Log
+        </a>
+      </div>
+
+      
+
+      <div style="background-color: #001F5B; color: white; padding: 0.8rem 1.2rem; border-radius: 8px;
+                  box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center;
+                  min-width: 200px; height: 70px; display: flex; flex-direction: column; justify-content: center;">
+        <div style="font-size: 1.2rem; font-weight: bold; line-height: 1;">
+          <i class="bi bi-collection" style="margin-right: 5px;"></i> {{ $totalRadioLogs }}
+        </div>
+        <div style="font-size: 0.8rem;">Total Radio Logs</div>
+      </div>
+
+      <div style="background-color: #353535; color: white; padding: 0.8rem 1.2rem; border-radius: 8px;
+                  box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center;
+                  min-width: 240px; height: 70px; display: flex; flex-direction: column; justify-content: center;">
+        <div style="font-size: 1.2rem; font-weight: bold; line-height: 1;">
+          <i class="bi bi-broadcast-pin" style="margin-right: 5px;"></i> {{ $totalIncomingCentral }}
+        </div>
+        <div style="font-size: 0.8rem;">Incoming Radio from CO</div>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 10px; height: 42px;">
+        <div style="position: relative; display: flex; align-items: center;">
+          <input type="text" id="search" placeholder="Search Radio Logs..." 
+            style="padding: 8px 12px; width: 300px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px; height: 42px;">
+        </div>
+        <button type="button" id="clearSearch"
+          style="background-color: #007517; color: white; border: none; border-radius: 5px;
+                padding: 0 20px; font-size: 14px; height: 42px; display: flex;
+                align-items: center; justify-content: center; cursor: pointer;">
           <i class="bi bi-x-circle" style="margin-right: 5px;"></i> Clear
-      </button>
+        </button>
+      </div>
     </div>
-    
+
+    <!-- Table -->
     <div class="table-container">
       <table>
         <thead>
@@ -224,7 +283,6 @@
                   <i class="bi bi-pencil-square"></i>
                 </a>
               </td>
-              
               <td>
                 <form method="post" action="{{ route('radiolog.delete', ['radiolog' => $radiolog]) }}">
                   @csrf
@@ -234,15 +292,12 @@
                   </button>
                 </form>
               </td>
-              
             </tr>
           @endforeach
         </tbody>
       </table>
 
-   
-
-      <!-- jQuery and search functionality -->
+      <!-- Search functionality -->
       <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
       <script>
         $(document).ready(function() {
@@ -271,7 +326,15 @@
       </div>
       
     </div>
+
   </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  Designed and Developed by ICTU MIMAROPA, Office of Civil Defense MIMAROPA © Copyright 2025
+</footer>
 
 </body>
 </html>

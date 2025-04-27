@@ -9,7 +9,7 @@
     <style>
         body {
             margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif; /* Changed to Arial */
             background: url('{{ asset('images/bg_1.png') }}') no-repeat center center fixed;
             background-size: cover;
         }
@@ -21,6 +21,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-family: Arial, sans-serif; /* Changed to Arial */
         }
 
         .topbar a {
@@ -28,6 +29,7 @@
             margin-left: 1rem;
             text-decoration: none;
             font-size: 0.875rem;
+            font-family: Arial, sans-serif; /* Changed to Arial */
         }
 
         .topbar a:hover {
@@ -39,6 +41,7 @@
             padding: 3rem 1rem;
             max-width: 800px;
             margin: auto;
+            font-family: Arial, sans-serif; /* Changed to Arial */
         }
 
         .footer {
@@ -48,6 +51,7 @@
             font-size: 12px;
             padding: 10px 0;
             margin-top: 3rem;
+            font-family: Arial, sans-serif; /* Changed to Arial */
         }
 
         .form-section {
@@ -57,6 +61,7 @@
             padding: 2rem;
             margin-bottom: 2rem;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            font-family: Arial, sans-serif; /* Changed to Arial */
         }
 
         html, body {
@@ -95,7 +100,6 @@
 <div class="main-content">
 
     <div class="form-section">
-        
         @include('profile.partials.update-profile-information-form')
     </div>
 

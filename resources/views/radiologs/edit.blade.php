@@ -189,7 +189,6 @@
                     <option value="OCD Region II" {{ old('sender_name', $radiolog->sender_name) == 'OCD Region II' ? 'selected' : '' }}>OCD Region II</option>
                     <option value="OCD Region III" {{ old('sender_name', $radiolog->sender_name) == 'OCD Region III' ? 'selected' : '' }}>OCD Region III</option>
                     <option value="OCD Region IV-A (CALABARZON)" {{ old('sender_name', $radiolog->sender_name) == 'OCD Region IV-A (CALABARZON)' ? 'selected' : '' }}>OCD Region IV-A (CALABARZON)</option>
-                    <option value="OCD Region IV-B (MIMAROPA)" {{ old('sender_name', $radiolog->sender_name) == 'OCD Region IV-B (MIMAROPA)' ? 'selected' : '' }}>OCD Region IV-B (MIMAROPA)</option>
                     <option value="OCD Region V" {{ old('sender_name', $radiolog->sender_name) == 'OCD Region V' ? 'selected' : '' }}>OCD Region V</option>
                     <option value="OCD Region VI" {{ old('sender_name', $radiolog->sender_name) == 'OCD Region VI' ? 'selected' : '' }}>OCD Region VI</option>
                     <option value="OCD Region VII" {{ old('sender_name', $radiolog->sender_name) == 'OCD Region VII' ? 'selected' : '' }}>OCD Region VII</option>
@@ -260,8 +259,6 @@
                     <option value="OCD Region IV-A (CALABARZON)" {{ old('receiver_name', $radiolog->receiver_name) == 'OCD Region IV-A (CALABARZON)' ? 'selected' : '' }}>
                         OCD Region IV-A (CALABARZON)
                     </option>
-                    <option value="OCD Region IV-B (MIMAROPA)" {{ old('receiver_name', $radiolog->receiver_name) == 'OCD Region IV-B (MIMAROPA)' ? 'selected' : '' }}>
-                        OCD Region IV-B (MIMAROPA)
                     </option>
                     <option value="OCD Region V" {{ old('receiver_name', $radiolog->receiver_name) == 'OCD Region V' ? 'selected' : '' }}>
                         OCD Region V

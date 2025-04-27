@@ -38,6 +38,12 @@
         th {
             background-color: #f2f2f2;
         }
+        /* Add styles for the print date */
+        .print-date {
+            text-align: right;
+            font-size: 10px;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -46,8 +52,10 @@
         <img src="{{ public_path('images/lhead.png') }}" style="width: 100%; max-width: 700px; margin-bottom: 10px;">
     </div>
 
-    
     <h1>OCD MIMAROPA RADIO LOGBOOK</h1>
+
+    <!-- Print Date -->
+    <p class="print-date">Print Date: {{ \Carbon\Carbon::now()->format('l, F j, Y') }}</p>
 
     <table>
         <thead>
