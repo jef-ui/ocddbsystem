@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RadioLogController;
+use App\Http\Controllers\RecordController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,6 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/radiolog/{radiolog}/delete', [RadioLogController::class, 'delete'])->name('radiolog.delete');
     Route::get('/radiolog/print', [RadioLogController::class, 'print'])->name('radiolog.print');
     Route::get('/radiolog/export-pdf', [RadioLogController::class, 'exportPDF'])->name('radiolog.exportPDF');
+
+     //OCD MIMAROPA Incoming Communications
+    Route::get('/record', [RecordController::class, 'index'])->name('record.index');
+    Route::get('/record/create', [RecordController::class, 'create'])->name('record.create');
     
     
 
