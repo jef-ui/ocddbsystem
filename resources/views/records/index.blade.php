@@ -7,6 +7,6 @@
 <body>
     <h1>Records</h1>
 
-    <a href="{{ route('record.create')}}">Add Incoming Comms</a>
+    <a href="{{ route('record.create')}}">Add Incoming Communications OCD MIMAROPA</a>
 </body>
 </html>
