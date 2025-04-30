@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
   <style>
+
+    
     body {
       margin: 0;
       font-family: 'Arial', sans-serif;
@@ -170,6 +172,24 @@
       font-size: 12px;
       padding: 10px 0;
     }
+
+    .nav-btn {
+    color: #000;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    text-decoration: none;
+    margin: 0 4px;
+  }
+
+  .nav-btn:hover,
+  .nav-btn:active {
+    background-color: orange;
+    color: white;
+    text-decoration: none;
+  }
   </style>
 </head>
 <body>
@@ -178,21 +198,37 @@
 
   <!-- Sidebar -->
   <div class="sidebar">
+
+    
     <h2>
       <img src="{{ asset('images/logo.png') }}" alt="Logo"> OCD CLMS
     </h2>
-    <a href="{{ url('/dashboard') }}"><i class="bi bi-speedometer2"></i> DASHBOARD</a>
-    {{-- <a href="{{ url('/radiolog/create') }}"><i class="bi bi-journal-plus"></i> Add Radio Log</a>  --}}
-    <a href="{{ route('radiolog.exportPDF') }}">
-      <i class="bi bi-printer"></i> PRINT LOGS
-    </a>
-    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-      <i class="bi bi-box-arrow-right"></i> LOG OUT
-    </a>
-    
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-      @csrf
-    </form>
+
+    @if(Auth::check())
+    @php
+        $firstName = explode(' ', Auth::user()->name)[0];
+    @endphp
+  
+  <div class="d-flex align-items-center mb-3 px-3 py-2 rounded" style="background-color: white;">
+    <i class="bi bi-person-circle me-2" style="font-size: 1.2rem; color: black;"></i>
+    <span style="font-size: 0.95rem; color: black;">Hi! {{ $firstName }}</span>
+  </div>
+  @endif
+  
+
+<a href="{{ url('/dashboard') }}"><i class="bi bi-speedometer2"></i> DASHBOARD</a>
+
+<a href="{{ route('radiolog.exportPDF') }}">
+  <i class="bi bi-printer"></i> PRINT LOGS
+</a>
+
+<a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+  <i class="bi bi-box-arrow-right"></i> LOG OUT
+</a>
+
+<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+  @csrf
+</form>
 
     
   </div>
@@ -269,7 +305,7 @@
             <th><i class="bi bi-person-lines-fill"></i> Receiver Name</th>
             <th><i class="bi bi-file-earmark-text"></i> Notes / Remarks</th>
             <th><i class="bi bi-pencil-square"></i> Edit</th>
-            <th><i class="bi bi-trash"></i> Delete</th> 
+           {{--   <th><i class="bi bi-trash"></i> Delete</th>  --}} 
           </tr>
         </thead>
         <tbody id="radiolog-table">
@@ -288,7 +324,9 @@
                   <i class="bi bi-pencil-square"></i>
                 </a>
               </td>
-              <td>
+              {{--   <td>
+
+                
                 <form method="post" action="{{ route('radiolog.delete', ['radiolog' => $radiolog]) }}">
                   @csrf
                   @method('delete')
@@ -296,7 +334,8 @@
                     <i class="bi bi-trash delete-icon"></i>
                   </button>
                 </form>
-              </td>
+                
+              </td>--}} 
             </tr>
           @endforeach
         </tbody>
@@ -326,9 +365,10 @@
       </script>
 
       <!-- Pagination -->
-      <div class="mt-4" style="text-align: center;">
+      <div class="mt-4" style="text-align: right; padding-right: 10px;">
         {{ $radiologs->appends(['search' => request('search')])->links('vendor.pagination.simple-icons') }}
       </div>
+      
       
     </div>
 
