@@ -311,8 +311,8 @@
         <tbody id="radiolog-table">
           @foreach ($radiologs as $radiolog)
             <tr>
-              <td>{{ $radiolog->received_date }}</td>
-              <td>{{ $radiolog->received_time }}</td>
+              <td>{{ \Carbon\Carbon::parse($radiolog->received_date)->format('F j, Y') }}</td>
+              <td>{{ \Carbon\Carbon::parse($radiolog->received_time)->format('h:i A') }}</td>
               <td>{{ $radiolog->sender_name }}</td>
               <td>{{ $radiolog->band }}</td>
               <td>{{ $radiolog->mode }}</td>
