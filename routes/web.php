@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
      //OCD MIMAROPA Incoming Communications
     Route::get('/record', [RecordController::class, 'index'])->name('record.index');
     Route::get('/record/create', [RecordController::class, 'create'])->name('record.create');
+    Route::post('/record', [RecordController::class, 'store'])->name('record.store');
     
     
 

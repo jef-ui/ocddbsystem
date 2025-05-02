@@ -25,18 +25,23 @@ return new class extends Migration
             $table->string('concerned_section_personnel'); // Concerned Section / Personnel
             $table->date('deadline_of_compliance'); // Deadline of Compliance
             $table->string('compliance_status'); //, ['Pending', 'Completed', 'In Progress']); // Compliance Status
-            $table->string('file_path'); // File path
-            $table->string('file_path1'); // File path
-            $table->string('file_path2'); // File path
+            $table->string('file_path')->nullable()->change();
+            $table->string('file_path1')->nullable()->change();
+            $table->string('file_path2')->nullable()->change();
             $table->timestamps();
         });
     }
+
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('records');
+        Schema::table('records', function (Blueprint $table) {
+            $table->string('file_path')->nullable(false)->change();
+            $table->string('file_path1')->nullable(false)->change();
+            $table->string('file_path2')->nullable(false)->change();
+        });
     }
 };
