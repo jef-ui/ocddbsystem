@@ -120,6 +120,7 @@
             font-size: 12px;
             padding: 10px 0;
         }
+        
     </style>
 </head>
 <body>
@@ -163,29 +164,28 @@
             </div>
             
 
-            <h2>
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 2.5rem; width: auto;">
-                New Radio Log Entry
+            <h2 style="display: flex; align-items: center; justify-content: center; font-size: 1.75rem; font-weight: bold; color: #333;">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 2.5rem; width: auto; margin-right: 1rem;">
+                NEW RADIO LOG ENTRY
             </h2>
-
+            
             <div>
-                <label for="received_date">
-                    <i class="bi bi-calendar-date"></i> Received Date
+                <label for="received_date" style="color: black;">
+                    <i class="bi bi-calendar-date" style="color: orange;"></i> Received Date
                 </label>
                 <input type="date" name="received_date" id="received_date" value="{{ old('received_date') }}" required>
             </div>
             
-
             <div>
-                <label for="received_time">
-                    <i class="bi bi-clock"></i> Received Time
+                <label for="received_time" style="color: black;">
+                    <i class="bi bi-clock" style="color: orange;"></i> Received Time
                 </label>
                 <input type="time" name="received_time" id="received_time" value="{{ old('received_time') }}" required>
             </div>
-
+            
             <div>
-                <label for="sender_name">
-                    <i class="bi bi-person-fill"></i> Name of Sender
+                <label for="sender_name" style="color: black;">
+                    <i class="bi bi-person-fill" style="color: orange;"></i> Name of Sender
                 </label>
                 <select name="sender_name" id="sender_name" required>
                     <option value="OCD Central Office" selected>OCD Central Office</option>
@@ -210,11 +210,9 @@
                 </select>
             </div>
             
-            
-
             <div>
-                <label for="band">
-                    <i class="bi bi-broadcast"></i> Band
+                <label for="band" style="color: black;">
+                    <i class="bi bi-broadcast" style="color: orange;"></i> Band
                 </label>
                 <select name="band" id="band" required>
                     <option value="" disabled {{ old('band') ? '' : 'selected' }}>Select Band</option>
@@ -223,10 +221,9 @@
                 </select>
             </div>
             
-
             <div>
-                <label for="mode">
-                    <i class="bi bi-sliders"></i> Mode
+                <label for="mode" style="color: black;">
+                    <i class="bi bi-sliders" style="color: orange;"></i> Mode
                 </label>
                 <select name="mode" id="mode" required>
                     <option value="" disabled {{ old('mode') ? '' : 'selected' }}>Select Mode</option>
@@ -236,10 +233,9 @@
                 </select>
             </div>
             
-
             <div>
-                <label for="signal_strength">
-                    <i class="bi bi-reception-4"></i> Signal Strength
+                <label for="signal_strength" style="color: black;">
+                    <i class="bi bi-reception-4" style="color: orange;"></i> Signal Strength
                 </label>
                 <select name="signal_strength" id="signal_strength" required>
                     <option value="" disabled {{ old('signal_strength') ? '' : 'selected' }}>Select Signal Strength</option>
@@ -250,10 +246,9 @@
                 </select>
             </div>
             
-
             <div>
-                <label for="receiver_name">
-                    <i class="bi bi-person-check-fill"></i> Name of Receiver
+                <label for="receiver_name" style="color: black;">
+                    <i class="bi bi-person-check-fill" style="color: orange;"></i> Name of Receiver
                 </label>
                 <select name="receiver_name" id="receiver_name" required>
                     <option value="OCD MIMAROPA | {{ Auth::user()->name }}" selected>OCD MIMAROPA | {{ Auth::user()->name }}</option>
@@ -278,24 +273,26 @@
                 </select>
             </div>
             
-            
-
             <div class="full-width">
-                <label for="notes_remarks">
-                    <i class="bi bi-journal-text"></i> Notes / Remarks
+                <label for="notes_remarks" style="color: black;">
+                    <i class="bi bi-journal-text" style="color: orange;"></i> Notes / Remarks
                 </label>
                 <select name="notes_remarks" id="notes_remarks">
                     <option value="" disabled {{ old('notes_remarks') ? '' : 'selected' }}>Select Notes/Remarks</option>
-                    <option value="Radio Check / Net Call" {{ old('notes_remarks', 'Radio Check & Weather Update') == 'Radio Check / Net Call' ? 'selected' : '' }}>Radio Check / Net Call</option>
                     <option value="Radio Check & Weather Update" {{ old('notes_remarks', 'Radio Check & Weather Update') == 'Radio Check & Weather Update' ? 'selected' : '' }}>Radio Check & Weather Update</option>
+                    <option value="Radio Check / Net Call" {{ old('notes_remarks', 'Radio Check & Weather Update') == 'Radio Check / Net Call' ? 'selected' : '' }}>Radio Check / Net Call</option>
                     <option value="Incident Follow-up" {{ old('notes_remarks') == 'Incident Follow-up' ? 'selected' : '' }}>Incident Follow-up</option>
                     <option value="ComEx" {{ old('notes_remarks') == 'ComEx' ? 'selected' : '' }}>ComEx</option>
                     <option value="Unit Movement" {{ old('notes_remarks') == 'Unit Movement' ? 'selected' : '' }}>Unit Movement</option>
                 </select>
             </div>
             
+            
 
-            <button type="submit">Save Log</button>
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-save-fill" style="color: orange;"></i> SAVE RADIO LOG
+            </button>
+            
 
         </form>
     </div>
