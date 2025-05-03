@@ -11,14 +11,13 @@ class Guest extends Model
 
     protected $fillable = [
 
+        'date_of_visit',
         'name',
         'agency',
         'position',
         'gender',
         'purpose_of_visit',
         'e_signature',
-        'date_of_visit',
-        'date_of_out',
-
+        
     ];
 }

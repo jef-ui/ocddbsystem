@@ -12,6 +12,8 @@ Route::get('/', function () {
 
 Route::get('/guest',[GuestController::class, 'index'])->name('guest.index');
 Route::get('/guest/create',[GuestController::class, 'create'])->name('guest.create');
+Route::post('/guest',[GuestController::class, 'store'])->name('guest.store');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
