@@ -1,6 +1,6 @@
 <?php
 
-
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RadioLogController;
 use App\Http\Controllers\RecordController;
@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/guest',[GuestController::class, 'index'])->name('guest.index');
+Route::get('/guest/create',[GuestController::class, 'create'])->name('guest.create');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -36,8 +39,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/record/create', [RecordController::class, 'create'])->name('record.create');
     Route::post('/record', [RecordController::class, 'store'])->name('record.store');
     
-    
-
 
 });
 
