@@ -169,20 +169,27 @@
             </h2>
 
             <div>
-                <label for="received_date">Received Date</label>
+                <label for="received_date">
+                    <i class="bi bi-calendar-date"></i> Received Date
+                </label>
                 <input type="date" name="received_date" id="received_date" value="{{ old('received_date') }}" required>
             </div>
+            
 
             <div>
-                <label for="received_time">Received Time</label>
+                <label for="received_time">
+                    <i class="bi bi-clock"></i> Received Time
+                </label>
                 <input type="time" name="received_time" id="received_time" value="{{ old('received_time') }}" required>
             </div>
 
             <div>
-                <label for="sender_name">Name of Sender</label>
+                <label for="sender_name">
+                    <i class="bi bi-person-fill"></i> Name of Sender
+                </label>
                 <select name="sender_name" id="sender_name" required>
-                    <option value="OCD MIMAROPA | {{ Auth::user()->name }}" selected>OCD MIMAROPA | {{ Auth::user()->name }}</option>
-                    <option value="OCD Central Office">OCD Central Office</option>
+                    <option value="OCD Central Office" selected>OCD Central Office</option>
+                    <option value="OCD MIMAROPA | {{ Auth::user()->name }}" {{ old('sender_name') == 'OCD MIMAROPA | ' . Auth::user()->name ? 'selected' : '' }}>OCD MIMAROPA | {{ Auth::user()->name }}</option>
                     <option value="OCD Region I">OCD Region I</option>
                     <option value="OCD Region II">OCD Region II</option>
                     <option value="OCD Region III">OCD Region III</option>
@@ -206,37 +213,48 @@
             
 
             <div>
-                <label for="band">Band</label>
+                <label for="band">
+                    <i class="bi bi-broadcast"></i> Band
+                </label>
                 <select name="band" id="band" required>
-                    <option value="">Select Band</option>
-                    <option value="UHF" {{ old('band') == 'UHF' ? 'selected' : '' }}>UHF</option>
+                    <option value="" disabled {{ old('band') ? '' : 'selected' }}>Select Band</option>
+                    <option value="UHF" {{ old('band', 'UHF') == 'UHF' ? 'selected' : '' }}>UHF</option>
                     <option value="HF" {{ old('band') == 'HF' ? 'selected' : '' }}>HF</option>
                 </select>
             </div>
+            
 
             <div>
-                <label for="mode">Mode</label>
+                <label for="mode">
+                    <i class="bi bi-sliders"></i> Mode
+                </label>
                 <select name="mode" id="mode" required>
-                    <option value="">Select Mode</option>
-                    <option value="DMR" {{ old('mode') == 'DMR' ? 'selected' : '' }}>DMR</option>
+                    <option value="" disabled {{ old('mode') ? '' : 'selected' }}>Select Mode</option>
+                    <option value="DMR" {{ old('mode', 'DMR') == 'DMR' ? 'selected' : '' }}>DMR</option>
                     <option value="SSB" {{ old('mode') == 'SSB' ? 'selected' : '' }}>SSB</option>
                     <option value="LSB" {{ old('mode') == 'LSB' ? 'selected' : '' }}>LSB</option>
                 </select>
             </div>
+            
 
             <div>
-                <label for="signal_strength">Signal Strength</label>
+                <label for="signal_strength">
+                    <i class="bi bi-reception-4"></i> Signal Strength
+                </label>
                 <select name="signal_strength" id="signal_strength" required>
-                    <option value="">Select Signal Strength</option>
-                    <option value="Excellent" {{ old('signal_strength') == 'Excellent' ? 'selected' : '' }}>Excellent</option>
+                    <option value="" disabled {{ old('signal_strength') ? '' : 'selected' }}>Select Signal Strength</option>
+                    <option value="Excellent" {{ old('signal_strength', 'Excellent') == 'Excellent' ? 'selected' : '' }}>Excellent</option>
                     <option value="Good" {{ old('signal_strength') == 'Good' ? 'selected' : '' }}>Good</option>
                     <option value="Fair" {{ old('signal_strength') == 'Fair' ? 'selected' : '' }}>Fair</option>
                     <option value="Poor" {{ old('signal_strength') == 'Poor' ? 'selected' : '' }}>Poor</option>
                 </select>
             </div>
+            
 
             <div>
-                <label for="receiver_name">Name of Receiver</label>
+                <label for="receiver_name">
+                    <i class="bi bi-person-check-fill"></i> Name of Receiver
+                </label>
                 <select name="receiver_name" id="receiver_name" required>
                     <option value="OCD MIMAROPA | {{ Auth::user()->name }}" selected>OCD MIMAROPA | {{ Auth::user()->name }}</option>
                     <option value="OCD Central Office">OCD Central Office</option>
@@ -263,16 +281,19 @@
             
 
             <div class="full-width">
-                <label for="notes_remarks">Notes / Remarks</label>
+                <label for="notes_remarks">
+                    <i class="bi bi-journal-text"></i> Notes / Remarks
+                </label>
                 <select name="notes_remarks" id="notes_remarks">
-                    <option value="">Select Notes/Remarks</option>
-                    <option value="Radio Check / Net Call" {{ old('notes_remarks') == 'Radio Check / Net Call' ? 'selected' : '' }}>Radio Check / Net Call</option>
-                    <option value="Radio Check & Weather Update" {{ old('notes_remarks') == 'Radio Check & Weather Update' ? 'selected' : '' }}>Radio Check & Weather Update</option>
+                    <option value="" disabled {{ old('notes_remarks') ? '' : 'selected' }}>Select Notes/Remarks</option>
+                    <option value="Radio Check / Net Call" {{ old('notes_remarks', 'Radio Check & Weather Update') == 'Radio Check / Net Call' ? 'selected' : '' }}>Radio Check / Net Call</option>
+                    <option value="Radio Check & Weather Update" {{ old('notes_remarks', 'Radio Check & Weather Update') == 'Radio Check & Weather Update' ? 'selected' : '' }}>Radio Check & Weather Update</option>
                     <option value="Incident Follow-up" {{ old('notes_remarks') == 'Incident Follow-up' ? 'selected' : '' }}>Incident Follow-up</option>
                     <option value="ComEx" {{ old('notes_remarks') == 'ComEx' ? 'selected' : '' }}>ComEx</option>
                     <option value="Unit Movement" {{ old('notes_remarks') == 'Unit Movement' ? 'selected' : '' }}>Unit Movement</option>
                 </select>
             </div>
+            
 
             <button type="submit">Save Log</button>
 

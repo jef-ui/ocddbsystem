@@ -8,9 +8,8 @@ use Illuminate\Http\Request;
 class RecordController extends Controller
 {
     public function index(){
-
-        return view('records.index');
-
+        $records = Record::all();
+        return view('records.index', ['records' => $records]);
     }
 
     public function create(){
