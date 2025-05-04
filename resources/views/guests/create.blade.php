@@ -164,21 +164,21 @@ canvas {
             <div class="mb-3">
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-person"></i></span>
-                    <input type="text" name="name" id="name" class="form-control" placeholder="Full Name" required>
+                    <input type="text" name="name" id="name" class="form-control" placeholder="First Name M.I Surname" required>
                 </div>
             </div>
             
             <div class="mb-3">
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-building"></i></span>
-                    <input type="text" name="agency" class="form-control" placeholder="Agency" required>
+                    <input type="text" name="agency" class="form-control" placeholder="Agency/ Office" required>
                 </div>
             </div>
             
             <div class="mb-3">
                 <div class="input-group">
                     <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
-                    <input type="text" name="position" class="form-control" placeholder="Position" required>
+                    <input type="text" name="position" class="form-control" placeholder="Position/ Designation" required>
                 </div>
             </div>
             

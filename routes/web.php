@@ -40,6 +40,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/record', [RecordController::class, 'index'])->name('record.index');
     Route::get('/record/create', [RecordController::class, 'create'])->name('record.create');
     Route::post('/record', [RecordController::class, 'store'])->name('record.store');
+
+       //Attendance Database
+
+       Route::get('/guest/log',[GuestController::class, 'log'])->name('guest.log');
+       Route::delete('/guest/{guest}/delete',[GuestController::class, 'delete'])->name('guest.delete');
     
 
 });

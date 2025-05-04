@@ -50,6 +50,20 @@ class GuestController extends Controller
     
         return redirect(route('guest.index'))->with('success', 'Thank you for your submission!');
     }
+
+    public function log (){
+        $requestlogs = Guest::all();
+         return view('guests.log', ['requestlogs' =>  $requestlogs]); 
+
+    }
+
+    public function delete(Guest $guest)
+    {
+        $guest->delete();
+        return redirect()->route('guest.log')->with('success', 'Guest deleted successfully');
+    }
+    
+
     
 
 }
