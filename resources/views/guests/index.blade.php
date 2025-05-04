@@ -15,69 +15,109 @@
     @vite('resources/js/app.js')
 
     <style>
-        body {
-            background: url('{{ asset('images/bg_1.png') }}') no-repeat center center fixed;
-            background-size: cover;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background: url('{{ asset('images/bg_1.png') }}') no-repeat center center fixed;
+    background-size: cover;
+}
 
-        .welcome-container {
-            background-color: #ffffff;
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
-        }
+body {
+    flex: 1;
+}
 
-        .logo img {
-            width: 100px;
-            margin-bottom: 1rem;
-        }
+.main-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
 
-        h1 {
-            font-size: 1.75rem;
-            color: #003366;
-            font-weight: bold;
-        }
+.welcome-container {
+    background-color: #ffffff;
+    padding: 2.5rem;
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+}
 
-        p {
-            font-size: 1.2rem;
-            color: #333;
-        }
+.logo img {
+    width: 100px;
+    margin-bottom: 1rem;
+}
 
-        span.name-highlight {
-            color: orange;
-            font-weight: bold;
-        }
+h1 {
+    font-size: 1.75rem;
+    color: #003366;
+    font-weight: bold;
+}
 
-        @media (max-width: 576px) {
-            .welcome-container {
-                padding: 1rem;
-            }
+.highlight {
+    color: orange;
+}
 
-            h1 {
-                font-size: 1.5rem;
-            }
+.card-link {
+    display: block;
+    margin: 0.75rem auto;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #003366;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
 
-            p {
-                font-size: 1rem;
-            }
-        }
+.card-link:hover {
+    background-color: orange;
+    color: #fff;
+}
+
+.footer {
+    background-color: white;
+    color: #003366;
+    text-align: center;
+    font-size: 12px;
+    padding: 10px 0;
+}
+
     </style>
 </head>
 <body>
-    <div class="welcome-container">
-        <div class="logo">
-            <img src="{{ asset('images/logo.png') }}" alt="Logo">
+    <body>
+        <div class="main-content">
+            <div class="welcome-container">
+                <div class="logo">
+                    <img src="{{ asset('images/logo.png') }}" alt="Logo">
+                </div>
+                <h1>Hello <span class="highlight">{{ $guest->name }}</span>! <br>Welcome to OCD MIMAROPA Regional Office</h1>
+    
+                <a href="{{ asset('images/mission-vision.png') }}" class="card-link">
+                    <i class="bi bi-file-earmark-text"></i> Mission, Vision, Quality Policy & Core Values
+                </a>
+    
+                <a href="{{ asset('images/citizens-charter.png') }}" class="card-link">
+                    <i class="bi bi-file-earmark-text"></i> View Citizen's Charter
+                </a>
+    
+                <a href="{{ asset('images/org-structure.png') }}" class="card-link">
+                    <i class="bi bi-diagram-3"></i> View Organizational Structure
+                </a>
+            </div>
         </div>
-        <h1>Welcome to OCD MIMAROPA</h1>
-        <p>Thank you for your visit, <span class="name-highlight">{{ $guest->name }}</span>!</p>
-
-    </div>
+    
+        <footer class="footer">
+            Designed and Developed by ICTU MIMAROPA, Office of Civil Defense MIMAROPA © Copyright 2025
+        </footer>
+    </body>
+    
+    
 </body>
 </html>

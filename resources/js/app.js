@@ -23,9 +23,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const form = document.querySelector('form');
     if (form) {
-        form.addEventListener('submit', function () {
-            document.getElementById('e_signature').value = signaturePad.toDataURL();
+        form.addEventListener('submit', function (e) {
+            if (signaturePad.isEmpty()) {
+                e.preventDefault(); // stop form
+                alert('Please provide your e-signature before submitting.');
+            } else {
+                // only set the hidden field if there's a signature
+                document.getElementById('e_signature').value = signaturePad.toDataURL();
+            }
         });
+        
     }
 
     const clearBtn = document.getElementById('clear-btn');
