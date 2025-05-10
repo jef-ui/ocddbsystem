@@ -4,7 +4,13 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RadioLogController;
 use App\Http\Controllers\RecordController;
+use App\Http\Controllers\DashboardController;
+
+
+
 use Illuminate\Support\Facades\Route;
+
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,11 +47,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/record/create', [RecordController::class, 'create'])->name('record.create');
     Route::post('/record', [RecordController::class, 'store'])->name('record.store');
 
-       //Attendance Database
+    //Attendance Database
 
-       Route::get('/guest/log',[GuestController::class, 'log'])->name('guest.log');
-       Route::delete('/guest/{guest}/delete',[GuestController::class, 'delete'])->name('guest.delete');
+    Route::get('/guest/log',[GuestController::class, 'log'])->name('guest.log');
+    Route::delete('/guest/{guest}/delete',[GuestController::class, 'delete'])->name('guest.delete');
     
+    //Fecth Data from Other Controllers to Dashboard
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
 });
 
