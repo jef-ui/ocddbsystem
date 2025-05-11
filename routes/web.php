@@ -46,6 +46,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/record', [RecordController::class, 'index'])->name('record.index');
     Route::get('/record/create', [RecordController::class, 'create'])->name('record.create');
     Route::post('/record', [RecordController::class, 'store'])->name('record.store');
+    Route::get('/records/{id}/attachments', [RecordController::class, 'showAttachments'])->name('records.attachments');
+    Route::get('/records/{id}', [RecordController::class, 'show'])->name('records.show');
+
+
+
+
 
     //Attendance Database
 
@@ -54,6 +60,8 @@ Route::middleware('auth')->group(function () {
     
     //Fecth Data from Other Controllers to Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    
 
 
 });

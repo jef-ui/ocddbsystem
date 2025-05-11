@@ -17,7 +17,7 @@
 
     /* Sidebar Styling */
     .sidebar {
-        width: 200px;
+        width: 210px;
         background-color: #030d22;
         color: white;
         position: fixed;
@@ -174,13 +174,15 @@
         <i class="bi bi-person-circle"></i> Profile
     </a>
 
+     <a href="{{ route('record.index') }}" class="{{ request()->routeIs('record.index') ? 'active' : '' }}">
+        <i class="bi bi-inbox"></i> Incoming Communication
+    </a>
+
     <a href="/radiolog" class="{{ request()->is('radiolog') ? 'active' : '' }}">
         <i class="bi bi-journal-text"></i> Radio Log
     </a>
 
-    <a href="{{ route('record.index') }}" class="{{ request()->routeIs('record.index') ? 'active' : '' }}">
-        <i class="bi bi-inbox"></i> Incoming
-    </a>
+   
 
     <form method="POST" action="{{ route('logout') }}" style="margin-top: 1rem;">
         @csrf
@@ -379,10 +381,6 @@
   updateLiveTime();
   setInterval(updateLiveTime, 1000);
 </script>
-
-
-
-    
 
 </body>
 </html>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Record;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class RecordController extends Controller
 {
@@ -54,5 +56,19 @@ class RecordController extends Controller
 
     return redirect(route('record.index'))->with('success', 'Incoming Communication Logged Successfully');
 }
+
+public function showAttachments($id)
+{
+    $record = Record::findOrFail($id);
+    return view('records.attachments', compact('record'));
+}
+
+public function show($id)
+{
+    $record = Record::findOrFail($id);
+    return view('records.show', compact('record'));
+}
+
+
 
 }

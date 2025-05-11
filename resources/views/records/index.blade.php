@@ -260,6 +260,9 @@ td form button {
     
   </div>
 
+
+  
+
   <!-- Main Content -->
   <div class="content">
     @if(session()->has('success'))
@@ -268,8 +271,13 @@ td form button {
       </div>
     @endif
 
+    
+
+      <a href="{{route ('record.create')}}">Add IComs</a>
     <!-- Table -->
     <div class="table-container">
+
+      
       <table>
         <thead>
           <tr>
@@ -279,7 +287,7 @@ td form button {
             <th>Type</th>
             <th>Subject Description</th>
             <th>Acknowledged By</th>
-            <th>Uploaded Attachments</th>
+            <th>View</th>
           </tr>
         </thead>
         <tbody>
@@ -291,7 +299,23 @@ td form button {
             <td>{{ $record->type }}</td>
             <td>{{ $record->subject_description }}</td>
             <td>{{ $record->received_acknowledge_by }}</td>
-            <td><!-- View file link/button here if needed --></td>
+            <td>
+@if($record->file_path)
+    <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
+        <a href="{{ route('records.show', $record->id) }}" title="View Files">
+            <i class="bi bi-folder-fill text-dark"></i> <!-- Folder icon in black -->
+        </a>
+    </li>
+@else
+    <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
+        <span class="text-muted"><i class="bi bi-file-earmark-x"></i> No files uploaded</span>
+    </li>
+@endif
+
+
+</td>
+
+
           </tr>
           @endforeach
         </tbody>

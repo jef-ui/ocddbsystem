@@ -10,118 +10,116 @@
     
 
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('{{ asset('images/bg_1.png') }}') no-repeat center center fixed;
-            background-size: cover;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
+<style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: url('{{ asset('images/bg_1.png') }}') no-repeat center center fixed;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
 
-        .topbar {
-            background-color: #001F5B;
-            color: white;
-            padding: 0.75rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    .topbar {
+        background-color: #030d22;
+        color: white;
+        padding: 0.75rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-        .topbar a {
-            color: white;
-            margin-left: 1rem;
-            text-decoration: none;
-            font-size: 0.875rem;
-        }
+    .topbar a {
+        color: white;
+        margin-left: 1rem;
+        text-decoration: none;
+        font-size: 0.875rem;
+    }
 
-        .topbar a:hover {
-            color: orange;
-            
-        }
+    .topbar a:hover {
+        color: orange;
+    }
 
-        .main-content {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            padding: 3rem 1rem;
-        }
+    .main-content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        padding: 3rem 1rem;
+    }
 
-        .form-container {
-    background: rgba(255, 255, 255, 0.95);
-    padding: 2rem;
-    border-radius: 8px;
-    max-width: 1100px;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    color: #001F5B;
-}
+    .form-container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 2rem;
+        max-width: 1100px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        color: black; /* changed from #001F5B */
+    }
 
+    .form-container h2 {
+        grid-column: span 3;
+        text-align: center;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: black; /* changed from #001F5B */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
 
-        .form-container h2 {
-            grid-column: span 3;
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: #001F5B;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
+    label {
+        font-weight: 600;
+        font-size: 0.9rem;
+        margin-bottom: 0.3rem;
+        display: block;
+    }
 
-        label {
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 0.3rem;
-            display: block;
-        }
+    input[type="text"],
+    input[type="date"],
+    input[type="time"],
+    select {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 1rem;
+        background-color: white;
+    }
 
-        input[type="text"],
-        input[type="date"],
-        input[type="time"],
-        select {
-            width: 100%;
-            padding: 0.5rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-            background-color: white;
-        }
+    .full-width {
+        grid-column: span 3;
+    }
 
-        .full-width {
-            grid-column: span 3;
-        }
+    button {
+        background-color: #030d22;
+        color: white;
+        padding: 0.75rem;
+        border: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        cursor: pointer;
+        grid-column: span 3;
+        margin-top: 1rem;
+    }
 
-        button {
-            background-color: #001F5B;
-            color: white;
-            padding: 0.75rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            grid-column: span 3;
-            margin-top: 1rem;
-        }
+    button:hover {
+        background-color: #003366;
+    }
 
-        button:hover {
-            background-color: #003366;
-        }
+    .footer {
+        background-color: white;
+        color: #003366;
+        text-align: center;
+        font-size: 12px;
+        padding: 10px 0;
+    }
+</style>
 
-        .footer {
-            background-color: white;
-            color: #003366;
-            text-align: center;
-            font-size: 12px;
-            padding: 10px 0;
-        }
-    </style>
 </head>
 <body>
 
@@ -134,13 +132,13 @@
         </div>
         <div>
             <a href="#">
-                <i class="bi bi-journal-text"></i> INCOMING COMMUNICATION
+                <i class="bi bi-journal-text"></i> Incoming Communications
             </a>
             
             <form method="POST" action="{{ route('logout') }}" style="display:inline;">
                 @csrf
                 <a href="#" onclick="event.preventDefault(); this.closest('form').submit();">
-                    <i class="bi bi-box-arrow-right"></i> LOG OUT
+                    <i class="bi bi-box-arrow-right"></i> Log Out
                 </a>
             </form>
         </div>
@@ -164,11 +162,10 @@
                 @endif
             </div>
             
-            <h2>
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 2.5rem; width: auto;">
-                New Incoming Communications
-            </h2>
-
+            <h2 style="display: flex; align-items: center; justify-content: center; font-size: 1.75rem; font-weight: bold; color: #333; border-bottom: 2px solid #001F5B; padding-bottom: 0.5rem;">
+    <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 2.5rem; width: auto; margin-right: 1rem;">
+    INPUT INCOMING COMMUNICATION
+</h2>
             <div class="mb-3">
                 <label for="received_date" class="form-label">
                     <i class="bi bi-calendar-date"></i> Received Date
