@@ -108,7 +108,7 @@
     }
 
     button:hover {
-        background-color: #003366;
+        background-color: #FF8C00;
     }
 
     .footer {
@@ -185,9 +185,9 @@
                     <i class="bi bi-envelope-paper-fill"></i> Received Via
                 </label>
                 <select name="received_via" id="received_via" class="form-select" required>
-                    <option value="">Select Via</option>
+                    <option value="">Received Via</option>
                     <option value="Yahoo Mail" {{ old('received_via') == 'Yahoo Mail' ? 'selected' : '' }}>Yahoo Mail</option>
-                    <option value="G Mail" {{ old('received_via') == 'G Mail' ? 'selected' : '' }}>G Mail</option>
+                    <option value="Gov Mail" {{ old('received_via') == 'Gov Mail' ? 'selected' : '' }}>Gov Mail</option>
                     <option value="Fax" {{ old('received_via') == 'Fax' ? 'selected' : '' }}>Fax</option>
                     <option value="LBC" {{ old('received_via') == 'LBC' ? 'selected' : '' }}>LBC</option>
                     <option value="JNT" {{ old('received_via') == 'JNT' ? 'selected' : '' }}>JNT</option>
@@ -255,16 +255,20 @@
             
             <div class="mb-3">
                 <label for="concerned_section_personnel" class="form-label">
-                    <i class="bi bi-diagram-3-fill"></i> Concerned Section
+                    <i class="bi bi-diagram-3-fill"></i> Concerned Section/Unit
                 </label>
                 <select id="concerned_section_personnel" name="concerned_section_personnel" class="form-select" required>
-                    <option value="Operations Section" {{ old('type') == 'Operations Section' ? 'selected' : '' }}>Operations Section</option>
-                    <option value="Invitation" {{ old('type') == 'Invitation' ? 'selected' : '' }}>Invitation</option>
-                    <option value="Submission" {{ old('type') == 'Submission' ? 'selected' : '' }}>Submission</option>
-                    <option value="For Information" {{ old('type') == 'For Information' ? 'selected' : '' }}>For Information</option>
-                    <option value="For Compliance" {{ old('type') == 'For Compliance' ? 'selected' : '' }}>For Compliance</option>
-                    <option value="Report" {{ old('type') == 'Report' ? 'selected' : '' }}>Report</option>
-                    <option value="Complaint" {{ old('type') == 'Complaint' ? 'selected' : '' }}>Complaint</option>
+                    <option value="DRRMD" {{ old('type') == 'DRRMD' ? 'selected' : '' }}>DRRMD</option>
+                    <option value="AFMS" {{ old('type') == 'AFMS' ? 'selected' : '' }}>AFMS</option>
+                    <option value="OS" {{ old('type') == 'OS' ? 'selected' : '' }}>OS</option>
+                    <option value="DPS" {{ old('type') == 'DPS' ? 'selected' : '' }}>DPS</option>
+                    <option value="RRMS" {{ old('type') == 'RRMS' ? 'selected' : '' }}>RRMS</option>
+                    <option value="PDPS" {{ old('type') == 'PDPS' ? 'selected' : '' }}>PDPS</option>
+                    <option value="HRMU" {{ old('type') == 'HRMU' ? 'selected' : '' }}>HRMU</option>
+                    <option value="GAD" {{ old('type') == 'GAD' ? 'selected' : '' }}>GAD</option>
+                    <option value="FMU" {{ old('type') == 'FMU' ? 'selected' : '' }}>FMU</option>'
+                    <option value="GSU" {{ old('type') == 'GSU' ? 'selected' : '' }}>GSU</option>
+                    <option value="PROCUMENT UNIT" {{ old('type') == 'PROCUMENT UNIT' ? 'selected' : '' }}>PROCUMENT UNIT</option>
                 </select>
             </div>
             
