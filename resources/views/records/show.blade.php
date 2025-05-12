@@ -65,6 +65,21 @@
             background-color: #0055aa;
         }
 
+        .download-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        .download-button:hover {
+            background-color: #0056b3;
+        }
+
         .footer {
             background-color: white;
             color: #003366;
@@ -106,15 +121,17 @@
                     Your browser does not support the video tag.
                 </video>
             @elseif(in_array($extension, ['doc', 'docx', 'xls', 'xlsx']))
-                <iframe 
-                    src="https://docs.google.com/gview?url={{ urlencode(asset('storage/' . $path)) }}&embedded=true" 
-                    style="width:100%; height:800px;" 
-                    frameborder="0">
-                </iframe>
+                <p>Preview for DOC and Excel files is not available. You can download the file. If you want a preview, please consider converting it to PDF and uploading again.</p>
             @else
                 <p>{{ $label }}: File type not supported for viewing in the browser.</p>
             @endif
         </div>
+
+        <div class="file-download">
+            <!-- Download Link for the file -->
+            <a href="{{ asset('storage/' . $path) }}" class="download-button" download>Download {{ $label }}</a>
+        </div>
+
         <hr>
     @endif
 @endforeach

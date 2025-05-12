@@ -131,7 +131,7 @@
             </a>
         </div>
         <div>
-            <a href="#">
+            <a href="{{route ('record.index')}}">
                 <i class="bi bi-journal-text"></i> Incoming Communications
             </a>
             

@@ -220,22 +220,34 @@
             <div id="clock"></div>
         </div>
 
-        <!-- Gender Chart -->
-        <div class="gender-panel">
-            <h3>👩‍💼 Employee Gender Distribution</h3>
-            <p>Total Employees: 21</p>
-            <canvas id="genderChart" width="200" height="200"></canvas>
-        </div>
+      <div class="gender-panel">
+    <h3 style="font-size: 1.1rem;">👩‍💼 OCD MIMAROPA Employee Gender Distribution</h3>
+    <p>Total Employees: 21</p>
+    <canvas id="genderChart" width="200" height="200"></canvas>
+</div>
 
         <!-- Incoming Summary -->
-        <div class="card">
-            <h3>📥 Incoming Communications Summary</h3>
-            <p>Total Report: ...</p>
-            <p>Total Submission: ...</p>
-            <p>For Information: ... </p>
-            <p>For Compliance: ... </p>
-            <p>Complaint: ...</p>
+      <div class="card">
+    <h3>📥 Communications Overview</h3>
+    <div class="row">
+        <div class="col">
+            <p><span style="color: #007bff; font-weight: bold;">Total Report:</span> {{ $typeCounts['Report'] }}</p>
+            <p><span style="color: #007bff; font-weight: bold;">Total Request:</span> {{ $typeCounts['Request'] }}</p>
+            <p><span style="color: #007bff; font-weight: bold;">Total Submission:</span> {{ $typeCounts['Submission'] }}</p>
         </div>
+        <div class="col">
+            <p><span style="color: #007bff; font-weight: bold;">Total Invitation:</span> {{ $typeCounts['Invitation'] }}</p>
+            <p><span style="color: #007bff; font-weight: bold;">Total For Information:</span> {{ $typeCounts['For Information'] }}</p>
+        </div>
+        <div class="col">
+            <p><span style="color: #007bff; font-weight: bold;">Total For Compliance:</span> {{ $typeCounts['For Compliance'] }}</p>
+            <p><span style="color: #007bff; font-weight: bold;">Total Complaint:</span> {{ $typeCounts['Complaint'] }}</p>
+        </div>
+    </div>
+</div>
+
+
+
 
         <!-- Radiologs Totals Line Chart -->
 <div class="card" style="height: 320px;">

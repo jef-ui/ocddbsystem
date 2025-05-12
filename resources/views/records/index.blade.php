@@ -243,9 +243,9 @@ td form button {
   
 <a href="{{ url('/dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a>
 
-<a href="{{ route('radiolog.exportPDF') }}">
+{{-- <a href="{{ route('radiolog.exportPDF') }}">
   <i class="bi bi-printer"></i> Print/Download
-</a>
+</a> comment --}}
 
 <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
   <i class="bi bi-box-arrow-right"></i> Log Out

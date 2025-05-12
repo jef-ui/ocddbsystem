@@ -13,6 +13,7 @@ public function index(Request $request)
 {
     $search = $request->input('search');
 
+    // Query for the records based on search input
     $records = Record::query()
         ->when($search, function ($query, $search) {
             $query->where('received_date', 'like', "%{$search}%")
@@ -26,14 +27,38 @@ public function index(Request $request)
         ->orderBy('received_time', 'desc')    // Then by time
         ->paginate(15);
 
+    // Get total counts for each type
+    $typeCounts = Record::query()
+        ->selectRaw('type, count(*) as count')
+        ->whereIn('type', ['Request', 'Invitation', 'Submission', 'For Information', 'For Compliance', 'Report', 'Complaint'])
+        ->groupBy('type')
+        ->pluck('count', 'type')
+        ->toArray();
+
+    // Default values for types that have no records
+    $types = [
+        'Request' => 0,
+        'Invitation' => 0,
+        'Submission' => 0,
+        'For Information' => 0,
+        'For Compliance' => 0,
+        'Report' => 0,
+        'Complaint' => 0
+    ];
+
+    // Merge the counts with the default values
+    $typeCounts = array_merge($types, $typeCounts);
+
     if ($request->ajax()) {
         return response()->json([
-            'html' => view('records.index', compact('records'))->render()
+            'html' => view('records.index', compact('records', 'typeCounts'))->render()
         ]);
     }
 
-    return view('records.index', compact('records'));
+    // Return the view with the records and type counts
+    return view('records.index', compact('records', 'typeCounts'));
 }
+
 
 
 
