@@ -207,10 +207,9 @@ td form button {
         .topbar a:hover {
             color: #FF8C00;
         }
-
-
   </style>
 </head>
+
 <body>
 
     <!-- Topbar -->
@@ -242,7 +241,6 @@ td form button {
 
   @endif
   
-
 <a href="{{ url('/dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a>
 
 <a href="{{ route('radiolog.exportPDF') }}">
@@ -261,8 +259,6 @@ td form button {
   </div>
 
 
-  
-
   <!-- Main Content -->
   <div class="content">
     @if(session()->has('success'))
@@ -271,56 +267,85 @@ td form button {
       </div>
     @endif
 
+
+<!-- Container for Add IComs and Search -->
+<div style="display: flex; justify-content: space-between; align-items: center; height: 70px; margin-bottom: 15px;">
+  
+  <!-- Add IComs Button with Icon -->
+  <a href="{{ route('record.create') }}" 
+     style="background-color: #b16100; color: white; border: none; padding: 8px 15px; font-size: 14px; 
+            border-radius: 5px; text-decoration: none; display: flex; align-items: center;">
+    <i class="bi bi-plus-circle" style="margin-right: 8px;"></i> Add IComs
+  </a>
+
+  <!-- Live Search Section -->
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <input type="text" id="search" placeholder="Search Radio Logs..." 
+           style="padding: 8px 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px; height: 42px;">
+    <button type="button" id="clearSearch" 
+            style="background-color: #007517; color: white; border: none; border-radius: 5px;
+                   padding: 0 20px; font-size: 14px; height: 42px; display: flex;
+                   align-items: center; justify-content: center; cursor: pointer;">
+      <i class="bi bi-x-circle" style="margin-right: 5px;"></i> Clear
+    </button>
+  </div>
+</div>
+
+
+
     
-
-      <a href="{{route ('record.create')}}">Add IComs</a>
-    <!-- Table -->
+    
     <div class="table-container">
+  <table id="record-table">
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>From Agency/Office</th>
+        <th>Type</th>
+        <th>Subject Description</th>
+        <th>Acknowledged By</th>
+        <th>View</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($records as $record)
+      <tr>
+        <td>{{ \Carbon\Carbon::parse($record->received_date)->format('F j, Y') }}</td>
+        <td>{{ \Carbon\Carbon::parse($record->received_time)->format('g:i A') }}</td>
+        <td>{{ $record->from_agency_office }}</td>
+        <td>{{ $record->type }}</td>
+        <td>{{ $record->subject_description }}</td>
+        <td>{{ $record->received_acknowledge_by }}</td>
+        <td>
+          @if($record->file_path)
+          <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
+            <a href="{{ route('records.show', $record->id) }}" title="View Files">
+              <i class="bi bi-folder-fill text-dark"></i>
+            </a>
+          </li>
+          @else
+          <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
+            <span class="text-muted"><i class="bi bi-file-earmark-x"></i> No files uploaded</span>
+          </li>
+          @endif
+        </td>
+        <td>
+          <form action="{{route ('record.delete', ['record' => $record])}}" method="post">
+            @csrf
+            @method ('delete')
+            <button type="submit">
+              <i class="bi bi-trash delete-icon"></i>
+            </button>
+          </form>
+        </td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
+</div>
 
-      
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Time</th>
-            <th>From Agency/Office</th>
-            <th>Type</th>
-            <th>Subject Description</th>
-            <th>Acknowledged By</th>
-            <th>View</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach ($records as $record)
-          <tr>
-            <td>{{ $record->received_date }}</td>
-            <td>{{ $record->received_time }}</td>
-            <td>{{ $record->from_agency_office }}</td>
-            <td>{{ $record->type }}</td>
-            <td>{{ $record->subject_description }}</td>
-            <td>{{ $record->received_acknowledge_by }}</td>
-            <td>
-@if($record->file_path)
-    <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
-        <a href="{{ route('records.show', $record->id) }}" title="View Files">
-            <i class="bi bi-folder-fill text-dark"></i> <!-- Folder icon in black -->
-        </a>
-    </li>
-@else
-    <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
-        <span class="text-muted"><i class="bi bi-file-earmark-x"></i> No files uploaded</span>
-    </li>
-@endif
-
-
-</td>
-
-
-          </tr>
-          @endforeach
-        </tbody>
-      </table>
-    </div>
   </div>
 </div>
 
@@ -352,6 +377,31 @@ td form button {
   updateLiveTime();
   setInterval(updateLiveTime, 1000);
 </script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $('#search').on('keyup', function() {
+      var search = $(this).val();
+      $.ajax({
+        url: "{{ route('record.index') }}",
+        type: "GET",
+        data: { search: search },
+        success: function(response) {
+          // Replace only the table body with the filtered records
+          $('table tbody').html($(response.html).find('tbody').html());
+        }
+      });
+    });
+
+    $('#clearSearch').on('click', function() {
+      $('#search').val('');
+      $('#search').trigger('keyup');
+    });
+  });
+</script>
+
+
 
 
 </body>

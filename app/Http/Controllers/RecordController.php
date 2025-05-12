@@ -9,10 +9,34 @@ use Illuminate\Support\Facades\Storage;
 
 class RecordController extends Controller
 {
-    public function index(){
-        $records = Record::all();
-        return view('records.index', ['records' => $records]);
+public function index(Request $request)
+{
+    $search = $request->input('search');
+
+    $records = Record::query()
+        ->when($search, function ($query, $search) {
+            $query->where('received_date', 'like', "%{$search}%")
+                  ->orWhere('received_time', 'like', "%{$search}%")
+                  ->orWhere('from_agency_office', 'like', "%{$search}%")
+                  ->orWhere('type', 'like', "%{$search}%")
+                  ->orWhere('subject_description', 'like', "%{$search}%")
+                  ->orWhere('received_acknowledge_by', 'like', "%{$search}%");
+        })
+        ->orderBy('received_date', 'desc') // Order by the received date in descending order
+        ->paginate(15);  // Pagination after 15 records
+
+    if ($request->ajax()) {
+        // Return the partial view with updated records (for AJAX request)
+        return response()->json([
+            'html' => view('records.index', compact('records'))->render()
+        ]);
     }
+
+    // For normal requests (non-AJAX)
+    return view('records.index', compact('records'));
+}
+
+
 
     public function create(){
 
@@ -67,6 +91,13 @@ public function show($id)
 {
     $record = Record::findOrFail($id);
     return view('records.show', compact('record'));
+}
+
+public function delete (Record $record){
+
+    $record->delete();
+
+    return redirect(route('record.index'))->with('success', 'Incoming Communication Deleted Successfully');
 }
 
 

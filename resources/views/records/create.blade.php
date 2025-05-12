@@ -164,7 +164,7 @@
             
             <h2 style="display: flex; align-items: center; justify-content: center; font-size: 1.75rem; font-weight: bold; color: #333; border-bottom: 2px solid #001F5B; padding-bottom: 0.5rem;">
     <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 2.5rem; width: auto; margin-right: 1rem;">
-    INPUT INCOMING COMMUNICATION
+    ADD INCOMING COMMUNICATION
 </h2>
             <div class="mb-3">
                 <label for="received_date" class="form-label">
@@ -306,7 +306,7 @@
                 <input type="file" id="file_path2" name="file_path2" accept=".pdf,.mp4,.avi,.mov,.doc,.docx,.xls,.xlsx">
             </div>
 
-            <button type="submit">Save Log</button>
+            <button type="submit">Save Record</button>
 
         </form>
     </div>

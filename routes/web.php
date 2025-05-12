@@ -5,9 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RadioLogController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\DashboardController;
-
-
-
+use App\Models\Record;
 use Illuminate\Support\Facades\Route;
 
 
@@ -48,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/record', [RecordController::class, 'store'])->name('record.store');
     Route::get('/records/{id}/attachments', [RecordController::class, 'showAttachments'])->name('records.attachments');
     Route::get('/records/{id}', [RecordController::class, 'show'])->name('records.show');
+    Route::delete('/record/{record}/delete', [RecordController::class, 'delete'])->name('record.delete');
+
 
 
 
