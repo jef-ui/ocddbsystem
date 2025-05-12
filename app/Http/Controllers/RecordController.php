@@ -22,17 +22,16 @@ public function index(Request $request)
                   ->orWhere('subject_description', 'like', "%{$search}%")
                   ->orWhere('received_acknowledge_by', 'like', "%{$search}%");
         })
-        ->orderBy('received_date', 'desc') // Order by the received date in descending order
-        ->paginate(15);  // Pagination after 15 records
+        ->orderBy('received_date', 'desc')    // First by date
+        ->orderBy('received_time', 'desc')    // Then by time
+        ->paginate(15);
 
     if ($request->ajax()) {
-        // Return the partial view with updated records (for AJAX request)
         return response()->json([
             'html' => view('records.index', compact('records'))->render()
         ]);
     }
 
-    // For normal requests (non-AJAX)
     return view('records.index', compact('records'));
 }
 
@@ -63,17 +62,23 @@ public function index(Request $request)
         'file_path2' => 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx|max:20480',
     ]);
 
-    // Handle file uploads
+    // Handle file uploads with filename sanitization
     if ($request->hasFile('file_path')) {
-        $data['file_path'] = $request->file('file_path')->store('documents', 'public');
+        $file = $request->file('file_path');
+        $filename = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $file->getClientOriginalName());
+        $data['file_path'] = $file->storeAs('documents', $filename, 'public');
     }
 
     if ($request->hasFile('file_path1')) {
-        $data['file_path1'] = $request->file('file_path1')->store('documents', 'public');
+        $file = $request->file('file_path1');
+        $filename = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $file->getClientOriginalName());
+        $data['file_path1'] = $file->storeAs('documents', $filename, 'public');
     }
 
     if ($request->hasFile('file_path2')) {
-        $data['file_path2'] = $request->file('file_path2')->store('documents', 'public');
+        $file = $request->file('file_path2');
+        $filename = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $file->getClientOriginalName());
+        $data['file_path2'] = $file->storeAs('documents', $filename, 'public');
     }
 
     Record::create($data);
