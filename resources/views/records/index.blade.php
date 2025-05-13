@@ -208,46 +208,38 @@ td form button {
             color: #FF8C00;
         }
 
-        <style>
-  /* Reduce font size for table headers */
+        /* Make header text smaller and prevent line wrap */
   #record-table th {
+    font-size: 11px;           /* Smaller font size */
+    white-space: nowrap;       /* Prevent line break */
     text-align: center;
     vertical-align: middle;
-    font-size: 13px;
+    padding: 6px 8px;          /* Optional: tighter padding */
   }
 
-  /* Reduce icon size in table headers */
-  #record-table th i {
-    font-size: 13px;
-    margin-right: 4px;
-  }
-
-  /* Reduce font size and center align table data */
+  /* Adjust table data as well */
   #record-table td {
-    font-size: 13px;
-    vertical-align: middle;
+    font-size: 11px;
     text-align: center;
+    vertical-align: middle;
   }
 
-  /* Reduce icon size in table data */
-  #record-table td i {
+  /* Optional: reduce icon size in table cells */
+  #record-table i {
     font-size: 14px;
   }
 
-  /* Adjust button style for delete icon */
-  .delete-icon {
-    font-size: 14px;
-    color: #dc3545; /* Bootstrap's text-danger color */
-    border: none;
-    background: none;
-  }
-
-  /* Optional: make table more compact */
+  /* Optional: make the entire table font consistent and compact */
   #record-table {
     font-family: Arial, sans-serif;
   }
-</style>
 
+  .delete-icon {
+    font-size: 12px;
+    color: #dc3545;
+    border: none;
+    background: none;
+  }
         
   </style>
 </head>
