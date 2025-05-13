@@ -259,12 +259,7 @@
         <!-- Documents for Review Card - Wider and Larger -->
         <div class="card p-3 mb-4" style="flex: 2 1 50%; min-width: 400px; max-height: 500px; overflow-y: auto;">
             <h5 class="card-title" style="font-size: 1.1rem; margin-bottom: 10px;">📂 Actionable Memos for Review</h5>
-
-
-
-
-
-
+            
             @if ($myAssignedRecords->isEmpty())
                 <p class="text-muted">No records assigned to you.</p>
             @else

@@ -207,6 +207,50 @@ td form button {
         .topbar a:hover {
             color: #FF8C00;
         }
+
+        #record-table {
+    font-size: 0.8rem; /* Smaller font size */
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  #record-table th,
+  #record-table td {
+    padding: 6px 8px; /* Less padding for compact rows */
+    text-align: center;
+  }
+
+  #record-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+  }
+
+  #record-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+
+  #record-table .bi {
+    font-size: 1rem;
+  }
+
+  #record-table button {
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  #record-table .delete-icon {
+    color: red;
+  }
+
+
+  #record-table th {
+    background-color: #1c1c1c; /* black */
+    color: #ffffff; /* white text */
+    font-weight: bold;
+}
+
+
   </style>
 </head>
 
@@ -298,57 +342,55 @@ td form button {
 </div> Upload limitation note -->
 
   
-    <div class="table-container">
-  <table id="record-table">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Time</th>
-        <th>From Agency/Office</th>
-        <th>Type</th>
-        <th>Subject Description</th>
-        <th>Concerned Section/Personnel</th>
-        <th>Acknowledged By</th>
-        <th>View</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-    <tbody>
-      @foreach ($records as $record)
-      <tr>
-        <td>{{ \Carbon\Carbon::parse($record->received_date)->format('F j, Y') }}</td>
-        <td>{{ \Carbon\Carbon::parse($record->received_time)->format('g:i A') }}</td>
-        <td>{{ $record->from_agency_office }}</td>
-        <td>{{ $record->type }}</td>
-        <td>{{ $record->subject_description }}</td>
-        <td>{{ $record->concerned_section_personnel }}</td>
-        <td>{{ $record->received_acknowledge_by }}</td>
-        <td>
-          @if($record->file_path)
-          <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
-            <a href="{{ route('records.show', $record->id) }}" title="View Files">
-              <i class="bi bi-folder-fill text-dark"></i>
-            </a>
-          </li>
-          @else
-          <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
-            <span class="text-muted"><i class="bi bi-file-earmark-x"></i> No files uploaded</span>
-          </li>
-          @endif
-        </td>
-        <td>
-          <form action="{{route ('record.delete', ['record' => $record])}}" method="post">
-            @csrf
-            @method ('delete')
-            <button type="submit">
-              <i class="bi bi-trash delete-icon"></i>
-            </button>
-          </form>
-        </td>
-      </tr>
-      @endforeach
-    </tbody>
-  </table>
+<table id="record-table">
+  <thead>
+    <tr>
+      <th><i class="bi bi-calendar-event"></i> Date</th>
+      <th><i class="bi bi-clock"></i> Time</th>
+      <th><i class="bi bi-building"></i> From Agency/Office</th>
+      <th><i class="bi bi-tag"></i> Type</th>
+      <th><i class="bi bi-chat-text"></i> Subject Description</th>
+      <th><i class="bi bi-person-badge"></i> Concerned Section/Personnel</th>
+      <th><i class="bi bi-person-check"></i> Acknowledged By</th>
+      <th><i class="bi bi-eye"></i></th> <!-- View Icon -->
+      <th><i class="bi bi-trash"></i></th> <!-- Delete Icon -->
+    </tr>
+  </thead>
+  <tbody>
+    @foreach ($records as $record)
+    <tr>
+      <td>{{ \Carbon\Carbon::parse($record->received_date)->format('F j, Y') }}</td>
+      <td>{{ \Carbon\Carbon::parse($record->received_time)->format('g:i A') }}</td>
+      <td>{{ $record->from_agency_office }}</td>
+      <td>{{ $record->type }}</td>
+      <td>{{ $record->subject_description }}</td>
+      <td>{{ $record->concerned_section_personnel }}</td>
+      <td>{{ $record->received_acknowledge_by }}</td>
+      <td>
+        @if($record->file_path)
+        <a href="{{ route('records.show', $record->id) }}" title="View Files">
+          <i class="bi bi-folder-fill text-dark small-icon"></i>
+        </a>
+        @else
+        <span class="text-muted" title="No File">
+          <i class="bi bi-file-earmark-x small-icon"></i>
+        </span>
+        @endif
+      </td>
+      <td>
+        <form action="{{ route('record.delete', ['record' => $record]) }}" method="post">
+          @csrf
+          @method('delete')
+          <button type="submit" title="Delete" class="btn btn-link p-0 m-0">
+            <i class="bi bi-trash text-danger small-icon"></i>
+          </button>
+        </form>
+      </td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
+
 
   <!-- Pagination -->
 <div class="mt-4" style="text-align: right; padding-right: 10px;">
