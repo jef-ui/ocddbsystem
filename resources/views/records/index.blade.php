@@ -292,13 +292,12 @@ td form button {
 </div>
 
 
-<!-- Upload limitation note -->
+<!-- 
 <div style="background-color: #fff3cd; color: #856404; padding: 10px 15px; border: 1px solid #ffeeba; border-radius: 5px; margin-bottom: 1rem; font-size: 0.85rem;">
   <strong>Note:</strong> The files from <strong>MGB</strong> can't be uploaded due to large file size.
-</div>
+</div> Upload limitation note -->
 
-    
-    
+  
     <div class="table-container">
   <table id="record-table">
     <thead>
