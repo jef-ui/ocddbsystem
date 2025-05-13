@@ -185,7 +185,7 @@
                     <i class="bi bi-envelope-paper-fill"></i> Received Via
                 </label>
                 <select name="received_via" id="received_via" class="form-select" required>
-                    <option value="">Received Via</option>
+                    <option value="">-- Please select --</option>
                     <option value="Yahoo Mail" {{ old('received_via') == 'Yahoo Mail' ? 'selected' : '' }}>Yahoo Mail</option>
                     <option value="Gov Mail" {{ old('received_via') == 'Gov Mail' ? 'selected' : '' }}>Gov Mail</option>
                     <option value="Fax" {{ old('received_via') == 'Fax' ? 'selected' : '' }}>Fax</option>
@@ -255,20 +255,32 @@
             
             <div class="mb-3">
                 <label for="concerned_section_personnel" class="form-label">
-                    <i class="bi bi-diagram-3-fill"></i> Concerned Section/Unit
+                    <i class="bi bi-diagram-3-fill"></i> Concerned Section/Personnel
                 </label>
                 <select id="concerned_section_personnel" name="concerned_section_personnel" class="form-select" required>
-                    <option value="DRRMD" {{ old('type') == 'DRRMD' ? 'selected' : '' }}>DRRMD</option>
-                    <option value="AFMS" {{ old('type') == 'AFMS' ? 'selected' : '' }}>AFMS</option>
-                    <option value="OS" {{ old('type') == 'OS' ? 'selected' : '' }}>OS</option>
-                    <option value="DPS" {{ old('type') == 'DPS' ? 'selected' : '' }}>DPS</option>
-                    <option value="RRMS" {{ old('type') == 'RRMS' ? 'selected' : '' }}>RRMS</option>
-                    <option value="PDPS" {{ old('type') == 'PDPS' ? 'selected' : '' }}>PDPS</option>
-                    <option value="HRMU" {{ old('type') == 'HRMU' ? 'selected' : '' }}>HRMU</option>
-                    <option value="GAD" {{ old('type') == 'GAD' ? 'selected' : '' }}>GAD</option>
-                    <option value="FMU" {{ old('type') == 'FMU' ? 'selected' : '' }}>FMU</option>'
-                    <option value="GSU" {{ old('type') == 'GSU' ? 'selected' : '' }}>GSU</option>
-                    <option value="PROCUMENT UNIT" {{ old('type') == 'PROCUMENT UNIT' ? 'selected' : '' }}>PROCUMENT UNIT</option>
+                    <option value="Please select">-- Please select --</option>
+                    <option value="Marc Rembrandt P. Victore" {{ old('type') == 'Marc Rembrandt P. Victore' ? 'selected' : '' }}>Marc Rembrandt P. Victore</option>
+                    <option value="Aquilino P. Ducay" {{ old('type') == 'Aquilino P. Ducay' ? 'selected' : '' }}>Aquilino P. Ducay</option>
+                    <option value="Almarose S. Tabliago" {{ old('type') == 'Almarose S. Tabliago' ? 'selected' : '' }}>Almarose S. Tabliago</option>
+                    <option value="Maria Aiza S. Siason" {{ old('type') == 'Maria Aiza S. Siason' ? 'selected' : '' }}>Maria Aiza S. Siason</option>
+                    <option value="Jommel Merano" {{ old('type') == 'Jommel Merano' ? 'selected' : '' }}>Jommel Merano</option>
+                    <option value="Lilia Guevarra" {{ old('type') == 'Lilia Guevarra' ? 'selected' : '' }}>Lilia Guevarra</option>
+                    <option value="Mary An B. Aceveda" {{ old('type') == 'Mary An B. Aceveda' ? 'selected' : '' }}>Mary An B. Aceveda</option>
+                    <option value="Jonalyn Pagcaliwagan" {{ old('type') == 'Jonalyn Pagcaliwagan' ? 'selected' : '' }}>Jonalyn Pagcaliwagan</option>'
+                    <option value="Efril F. Maranan" {{ old('type') == 'Efril F. Maranan' ? 'selected' : '' }}>Efril F. Maranan</option>
+                    <option value="Jervis Lloyd M. Atilano" {{ old('type') == 'Jervis Lloyd M. Atilano' ? 'selected' : '' }}>Jervis Lloyd M. Atilano</option>
+                    <option value="Glory Balegan" {{ old('type') == 'Glory Balegan' ? 'selected' : '' }}>Glory Balegan</option>
+                    <option value="Minerva R. Alcaraz" {{ old('type') == 'Minerva R. Alcaraz' ? 'selected' : '' }}>Minerva R. Alcaraz</option>
+                    <option value="Julius Anthony L. Del Rio" {{ old('type') == 'Julius Anthony L. Del Rio' ? 'selected' : '' }}>Julius Anthony L. Del Rio</option>
+                    <option value="Jorge V. Matunog" {{ old('type') == 'Jorge V. Matunog' ? 'selected' : '' }}>Jorge V. Matunog</option>
+                    <option value="Jefrie G. Rodriguez" {{ old('type') == 'Jefrie G. Rodriguez' ? 'selected' : '' }}>Jefrie G. Rodriguez</option>
+                    <option value="Ma. Reena Pelagio" {{ old('type') == 'Ma. Reena Pelagio' ? 'selected' : '' }}>Ma. Reena Pelagio</option>
+                    <option value="Mario D. Punzalan Jr." {{ old('type') == 'Mario D. Punzalan Jr.' ? 'selected' : '' }}>Mario D. Punzalan Jr.</option>
+                    <option value="Nino G. Faltado" {{ old('type') == 'Nino G. Faltado' ? 'selected' : '' }}>Nino G. Faltado</option>
+                    <option value="Sheila Marie S. Reyes" {{ old('type') == 'Sheila Marie S. Reyes' ? 'selected' : '' }}>Sheila Marie S. Reyes</option>
+                    <option value="Fernando De Leon" {{ old('type') == 'Fernando De Leon' ? 'selected' : '' }}>Fernando De Leon</option>
+                    <option value="Anthony M. Zoleta" {{ old('type') == 'Anthony M. Zoleta' ? 'selected' : '' }}>Anthony M. Zoleta</option>
+                    <option value="Wilmer Fabella" {{ old('type') == 'Wilmer Fabella' ? 'selected' : '' }}>Wilmer Fabella</option>
                 </select>
             </div>
             

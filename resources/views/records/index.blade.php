@@ -307,6 +307,7 @@ td form button {
         <th>From Agency/Office</th>
         <th>Type</th>
         <th>Subject Description</th>
+        <th>Concerned Section/Personnel</th>
         <th>Acknowledged By</th>
         <th>View</th>
         <th>Delete</th>
@@ -320,6 +321,7 @@ td form button {
         <td>{{ $record->from_agency_office }}</td>
         <td>{{ $record->type }}</td>
         <td>{{ $record->subject_description }}</td>
+        <td>{{ $record->concerned_section_personnel }}</td>
         <td>{{ $record->received_acknowledge_by }}</td>
         <td>
           @if($record->file_path)

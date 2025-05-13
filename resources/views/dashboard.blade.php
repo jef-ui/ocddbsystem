@@ -7,6 +7,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
 <style>
     body {
@@ -201,18 +203,18 @@
     </div>
 </div>
 
-    <!-- Main Content -->
-   <div class="main">
-    <div class="dashboard" style="gap: 1rem;">
-        <!-- Welcome Card -->
-        <div class="card">
-    <h3 style="font-weight: bold;">Welcome, {{ Auth::user()->name }}!</h3>
-    <p>You're successfully logged in! Manage your communication logs, track records, and access all system features.</p>
-</div>
+<!-- Main Content -->
+<div class="main">
+    <div class="dashboard" style="gap: 1rem; display: flex; flex-wrap: wrap;">
 
+        <!-- Welcome Card -->
+        <div class="card" style="flex: 1 1 25%; min-width: 200px;">
+            <h3 style="font-weight: bold;">Welcome, {{ Auth::user()->name }}!</h3>
+            <p>You're successfully logged in! Manage your communication logs, track records, and access all system features.</p>
+        </div>
 
         <!-- Date & Time Card -->
-        <div class="card">
+        <div class="card" style="flex: 1 1 25%; min-width: 200px;">
             <h3>📅 Date</h3>
             <div id="dateDisplay"></div>
 
@@ -220,44 +222,93 @@
             <div id="clock"></div>
         </div>
 
-      <div class="gender-panel">
-    <h3 style="font-size: 1.1rem;">👩‍💼 OCD MIMAROPA Employee Gender Distribution</h3>
-    <p>Total Employees: 21</p>
-    <canvas id="genderChart" width="200" height="200"></canvas>
-</div>
+        <!-- Gender Distribution Panel -->
+        <div class="gender-panel" style="flex: 1 1 25%; min-width: 200px;">
+            <h3 style="font-size: 1rem;">👩‍💼 OCD MIMAROPA Employee Gender Distribution</h3>
+            <p>Total Employees: 21</p>
+            <canvas id="genderChart" width="200" height="200"></canvas>
+        </div>
 
-        <!-- Incoming Summary -->
-      <div class="card">
-    <h3>📥 Communications Overview</h3>
-    <div class="row">
-        <div class="col">
-            <p><span style="color: #007bff; font-weight: bold;">Total Report:</span> {{ $typeCounts['Report'] }}</p>
-            <p><span style="color: #007bff; font-weight: bold;">Total Request:</span> {{ $typeCounts['Request'] }}</p>
-            <p><span style="color: #007bff; font-weight: bold;">Total Submission:</span> {{ $typeCounts['Submission'] }}</p>
+        <!-- Incoming Communications Overview -->
+        <div class="card" style="flex: 1 1 25%; min-width: 200px;">
+            <h3>📥 Communications Overview</h3>
+            <div class="row">
+                <div class="col">
+                    <p><span style="color: #007bff; font-weight: bold;">Total Report:</span> {{ $typeCounts['Report'] }}</p>
+                    <p><span style="color: #007bff; font-weight: bold;">Total Request:</span> {{ $typeCounts['Request'] }}</p>
+                    <p><span style="color: #007bff; font-weight: bold;">Total Submission:</span> {{ $typeCounts['Submission'] }}</p>
+                </div>
+                <div class="col">
+                    <p><span style="color: #007bff; font-weight: bold;">Total Invitation:</span> {{ $typeCounts['Invitation'] }}</p>
+                    <p><span style="color: #007bff; font-weight: bold;">Total For Information:</span> {{ $typeCounts['For Information'] }}</p>
+                </div>
+                <div class="col">
+                    <p><span style="color: #007bff; font-weight: bold;">Total For Compliance:</span> {{ $typeCounts['For Compliance'] }}</p>
+                    <p><span style="color: #007bff; font-weight: bold;">Total Complaint:</span> {{ $typeCounts['Complaint'] }}</p>
+                </div>
+            </div>
         </div>
-        <div class="col">
-            <p><span style="color: #007bff; font-weight: bold;">Total Invitation:</span> {{ $typeCounts['Invitation'] }}</p>
-            <p><span style="color: #007bff; font-weight: bold;">Total For Information:</span> {{ $typeCounts['For Information'] }}</p>
+
+        <!-- Radio Logs Totals Line Chart -->
+        <div class="card" style="flex: 1 1 25%; min-width: 200px;">
+            <h3 style="font-size: 1rem;">📈 Radio Logs Totals Overview</h3>
+            <canvas id="radioLogsChart" style="max-height: 200px;"></canvas>
         </div>
-        <div class="col">
-            <p><span style="color: #007bff; font-weight: bold;">Total For Compliance:</span> {{ $typeCounts['For Compliance'] }}</p>
-            <p><span style="color: #007bff; font-weight: bold;">Total Complaint:</span> {{ $typeCounts['Complaint'] }}</p>
+
+
+        <!-- Documents for Review Card - Wider and Larger -->
+        <div class="card p-3 mb-4" style="flex: 2 1 50%; min-width: 400px; max-height: 500px; overflow-y: auto;">
+            <h5 class="card-title" style="font-size: 1.1rem; margin-bottom: 10px;">📂 Actionable Memos for Review</h5>
+
+
+
+
+
+
+            @if ($myAssignedRecords->isEmpty())
+                <p class="text-muted">No records assigned to you.</p>
+            @else
+                <ul class="list-group list-group-flush" style="max-height: 400px; overflow-y: auto;">
+                    @foreach ($myAssignedRecords as $record)
+                        <li class="list-group-item">
+                            <strong>{{ $record->subject_description }}</strong><br>
+                            <small class="text-muted">
+                                <small>From:</small> {{ $record->from_agency_office }} |
+                                <small>Type:</small> {{ $record->type }}
+                            </small><br>
+
+                            <small>
+                                @if ($record->file_path)
+                                    <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank">
+                                        <i class="fas fa-paperclip" style="color: #007bff;"></i> View_Attachment
+                                    </a>
+                                @endif
+                                @if ($record->file_path1)
+                                    | <a href="{{ asset('storage/' . $record->file_path1) }}" target="_blank">
+                                        <i class="fas fa-paperclip" style="color: #007bff;"></i> View_Attachment_1
+                                    </a>
+                                @endif
+                                @if ($record->file_path2)
+                                    | <a href="{{ asset('storage/' . $record->file_path2) }}" target="_blank">
+                                        <i class="fas fa-paperclip" style="color: #007bff;"></i> View_Attachment_2
+                                    </a>
+                                @endif
+                            </small>
+                        </li>
+
+                        @if (!$loop->last)
+                            <hr style="border: 1px solid orange; margin: 5px 0;">
+                        @endif
+                    @endforeach
+                </ul>
+            @endif
         </div>
+
     </div>
 </div>
 
 
 
-
-        <!-- Radiologs Totals Line Chart -->
-<div class="card" style="height: 320px;">
-    <h3 style="font-size: 1rem;">📈 Radio Logs Totals Overview</h3>
-    <canvas id="radioLogsChart" style="max-height: 220px;"></canvas>
-</div>
-
-
-    </div>
-</div>
 
     <!-- Footer -->
     <footer class="footer">
