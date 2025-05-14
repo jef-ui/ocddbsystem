@@ -127,10 +127,9 @@
     }
 
     #clock {
-        font-size: 1.8rem; /* Slightly reduced font size for clock */
+        font-size: 1.3rem; /* Slightly reduced font size for clock */
         font-weight: bold;
         color: #FF8C00;
-        margin-top: 1rem;
     }
 
     #dateDisplay {
@@ -208,57 +207,25 @@
     <div class="dashboard" style="gap: 1rem; display: flex; flex-wrap: wrap;">
 
         <!-- Welcome Card -->
-        <div class="card" style="flex: 1 1 25%; min-width: 200px;">
-            <h3 style="font-weight: bold;">Welcome, {{ Auth::user()->name }}!</h3>
-            <p>You're successfully logged in! Manage your communication logs, track records, and access all system features.</p>
-        </div>
+ <div class="card" style="flex: 1 1 25%; min-width: 200px; display: flex; flex-direction: column;">
+    <div style="flex: 1; overflow-y: auto; padding-right: 5px; font-size: 0.75rem;">
+        <h3 style="font-weight: bold; font-size: .9rem;">WELCOME, {{ Auth::user()->name }}!</h3>
+        <p style="margin-bottom: 0.5rem;">You're successfully logged in! Use the dashboard below to manage communication logs, 
+                                                                    track records, view reminders, and access all system features.</p>
 
-        <!-- Date & Time Card -->
-        <div class="card" style="flex: 1 1 25%; min-width: 200px;">
-            <h3>📅 Date</h3>
-            <div id="dateDisplay"></div>
+        <h5 style="font-weight: bold; font-size: 0.8rem; margin-top: 0.75rem;">Date</h5>
+        <div id="dateDisplay"></div>
 
-            <h3>🕒 Time</h3>
-            <div id="clock"></div>
-        </div>
-
-        <!-- Gender Distribution Panel -->
-        <div class="gender-panel" style="flex: 1 1 25%; min-width: 200px;">
-            <h3 style="font-size: 1rem;">👩‍💼 OCD MIMAROPA Employee Gender Distribution</h3>
-            <p>Total Employees: 21</p>
-            <canvas id="genderChart" width="200" height="200"></canvas>
-        </div>
-
-        <!-- Incoming Communications Overview -->
-        <div class="card" style="flex: 1 1 25%; min-width: 200px;">
-            <h3>📥 Communications Overview</h3>
-            <div class="row">
-                <div class="col">
-                    <p><span style="color: #007bff; font-weight: bold;">Total Report:</span> {{ $typeCounts['Report'] }}</p>
-                    <p><span style="color: #007bff; font-weight: bold;">Total Request:</span> {{ $typeCounts['Request'] }}</p>
-                    <p><span style="color: #007bff; font-weight: bold;">Total Submission:</span> {{ $typeCounts['Submission'] }}</p>
-                </div>
-                <div class="col">
-                    <p><span style="color: #007bff; font-weight: bold;">Total Invitation:</span> {{ $typeCounts['Invitation'] }}</p>
-                    <p><span style="color: #007bff; font-weight: bold;">Total For Information:</span> {{ $typeCounts['For Information'] }}</p>
-                </div>
-                <div class="col">
-                    <p><span style="color: #007bff; font-weight: bold;">Total For Compliance:</span> {{ $typeCounts['For Compliance'] }}</p>
-                    <p><span style="color: #007bff; font-weight: bold;">Total Complaint:</span> {{ $typeCounts['Complaint'] }}</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Radio Logs Totals Line Chart -->
-        <div class="card" style="flex: 1 1 25%; min-width: 200px;">
-            <h3 style="font-size: 1rem;">📈 Radio Logs Totals Overview</h3>
-            <canvas id="radioLogsChart" style="max-height: 200px;"></canvas>
-        </div>
+        <h5 style="font-weight: bold; font-size: 0.8rem; margin-top: 0.5rem;">Time</h5>
+        <div id="clock"></div>
+    </div>
+</div>
 
 
         <!-- Documents for Review Card - Wider and Larger -->
         <div class="card p-3 mb-4" style="flex: 2 1 50%; min-width: 400px; max-height: 500px; overflow-y: auto;">
-            <h5 class="card-title" style="font-size: 1.1rem; margin-bottom: 10px;">📂 Actionable Memos for Review</h5>
+             <h3 style="font-weight: bold; font-size: 1rem;">Reminder Notes/Memos</h3>
+ 
             
             @if ($myAssignedRecords->isEmpty())
                 <p class="text-muted">No records assigned to you.</p>
@@ -266,10 +233,10 @@
                 <ul class="list-group list-group-flush" style="max-height: 400px; overflow-y: auto;">
                     @foreach ($myAssignedRecords as $record)
                         <li class="list-group-item">
-                            <strong>{{ $record->subject_description }}</strong><br>
+                            <strong style="color:  #FF8C00">{{ $record->subject_description }}</strong><br>
                             <small class="text-muted">
-                                <small>From:</small> {{ $record->from_agency_office }} |
-                                <small>Type:</small> {{ $record->type }}
+                                <small>From: {{ $record->from_agency_office }}</small> |
+                                <small>Type: {{ $record->type }}</small>
                             </small><br>
 
                             <small>
@@ -292,12 +259,48 @@
                         </li>
 
                         @if (!$loop->last)
-                            <hr style="border: 1px solid orange; margin: 5px 0;">
+                            <hr style="border: 1px dotted rgb(221, 221, 221); margin: 5px 0;">
+
                         @endif
                     @endforeach
                 </ul>
             @endif
         </div>
+
+        <!-- Gender Distribution Panel -->
+        <div class="gender-panel" style="flex: 1 1 25%; min-width: 200px;">
+             <h3 style="font-weight: bold; font-size: 0.9rem;">OCD MIMAROPA Employee Gender Distribution</h3>
+            <p>Total Employees: 21</p>
+            <canvas id="genderChart" width="200" height="200"></canvas>
+        </div>
+
+        <!-- Incoming Communications Overview -->
+        <div class="card" style="flex: 1 1 25%; min-width: 200px;">
+            <h3 style="font-weight: bold; font-size: 1rem;">Incoming Communications Overview</h3>
+            
+            <div class="row">
+                <div class="col">
+                    <p><span style="color: #007bff; font-weight: bold;">Reports:</span> {{ $typeCounts['Report'] }}</p>
+                    <p><span style="color: #007bff; font-weight: bold;">Request:</span> {{ $typeCounts['Request'] }}</p>
+                    <p><span style="color: #007bff; font-weight: bold;">Submission:</span> {{ $typeCounts['Submission'] }}</p>
+                </div>
+                <div class="col">
+                    <p><span style="color: #007bff; font-weight: bold;">Invitation:</span> {{ $typeCounts['Invitation'] }}</p>
+                    <p><span style="color: #007bff; font-weight: bold;">For Information:</span> {{ $typeCounts['For Information'] }}</p>
+                </div>
+                <div class="col">
+                    <p><span style="color: #007bff; font-weight: bold;">For Compliance:</span> {{ $typeCounts['For Compliance'] }}</p>
+                    <p><span style="color: #007bff; font-weight: bold;">Complaint:</span> {{ $typeCounts['Complaint'] }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Radio Logs Totals Line Chart -->
+        <div class="card" style="flex: 1 1 25%; min-width: 200px;">
+             <h3 style="font-weight: bold; font-size: 1rem;">Radio Logs Overview</h3>
+            <canvas id="radioLogsChart" style="max-height: 200px;"></canvas>
+        </div>
+
 
     </div>
 </div>
@@ -305,10 +308,10 @@
 
 
 
-    <!-- Footer -->
-    <footer class="footer">
-        Designed and Developed by ICTU MIMAROPA, Office of Civil Defense MIMAROPA © 2025
-    </footer>
+<!-- Footer -->
+<footer class="footer">
+    Designed and Developed by ICTU MIMAROPA, Office of Civil Defense MIMAROPA © 2025
+</footer>
 
     <!-- Scripts -->
     <script>
