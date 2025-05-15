@@ -110,8 +110,9 @@ table {
 }
 
 table, th, td {
-  border: 1px solid #000000;
+  border: 1px solid #c1c1c1;
 }
+
 
 th, td {
   padding: 0.4rem;
@@ -119,7 +120,7 @@ th, td {
 }
 
 th {
-  background-color: #1c1c1c;
+  background-color: #030d22;
   color: white;
 }
 
@@ -343,8 +344,8 @@ td form button {
         <th>Subject Description</th>
         <th>Concerned Section/Personnel</th>
         <th>Acknowledged By</th>
-        <th>View</th>
-        <th>Delete</th>
+        <th>View File</th>
+        {{-- <th>Delete</th> comment --}}
       </tr>
     </thead>
     <tbody>
@@ -370,7 +371,7 @@ td form button {
           </li>
           @endif
         </td>
-        <td>
+        {{-- <td>
           <form action="{{route ('record.delete', ['record' => $record])}}" method="post">
             @csrf
             @method ('delete')
@@ -378,7 +379,7 @@ td form button {
               <i class="bi bi-trash delete-icon"></i>
             </button>
           </form>
-        </td>
+        </td>comment --}}
       </tr>
       @endforeach
     </tbody>

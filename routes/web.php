@@ -48,13 +48,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/records/{id}', [RecordController::class, 'show'])->name('records.show');
     Route::delete('/record/{record}/delete', [RecordController::class, 'delete'])->name('record.delete');
 
-
-
-
-
-
     //Attendance Database
-
     Route::get('/guest/log',[GuestController::class, 'log'])->name('guest.log');
     Route::delete('/guest/{guest}/delete',[GuestController::class, 'delete'])->name('guest.delete');
     
@@ -62,8 +56,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     
-
-
 });
 
 require __DIR__.'/auth.php';

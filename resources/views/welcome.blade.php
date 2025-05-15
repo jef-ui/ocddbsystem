@@ -124,12 +124,12 @@
             <a href="https://ocd.gov.ph/about-ocd.html">
                 <i class="bi bi-globe"></i> OCD OFFICIAL WEBPAGE
             </a>
-            <a href="#">
-                <i class="bi bi-envelope-at"></i> CONTACT
+            <a href="{{ asset('images/citizens-charter.png') }}">
+                <i class="bi bi-envelope-at"></i> CITIZEN'S CHARTER
             </a>
             @if (Route::has('login'))
-                <a href="{{ route('login') }}">
-                    <i class="bi bi-box-arrow-in-right"></i> LOGIN
+                <a href="{{ asset('images/org-structure.png') }}">
+                    <i class="bi bi-box-arrow-in-right"></i> ORGANIZATIONAL STRUCTURE
                 </a>
             @endif
         </div>

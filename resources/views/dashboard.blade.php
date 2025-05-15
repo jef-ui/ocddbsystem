@@ -223,7 +223,7 @@
 
 
         <!-- Documents for Review Card - Wider and Larger -->
-        <div class="card p-3 mb-4" style="flex: 2 1 50%; min-width: 400px; max-height: 500px; overflow-y: auto;">
+        <div class="card p-3 mb-4" style="flex: 2 1 50%; min-width: 400px; max-height: 500px; overflow-y: auto; ">
              <h3 style="font-weight: bold; font-size: 1rem;">Reminder Notes/Memos</h3>
  
             

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>OCD MIMAROPA Guests Database</title>
 
   @vite(['resources/css/app.css', 'resources/js/app.js'])
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"/>
 
   <style>
     html, body {
@@ -24,60 +24,94 @@
     .main {
       flex: 1;
       display: flex;
+      margin-top: 60px;
     }
 
     .sidebar {
-      width: 180px;
-      background-color: #001F5B;
+      width: 230px;
+      background-color: #030d22;
       color: white;
-      padding: 2rem 1rem;
-      display: flex;
-      flex-direction: column;
-      box-shadow: 4px 0 6px rgba(0, 0, 0, 0.1);
-      transition: box-shadow 0.3s ease-in-out;
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      padding: 1rem 0;
+      z-index: 1000;
+      overflow-y: auto;
+      transition: width 0.3s ease;
     }
 
     .sidebar:hover {
-      box-shadow: 6px 0 12px rgba(0, 0, 0, 0.2);
-    }
-
-    .sidebar h2 {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      text-align: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .sidebar h2 img {
-      width: 30px;
-      height: 30px;
-      margin-right: 8px;
+      width: 230px;
     }
 
     .sidebar a {
+      display: block;
       color: white;
       text-decoration: none;
-      margin: 0.8rem 0;
-      display: block;
-      padding: 0.5rem 0.8rem;
-      border-radius: 5px;
-      font-size: 0.9rem;
-    }
-
-    .sidebar a i {
-      margin-right: 6px;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+      padding: 0.8rem 1rem;
+      transition: background-color 0.2s, color 0.2s;
     }
 
     .sidebar a:hover {
-      color: orange;
+      background-color: #f4f6f9;
+      color: #000000;
+    }
+
+    .sidebar a.active {
+      background-color: #FF8C00;
+      color: rgb(226, 225, 225);
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 230px; /* match full width of sidebar on hover */
+      right: 0;
+      height: 60px;
+      background-color: white;
+      border-bottom: 1px solid #ccc;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      font-size: 0.9rem;
+      z-index: 1001;
+      transition: left 0.3s ease;
+    }
+
+    .topbar a {
+      color: #333;
+      margin-left: 1rem;
+      text-decoration: none;
+    }
+
+    .topbar a:hover {
+      color: #FF8C00;
+    }
+
+    .sidebar h2 {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .sidebar img.logo {
+      width: 100px;
+      height: auto;
+      display: block;
+      margin: 0 auto 1rem;
     }
 
     .content {
+      margin-left: 230px; /* match full width of sidebar on hover */
       flex: 1;
       padding: 2rem;
+      padding-top: 1rem;
       overflow-y: auto;
+      transition: margin-left 0.3s ease;
     }
 
     .content h1 {
@@ -111,7 +145,7 @@
     }
 
     th {
-      background-color: #001F5B;
+      background-color: #101010;
       color: white;
     }
 
@@ -194,99 +228,105 @@
   </style>
 </head>
 <body>
+  <div class="main">
 
-<div class="main">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <img src="{{ asset('images/logo.png') }}" alt="LTMS Logo" class="logo">
 
-  <!-- Sidebar -->
-  <div class="sidebar">
-    <h2>
-      <img src="{{ asset('images/logo.png') }}" alt="Logo"> OCD CLMS
-    </h2>
+      @if(Auth::check())
+        @php
+          $firstName = explode(' ', Auth::user()->name)[0];
+        @endphp
+        <div class="d-flex align-items-center mb-3 px-3 py-2" style="background-color: white; border-radius: 0;">
+          <i class="bi bi-person-circle me-2" style="font-size: 1.2rem; color: black;"></i>
+          <span style="font-size: 0.95rem; color: black;">Hi! {{ $firstName }}</span>
+        </div>
+      @endif
 
-    @if(Auth::check())
-    @php
-        $firstName = explode(' ', Auth::user()->name)[0];
-    @endphp
-
-    <div class="d-flex align-items-center mb-3 px-3 py-2 rounded" style="background-color: white;">
-      <i class="bi bi-person-circle me-2" style="font-size: 1.2rem; color: black;"></i>
-      <span style="font-size: 0.95rem; color: black;">Hi! {{ $firstName }}</span>
+      <a href="{{ url('/dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a>
+      <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <i class="bi bi-box-arrow-right"></i> Log Out
+      </a>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+      </form>
     </div>
-    @endif
 
-    <a href="{{ url('/dashboard') }}"><i class="bi bi-speedometer2"></i> DASHBOARD</a>
-    <a href="{{ route('radiolog.exportPDF') }}"><i class="bi bi-printer"></i> PRINT LOGS</a>
-    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-      <i class="bi bi-box-arrow-right"></i> LOG OUT
-    </a>
-    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-      @csrf
-    </form>
-  </div>
+    <!-- Topbar -->
+    <div class="topbar">
+      <div><strong>COMMUNICATION LOGGING MANAGEMENT SYSTEM</strong></div>
+      <div>{{ date('l, F j, Y') }} - <span id="liveTime"></span></div>
+    </div>
 
-  <!-- Main Content -->
-  <div class="content">
-    @if(session()->has('success'))
-      <div class="success-message">
-        {{ session('success') }}
-      </div>
-    @endif
+    <!-- Content -->
+    <div class="content">
+      @if(session()->has('success'))
+        <div class="success-message">
+          {{ session('success') }}
+        </div>
+      @endif
 
-    <!-- Table -->
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Full Name</th>
-            <th>Agency</th>
-            <th>Position</th>
-            <th>Gender</th>
-            <th>Purpose of Visit</th>
-            <th>Signature</th>
-            <th>Delete</th>
-
-          </tr>
-        </thead>
-        <tbody>
-          @foreach ($requestlogs as $requestlog)
-          <tr>
-            <td>{{ $requestlog->date_of_visit }}</td>
-            <td>{{ $requestlog->name }}</td>
-            <td>{{ $requestlog->agency }}</td>
-            <td>{{ $requestlog->position }}</td>
-            <td>{{ $requestlog->gender }}</td>
-            <td>{{ $requestlog->purpose_of_visit }}</td>
-            <td>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Full Name</th>
+              <th>Agency</th>
+              <th>Position</th>
+              <th>Gender</th>
+              <th>Purpose of Visit</th>
+              <th>Signature</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($requestlogs as $requestlog)
+            <tr>
+              <td>{{ $requestlog->date_of_visit }}</td>
+              <td>{{ $requestlog->name }}</td>
+              <td>{{ $requestlog->agency }}</td>
+              <td>{{ $requestlog->position }}</td>
+              <td>{{ $requestlog->gender }}</td>
+              <td>{{ $requestlog->purpose_of_visit }}</td>
+              <td>
                 @if($requestlog->e_signature)
-                    <img src="{{ $requestlog->e_signature }}" alt="Signature" style="height: 60px;">
+                  <img src="{{ $requestlog->e_signature }}" alt="Signature" style="height: 60px;">
                 @else
-                    No Signature
+                  No Signature
                 @endif
-            </td>
-
-            <td>
+              </td>
+              <td>
                 <form method="post" action="{{ route('guest.delete', ['guest' => $requestlog->id]) }}">
-                    @csrf
-                    @method('delete')
-                    <button type="submit">
-                        <i class="bi bi-trash delete-icon"></i>
-                    </button>
+                  @csrf
+                  @method('delete')
+                  <button type="submit">
+                    <i class="bi bi-trash delete-icon"></i>
+                  </button>
                 </form>
-            </td>
-            
-          </tr>
-          @endforeach
-        </tbody>
-      </table>
+              </td>
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Footer -->
-<footer class="footer">
-  Designed and Developed by ICTU MIMAROPA, Office of Civil Defense MIMAROPA © Copyright 2025
-</footer>
+  <!-- Footer -->
+  <footer class="footer">
+    Designed and Developed by ICTU MIMAROPA, Office of Civil Defense MIMAROPA © Copyright 2025
+  </footer>
 
+  <!-- Live Clock Script -->
+  <script>
+    function updateTime() {
+      const now = new Date();
+      document.getElementById('liveTime').textContent = now.toLocaleTimeString();
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+  </script>
 </body>
 </html>

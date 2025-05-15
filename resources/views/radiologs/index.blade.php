@@ -111,8 +111,9 @@ table {
 }
 
 table, th, td {
-  border: 1px solid #000000;
+  border: 1px solid #c1c1c1;
 }
+
 
 th, td {
   padding: 0.4rem;
@@ -120,7 +121,7 @@ th, td {
 }
 
 th {
-  background-color: #1c1c1c;
+  background-color: #030d22;
   color: white;
 }
 

@@ -118,6 +118,35 @@
         font-size: 12px;
         padding: 10px 0;
     }
+
+    @media (max-width: 768px) {
+    .form-container {
+        grid-template-columns: 1fr !important;
+        padding: 1.5rem 1rem;
+    }
+
+    .form-container h2 {
+        grid-column: span 1 !important;
+        font-size: 1.5rem;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .full-width,
+    button {
+        grid-column: span 1 !important;
+    }
+
+    label {
+        font-size: 0.85rem;
+    }
+
+    input,
+    select {
+        font-size: 1rem;
+    }
+}
+
 </style>
 
 </head>
@@ -207,6 +236,7 @@
                     <i class="bi bi-tag-fill"></i> Type
                 </label>
                 <select id="type" name="type" class="form-select" required>
+                    <option value="Please select">-- Please select --</option>
                     <option value="Request" {{ old('type') == 'Request' ? 'selected' : '' }}>Request</option>
                     <option value="Invitation" {{ old('type') == 'Invitation' ? 'selected' : '' }}>Invitation</option>
                     <option value="Submission" {{ old('type') == 'Submission' ? 'selected' : '' }}>Submission</option>
@@ -245,11 +275,11 @@
                     <i class="bi bi-clipboard-check-fill"></i> Actions Taken
                 </label>
                 <select id="action_taken" name="action_taken" class="form-select" required>
-                    <option value="Acknowledged and forwarded to concerned personnel" {{ old('type') == 'Acknowledged and forwarded to concerned personnel' ? 'selected' : '' }}>Acknowledged and forwarded to concerned personnel</option>
-                    <option value="Acknowledged and forwarded to OCD OpCen email" {{ old('type') == 'Acknowledged and forwarded to OCD OpCen email' ? 'selected' : '' }}>Acknowledged and forwarded to OCD OpCen email</option>
+                    <option value="Acknowledged and forwarded to concerned personnel" {{ old('type') == 'Acknowledged and forwarded to concerned personnel' ? 'selected' : '' }}>Acknowledged and forwarded to concerned section/personnel</option>
+                    {{-- <option value="Acknowledged and forwarded to OCD OpCen email" {{ old('type') == 'Acknowledged and forwarded to OCD OpCen email' ? 'selected' : '' }}>Acknowledged and forwarded to OCD OpCen email</option>
                     <option value="Acknowledged and forwarded to DPS" {{ old('type') == 'Acknowledged and forwarded to DPS' ? 'selected' : '' }}>Acknowledged and forwarded to DPS</option>
                     <option value="Acknowledged and forwarded to HRMU" {{ old('type') == 'Acknowledged and forwarded to HRMU' ? 'selected' : '' }}>Acknowledged and forwarded to HRMU</option>
-                    <option value="Acknowledged and forwarded to LGUs" {{ old('type') == 'Acknowledged and forwarded to LGUs' ? 'selected' : '' }}>Acknowledged and forwarded to LGUs</option>
+                    <option value="Acknowledged and forwarded to LGUs" {{ old('type') == 'Acknowledged and forwarded to LGUs' ? 'selected' : '' }}>Acknowledged and forwarded to LGUs</option> comment --}}
                 </select>
             </div>
             
@@ -259,6 +289,7 @@
                 </label>
                 <select id="concerned_section_personnel" name="concerned_section_personnel" class="form-select" required>
                     <option value="Please select">-- Please select --</option>
+                    <option value="Operations Section" {{ old('type') == 'Operations Section' ? 'selected' : '' }}>Operations Section (SitReps,Advisories & etc...)</option>
                     <option value="Marc Rembrandt P. Victore" {{ old('type') == 'Marc Rembrandt P. Victore' ? 'selected' : '' }}>Marc Rembrandt P. Victore</option>
                     <option value="Aquilino P. Ducay" {{ old('type') == 'Aquilino P. Ducay' ? 'selected' : '' }}>Aquilino P. Ducay</option>
                     <option value="Almarose S. Tabliago" {{ old('type') == 'Almarose S. Tabliago' ? 'selected' : '' }}>Almarose S. Tabliago</option>
