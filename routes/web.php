@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RadioLogController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RisAdminCardController;
 use App\Models\Record;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Public Guest Log
 Route::get('/guest',[GuestController::class, 'index'])->name('guest.index');
 Route::get('/guest/create',[GuestController::class, 'create'])->name('guest.create');
 Route::post('/guest',[GuestController::class, 'store'])->name('guest.store');
+
+//Public RIS e PDF 
+Route::get('/risadmin/create',[RisAdminCardController::class, 'create'])->name('risadmin.create');
+Route::post('/risadmin', [RisAdminCardController::class, 'store'])->name('risadmin.store');
+Route::get('/risadmin/view/{id}', [RisAdminCardController::class, 'viewSinglePDF'])->name('risadmin.viewSingle');
 
 
 Route::get('/dashboard', function () {
@@ -55,7 +62,11 @@ Route::middleware('auth')->group(function () {
     //Fecth Data from Other Controllers to Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    
-});
+    //RIS Admin Card
+    Route::get('/risadmin',[RisAdminCardController::class, 'index'])->name('risadmin.index');
+    Route::get('/risadmin/export/{id}', [RisAdminCardController::class, 'exportSinglePDF'])->name('risadmin.exportSingle');
+    Route::delete('/risadmin/{risadmincard}/delete', [RisAdminCardController::class, 'delete'])->name('risadmin.delete');
 
+});
+ 
 require __DIR__.'/auth.php';

@@ -216,7 +216,7 @@ td form button {
 
   <!-- Topbar -->
     <div class="topbar">
-    <div><strong>COMMUNICATION LOGGING MANAGEMENT SYSTEM</strong></div>
+    <div><strong>CLMS - RADIO LOGS</strong></div>
     <div>
         {{ date('l, F j, Y') }} - <span id="liveTime"></span>
     </div>

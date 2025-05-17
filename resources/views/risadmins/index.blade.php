@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OCD MIMAROPA Incoming Communications</title>
+  <title>OCD MIMAROPA E Generated RIS</title>
 
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -249,7 +249,7 @@ td form button {
 
     <!-- Topbar -->
     <div class="topbar">
-    <div><strong>CLMS - INCOMING COMMUNICATIONS</strong></div>
+    <div><strong>COMMUNICATION LOGGING MANAGEMENT SYSTEM</strong></div>
     <div>
         {{ date('l, F j, Y') }} - <span id="liveTime"></span>
     </div>
@@ -307,10 +307,10 @@ td form button {
 <div style="display: flex; justify-content: space-between; align-items: center; height: 70px; margin-bottom: 15px;">
   
   <!-- Add IComs Button with Icon -->
-  <a href="{{ route('record.create') }}" 
+  <a href="{{route ('risadmin.create')}}" 
      style="background-color: #b16100; color: white; border: none; padding: 8px 15px; font-size: 14px; 
             border-radius: 5px; text-decoration: none; display: flex; align-items: center;">
-    <i class="bi bi-plus-circle" style="margin-right: 8px;"></i> Add IComs
+    <i class="bi bi-plus-circle" style="margin-right: 8px;"></i> Add e-RIS
   </a>
 
   <!-- Live Search Section -->
@@ -338,17 +338,86 @@ td form button {
     <thead>
       <tr>
         <th>Date</th>
-        <th>Time</th>
-        <th>From Agency/Office</th>
-        <th>Type</th>
-        <th>Subject Description</th>
-        <th>Concerned Section/Personnel</th>
-        <th>Acknowledged By</th>
-        <th>View File</th>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Division</th>
+        <th>Agency/Office</th>
+        <th>Unit</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Amount Utilized</th>
+        <th>Balance</th>
+        <th>Invoice No.</th>
+        <th>Plate No.</th>
+        <th>Type of Car</th>
+        <th>Purpose</th>
+        <th>Receipt</th>
+        <th>Download Pdf File</th>
+        <th>Delete</th>
         {{-- <th>Delete</th> comment --}}
       </tr>
     </thead>
     <tbody>
+      @foreach ($risadmincards as $risadmincard)
+
+        <tr>
+            <td>{{$risadmincard->date}}</td>
+            <td>{{$risadmincard->name}}</td>
+            <td>{{$risadmincard->position}}</td>
+            <td>{{$risadmincard->division}}</td>
+            <td>{{$risadmincard->office_agency}}</td>
+            <td>{{$risadmincard->unit}}</td>
+            <td>{{$risadmincard->description}}</td>
+            <td>{{$risadmincard->quantity}}</td>
+            <td>{{$risadmincard->amount_utilized}}</td>
+            <td>{{$risadmincard->balance}}</td>
+            <td>{{$risadmincard->invoice_number}}</td>
+            <td>{{$risadmincard->plate_number}}</td>
+            <td>{{$risadmincard->type_car}}</td>
+            <td>{{$risadmincard->purpose}}</td>
+            <td>
+    @if($risadmincard->file_path)
+        @php
+            $extension = pathinfo($risadmincard->file_path, PATHINFO_EXTENSION);
+            $fileUrl = asset('storage/' . $risadmincard->file_path);
+        @endphp
+
+        @if(in_array($extension, ['jpg', 'jpeg', 'png']))
+            <a href="{{ $fileUrl }}" target="_blank">
+                <img src="{{ $fileUrl }}" alt="Uploaded Image" width="100">
+            </a>
+        @else
+            <a href="{{ $fileUrl }}" target="_blank">View PDF File</a>
+        @endif
+    @else
+        No File
+    @endif
+    </td>
+
+    <td>
+      <a href="{{ route('risadmin.exportSingle', $risadmincard->id) }}" class="btn btn-sm btn-outline-primary">
+    Export PDF
+</a>
+    </td>
+
+      <td>
+          <form action="{{route ('risadmin.delete', ['risadmincard' => $risadmincard])}}" method="post">
+            @csrf
+            @method ('delete')
+            <button type="submit">
+              <i class="bi bi-trash delete-icon"></i>
+            </button>
+          </form>
+        </td>
+
+
+
+
+        </tr>
+
+        @endforeach
+    </tbody>
+    {{-- <tbody>
       @foreach ($records as $record)
       <tr>
         <td>{{ \Carbon\Carbon::parse($record->received_date)->format('F j, Y') }}</td>
@@ -379,17 +448,17 @@ td form button {
               <i class="bi bi-trash delete-icon"></i>
             </button>
           </form>
-        </td>comment --}}
+        </td>
       </tr>
       @endforeach
-    </tbody>
+    </tbody>  comment --}}
   </table>
 
   <!-- Pagination -->
-<div class="mt-4" style="text-align: right; padding-right: 10px;">
+{{-- <div class="mt-4" style="text-align: right; padding-right: 10px;">
   {{ $records->appends(['search' => request('search')])->links('vendor.pagination.simple-icons') }}
 </div>
-</div>
+</div> comment --}}
 
   </div>
 </div>
