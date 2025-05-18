@@ -267,6 +267,30 @@
         </div>
       @endif
 
+<!-- Container for Add IComs and Search -->
+<div style="display: flex; justify-content: space-between; align-items: center; height: 70px; margin-bottom: 15px;">
+  
+  <!-- Add IComs Button with Icon -->
+  <a href="{{route ('guest.create')}}" 
+     style="background-color: #b16100; color: white; border: none; padding: 8px 15px; font-size: 14px; 
+            border-radius: 5px; text-decoration: none; display: flex; align-items: center;">
+    <i class="bi bi-plus-circle" style="margin-right: 8px;"></i> Add e-CA
+  </a>
+
+  <!-- Live Search Section -->
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <input type="text" id="search" placeholder="Search Radio Logs..." 
+           style="padding: 8px 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px; height: 42px;">
+    <button type="button" id="clearSearch" 
+            style="background-color: #007517; color: white; border: none; border-radius: 5px;
+                   padding: 0 20px; font-size: 14px; height: 42px; display: flex;
+                   align-items: center; justify-content: center; cursor: pointer;">
+      <i class="bi bi-x-circle" style="margin-right: 5px;"></i> Clear
+    </button>
+  </div>
+</div>
+
+
       <div class="table-container">
         <table>
           <thead>

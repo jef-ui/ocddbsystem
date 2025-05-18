@@ -340,9 +340,9 @@ td form button {
         <th>Date</th>
         <th>Name</th>
         <th>Position</th>
-        <th>Division</th>
+        <th>Division/Section</th>
         <th>Agency/Office</th>
-        <th>Unit</th>
+        {{-- <th>Unit</th>
         <th>Description</th>
         <th>Quantity</th>
         <th>Amount Utilized</th>
@@ -350,7 +350,7 @@ td form button {
         <th>Invoice No.</th>
         <th>Plate No.</th>
         <th>Type of Car</th>
-        <th>Purpose</th>
+        <th>Purpose</th>comment --}}
         <th>Receipt</th>
         <th>Download Pdf File</th>
         <th>Delete</th>
@@ -366,7 +366,7 @@ td form button {
             <td>{{$risadmincard->position}}</td>
             <td>{{$risadmincard->division}}</td>
             <td>{{$risadmincard->office_agency}}</td>
-            <td>{{$risadmincard->unit}}</td>
+             {{--<td>{{$risadmincard->unit}}</td>
             <td>{{$risadmincard->description}}</td>
             <td>{{$risadmincard->quantity}}</td>
             <td>{{$risadmincard->amount_utilized}}</td>
@@ -374,8 +374,8 @@ td form button {
             <td>{{$risadmincard->invoice_number}}</td>
             <td>{{$risadmincard->plate_number}}</td>
             <td>{{$risadmincard->type_car}}</td>
-            <td>{{$risadmincard->purpose}}</td>
-            <td>
+            <td>{{$risadmincard->purpose}}</td>comment --}}
+           <td style="text-align: center;">
     @if($risadmincard->file_path)
         @php
             $extension = pathinfo($risadmincard->file_path, PATHINFO_EXTENSION);
@@ -384,20 +384,23 @@ td form button {
 
         @if(in_array($extension, ['jpg', 'jpeg', 'png']))
             <a href="{{ $fileUrl }}" target="_blank">
-                <img src="{{ $fileUrl }}" alt="Uploaded Image" width="100">
+                <img src="{{ $fileUrl }}" alt="Uploaded Image" width="100" style="display: block; margin: 0 auto;">
             </a>
         @else
-            <a href="{{ $fileUrl }}" target="_blank">View PDF File</a>
+            <a href="{{ $fileUrl }}" target="_blank" style="display: inline-block;">View PDF File</a>
         @endif
     @else
         No File
     @endif
-    </td>
+</td>
 
-    <td>
-      <a href="{{ route('risadmin.exportSingle', $risadmincard->id) }}" class="btn btn-sm btn-outline-primary">
-    Export PDF
-</a>
+
+<td>
+  <a href="{{ route('risadmin.exportSingle', $risadmincard->id) }}" class="btn btn-sm btn-outline-primary" download>
+    <i class="bi bi-download"></i>
+  </a>
+</td>
+
     </td>
 
       <td>

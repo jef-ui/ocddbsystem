@@ -41,7 +41,8 @@
 
 
 
-    <h3 style="text-align: center;">REQUISITION AND ISSUE SLIP</h3>
+    <h3 style="text-align: center; font-family: Arial, sans-serif;">REQUISITION AND ISSUE SLIP</h3>
+
 
 <table class="tg" style="undefined;table-layout: fixed; width: 714px"><colgroup>
 <col style="width: 58.2px">

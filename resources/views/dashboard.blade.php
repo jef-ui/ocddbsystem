@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>OCD CLMS</title>
+    <title>OCD CLMS - Dashboard</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -11,10 +11,43 @@
 
 
 <style>
+
+ .dropdown {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    content: " ▼";
+    font-size: 0.6em;
+}
+
+.dropdown-menu {
+    display: none;
+    flex-direction: column;
+    background-color: #030d22;
+    padding-left: 0.5rem; /* Reduced left padding */
+}
+
+.dropdown:hover .dropdown-menu {
+    display: flex;
+}
+
+.dropdown-item {
+    padding: 0.15rem 0; /* Reduced vertical spacing */
+    color: #fff; /* Changed to white for contrast with dark background */
+    text-decoration: none;
+    font-size: 0.9rem; /* Optional: slightly smaller font */
+}
+
+.dropdown-item:hover {
+    text-decoration: underline;
+}
+
+    
     body {
         margin: 0;
         font-family: 'Arial', sans-serif;
-        background-color: #f4f6f9;
+        background-color: #eaeaea;
     }
 
     /* Sidebar Styling */
@@ -175,7 +208,7 @@
         <i class="bi bi-person-circle"></i> Profile
     </a>
 
-     <a href="{{ route('record.index') }}" class="{{ request()->routeIs('record.index') ? 'active' : '' }}">
+    <a href="{{ route('record.index') }}" class="{{ request()->routeIs('record.index') ? 'active' : '' }}">
         <i class="bi bi-inbox"></i> Incoming Communication
     </a>
 
@@ -183,7 +216,16 @@
         <i class="bi bi-journal-text"></i> Radio Log
     </a>
 
-   
+    <!-- Generated Docs Dropdown -->
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle">
+            <i class="bi bi-file-earmark-text"></i> Generated Docs
+        </a>
+        <div class="dropdown-menu">
+            <a href="{{route ('risadmin.index')}}" class="dropdown-item">e-RIS</a>
+            <a href="{{route ('guest.log')}}" class="dropdown-item">e-Certificate of Appearance</a>
+        </div>
+    </div>
 
     <form method="POST" action="{{ route('logout') }}" style="margin-top: 1rem;">
         @csrf

@@ -211,7 +211,7 @@ canvas {
             <i class="bi bi-cash-coin"></i>
         </span>
         <select name="fund_cluster" class="form-select" id="fund-cluster-select" required>
-            <option value="" disabled selected hidden>--select FUND CLUSTER --</option>
+            <option value="" disabled selected hidden>--SELECT FUND CLUSTER --</option>
             <option value="Fleet Card (ADMIN), Blue Color RA- OCD IVB-3 - 738766030225745104">
                 Fleet Card (ADMIN), Blue Color RA- OCD IVB-3 - 738766030225745104
             </option>
@@ -237,29 +237,38 @@ canvas {
 
             {{-- date --}}
             <div class="mb-3">
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
-                    <input type="date" name="date" class="form-control" placeholder="Date" required>
-                </div>
-            </div>
+    <div class="input-group position-relative">
+        <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+        <input type="date" id="date" name="date" class="form-control" required>
+        <span id="date-placeholder" class="position-absolute text-muted" 
+              style="left: 45px; top: 50%; transform: translateY(-50%); pointer-events: none;">
+            --SELECT DATE--
+        </span>
+    </div>
+</div>
             
             {{-- name --}}
 <div class="mb-3">
-    <div class="input-group">
-        <span class="input-group-text" id="name-icon">
-            <i class="bi bi-person"></i>
-        </span>
-        <input 
-            type="text" 
-            name="name" 
-            id="name" 
-            class="form-control" 
-            placeholder="FIRST NAME M.I SURNAME" 
-            value="{{ old('name') }}" 
-            style="text-transform: uppercase;" 
-            required
-        >
-    </div>
+  <div class="input-group">
+    <span class="input-group-text">
+      <i class="bi bi-person-circle"></i>
+    </span>
+    <input
+      type="text"
+      id="name-input"
+      name="name"
+      class="form-control"
+      placeholder="Select or type name"
+      list="name-options"
+      style="text-transform: uppercase;"
+      required
+      oninput="this.value = this.value.toUpperCase(); updateFontWeight();"
+    >
+    <datalist id="name-options">
+      <option value="Marc Rembrandt P. Victore"></option>
+      <option value="Aquilino P. Ducay"></option>
+    </datalist>
+  </div>
 </div>
 
             
@@ -287,7 +296,7 @@ canvas {
             <i class="bi bi-building"></i>
         </span>
         <select name="division" class="form-select" id="division-select" required>
-            <option value="" disabled selected hidden>--select DIVISION/Section --</option>
+            <option value="" disabled selected hidden>-- SELECT DIVISION/SECTION --</option>
             <option value="DRRMD">DRRMD</option>
             <option value="AFMS">AFMS</option>
             <option value="OPCEN">OPCEN</option>
@@ -305,18 +314,21 @@ canvas {
     <div class="input-group">
         <span class="input-group-text"><i class="bi bi-person-badge"></i></span>
         <input 
-            type="text" 
-            name="office_agency" 
-            class="form-control" 
-            placeholder="OFFICE/AGENCY" 
-            value="{{ old('office_agency', 'OCD MIMAROPA') }}" 
-            style="text-transform: uppercase;" 
+            type="text"
+            name="office_agency"
+            id="office-agency"
+            class="form-control"
+            placeholder="--select Office/Agency--"
+            list="agency-options"
+            style="text-transform: uppercase;"
             required
         >
+        <datalist id="agency-options">
+            <option value="OCD MIMAROPA"></option>
+        </datalist>
     </div>
 </div>
-
-            
+  
             {{-- UNIT --}}
 <div class="mb-3">
     <div class="input-group">
@@ -324,7 +336,7 @@ canvas {
             <i class="bi bi-droplet"></i>
         </span>
         <select name="unit" class="form-select" id="unit-select" required>
-            <option value="" disabled selected hidden>-- select UNIT --</option>
+            <option value="" disabled selected hidden>-- SELECT UNIT --</option>
             <option value="L">Liter</option>
             <option value="G">Gallon</option>
         </select>
@@ -338,7 +350,7 @@ canvas {
             <i class="bi bi-droplet"></i>
         </span>
         <select name="description" class="form-select" id="description-select" required>
-            <option value="" disabled selected hidden>--select DESCRIPTION</option>
+            <option value="" disabled selected hidden>--SELECT GAS TYPE--</option>
             <option value="XCS">XCS</option>
             <option value="XTRA">XTRA</option>
             <option value="DIESEL">DIESEL</option>
@@ -433,13 +445,21 @@ canvas {
             <i class="bi bi-clipboard2-check"></i> <!-- Clipboard icon for purpose -->
         </span>
         <input 
-            type="text" id="purpose" name="purpose" 
+            type="text" 
+            id="purpose" 
+            name="purpose" 
             value="{{ old('purpose') }}" 
             class="form-control" 
             placeholder="Purpose" 
+            list="purpose-options"
             required 
             style="text-transform: uppercase;" 
-            oninput="this.value = this.value.toUpperCase();">
+            oninput="this.value = this.value.toUpperCase(); updateFontWeight();"
+        >
+        <datalist id="purpose-options">
+            <option value="ADMINISTRATIVE SUPPORT"></option>
+            <option value="OPERATIONAL SUPPORT"></option>
+        </datalist>
     </div>
 </div>
 
@@ -558,12 +578,97 @@ canvas {
     });
 </script>
 
+{{-- drop down turn to bold --}}
+<script>
+    const boldenSelectOnChange = (id) => {
+        const el = document.getElementById(id);
+        el.addEventListener('change', function () {
+            this.style.fontWeight = 'bold';
+        });
+    };
+
+    boldenSelectOnChange('fund-cluster-select');
+    boldenSelectOnChange('division-select');
+    boldenSelectOnChange('unit-select');
+    boldenSelectOnChange('description-select');
+</script>
+
+{{-- Date Function --}}
+<script>
+    function toggleDatePlaceholder() {
+        const input = document.getElementById('date');
+        const placeholder = document.getElementById('date-placeholder');
+
+        // Show placeholder only when input is empty and screen is mobile
+        if (!input.value && window.innerWidth < 768) {
+            placeholder.style.display = 'block';
+        } else {
+            placeholder.style.display = 'none';
+        }
+    }
+
+    // Initialize
+    toggleDatePlaceholder();
+
+    // Watch for changes and window resize
+    document.getElementById('date').addEventListener('input', toggleDatePlaceholder);
+    window.addEventListener('resize', toggleDatePlaceholder);
+</script>
+
+<script>
+    const agencyInput = document.getElementById('office-agency');
+
+    function updateFontWeight() {
+        if (agencyInput.value.trim().toUpperCase() === 'OCD MIMAROPA') {
+            agencyInput.style.fontWeight = 'bold';
+        } else {
+            agencyInput.style.fontWeight = 'normal';
+        }
+    }
+
+    agencyInput.addEventListener('input', updateFontWeight);
+    window.addEventListener('load', updateFontWeight);
+</script>
+
+<script>
+    const purposeInput = document.getElementById('purpose');
+
+    function updateFontWeight() {
+        if (purposeInput.value.trim().toUpperCase() === 'SUPPORT TO ADMIN') {
+            purposeInput.style.fontWeight = 'bold';
+        } else {
+            purposeInput.style.fontWeight = 'normal';
+        }
+    }
+
+    // Call once on page load in case value is prefilled
+    window.addEventListener('load', updateFontWeight);
+</script>
+
+
+{{-- DROP DOWN NAME --}}
+<script>
+  const nameInput = document.getElementById('name-input');
+
+  function updateFontWeight() {
+    if (nameInput.value.trim().toUpperCase() === 'MARC REMBRANDT P. VICTORE') {
+      nameInput.style.fontWeight = 'bold';
+    } else {
+      nameInput.style.fontWeight = 'normal';
+    }
+  }
+
+  window.addEventListener('load', updateFontWeight);
+</script>
+
+
 
 
   <!-- Footer -->
     <footer class="footer">
         Designed and Developed by ICTU MIMAROPA, Office of Civil Defense MIMAROPA © Copyright 2025
     </footer>
+
 
 
     
