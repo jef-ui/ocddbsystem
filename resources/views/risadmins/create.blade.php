@@ -267,6 +267,27 @@ canvas {
     <datalist id="name-options">
       <option value="Marc Rembrandt P. Victore"></option>
       <option value="Aquilino P. Ducay"></option>
+      <option value="Almarose Tabliago"></option>
+      <option value="Maria Aiza S. Siason"></option>
+      <option value="Jommel Merano"></option>
+      <option value="Lilia Guevarra"></option>
+      <option value="Mary An B. Aceveda"></option>
+      <option value="Jonalyn Pagcaliwagan"></option>
+      <option value="Efril F. Maranan"></option>
+      <option value="Jervis Lloyd M. Atilano"></option>
+      <option value="Glory Balegan"></option>
+      <option value="Minerva R. Alcaraz"></option>
+      <option value="Julius Anthony M. Del Rio"></option>
+      <option value="Jorge V. Matunog"></option>
+      <option value="Ma. Reena Pelagio"></option>
+      <option value="Mario D. Punzalan Jr."></option>
+      <option value="Nino G. Faltado"></option>
+      <option value="Sheila Marie S. Reyes"></option>
+      <option value="Fernando De Leon"></option>
+      <option value="Anthony M. Zoleta"></option>
+      <option value="Wilmer Fabella"></option>
+       <option value="Jefrie G. Rodriguez"></option>
+      
     </datalist>
   </div>
 </div>
@@ -442,7 +463,7 @@ canvas {
 <div class="mb-3">
     <div class="input-group">
         <span class="input-group-text">
-            <i class="bi bi-clipboard2-check"></i> <!-- Clipboard icon for purpose -->
+            <i class="bi bi-clipboard2-check"></i>
         </span>
         <input 
             type="text" 
@@ -454,7 +475,7 @@ canvas {
             list="purpose-options"
             required 
             style="text-transform: uppercase;" 
-            oninput="this.value = this.value.toUpperCase(); updateFontWeight();"
+            oninput="this.value = this.value.toUpperCase(); updatePurposeFontWeight();"
         >
         <datalist id="purpose-options">
             <option value="ADMINISTRATIVE SUPPORT"></option>
@@ -591,6 +612,7 @@ canvas {
     boldenSelectOnChange('division-select');
     boldenSelectOnChange('unit-select');
     boldenSelectOnChange('description-select');
+    boldenSelectOnChange('purpose-options');
 </script>
 
 {{-- Date Function --}}
@@ -659,6 +681,28 @@ canvas {
   }
 
   window.addEventListener('load', updateFontWeight);
+</script>
+
+<script>
+  function updateFontWeight() {
+    const input = document.getElementById("name-input");
+    const options = Array.from(document.getElementById("name-options").options);
+    const match = options.some(option => option.value.toUpperCase() === input.value.toUpperCase());
+
+    input.style.fontWeight = match ? "bold" : "normal";
+  }
+</script>
+
+<script>
+    function updatePurposeFontWeight() {
+        const input = document.getElementById("purpose");
+        const options = Array.from(document.getElementById("purpose-options").options);
+        const inputValue = input.value.toUpperCase();
+        const match = options.some(option => option.value.toUpperCase() === inputValue);
+
+        // Make text bold whether it's a match or just typed
+        input.style.fontWeight = inputValue ? "bold" : "normal";
+    }
 </script>
 
 
