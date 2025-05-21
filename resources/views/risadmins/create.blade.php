@@ -358,8 +358,8 @@ canvas {
         </span>
         <select name="unit" class="form-select" id="unit-select" required>
             <option value="" disabled selected hidden>-- SELECT UNIT --</option>
-            <option value="L">Liter</option>
-            <option value="G">Gallon</option>
+            <option value="L">LITER</option>
+            <option value="G">GALLON</option>
         </select>
     </div>
 </div>
@@ -703,6 +703,12 @@ canvas {
         // Make text bold whether it's a match or just typed
         input.style.fontWeight = inputValue ? "bold" : "normal";
     }
+</script>
+
+<script>
+document.querySelector('input[name="position"]').addEventListener('input', function () {
+    this.value = this.value.toUpperCase();
+});
 </script>
 
 

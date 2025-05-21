@@ -475,7 +475,6 @@
   <td class="tg-91w8" colspan="2"><b>OIC, OCD MIMAROPA</b></td>
   <td class="tg-91w8" colspan="2"><b>SUPPLY ACCOUNTABLE OFFICER</b></td>
   <td class="tg-91w8" colspan="2"><b>{{$risadmin->position}}</b></td>
-
   </tr>
   <tr>
     <td class="tg-l6li"><b>Date:</b></td>

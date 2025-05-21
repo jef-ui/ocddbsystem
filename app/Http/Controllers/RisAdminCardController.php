@@ -31,7 +31,7 @@ class RisAdminCardController extends Controller
         'quantity' => 'required|numeric|min:0',
         'amount_utilized' => 'required|numeric|min:0',
         'balance' => 'required|numeric|min:0',
-        'invoice_number' => 'required|integer|min:0',
+        'invoice_number' => 'required|string|regex:/^\d+$/',
         'plate_number' => 'required|string|max:255',
         'type_car' => 'required|string|max:255',
         'purpose' => 'required|string|max:255',
