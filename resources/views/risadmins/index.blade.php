@@ -458,10 +458,10 @@ td form button {
   </table>
 
   <!-- Pagination -->
-{{-- <div class="mt-4" style="text-align: right; padding-right: 10px;">
-  {{ $records->appends(['search' => request('search')])->links('vendor.pagination.simple-icons') }}
+<div class="mt-4" style="text-align: right; padding-right: 10px;">
+  {{ $risadmincards->appends(['search' => request('search')])->links('vendor.pagination.simple-icons') }}
 </div>
-</div> comment --}}
+</div>
 
   </div>
 </div>
@@ -506,7 +506,7 @@ td form button {
     $('#search').on('keyup', function() {
       var search = $(this).val();
       $.ajax({
-        url: "{{ route('record.index') }}",
+        url: "{{ route('risadmin.index') }}",
         type: "GET",
         data: { search: search },
         success: function(response) {

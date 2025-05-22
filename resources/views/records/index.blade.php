@@ -345,7 +345,7 @@ td form button {
         <th>Concerned Section/Personnel</th>
         <th>Acknowledged By</th>
         <th>View File</th>
-        {{-- <th>Delete</th> comment --}}
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
@@ -371,7 +371,7 @@ td form button {
           </li>
           @endif
         </td>
-        {{-- <td>
+        <td>
           <form action="{{route ('record.delete', ['record' => $record])}}" method="post">
             @csrf
             @method ('delete')
@@ -379,7 +379,7 @@ td form button {
               <i class="bi bi-trash delete-icon"></i>
             </button>
           </form>
-        </td>comment --}}
+        </td>
       </tr>
       @endforeach
     </tbody>

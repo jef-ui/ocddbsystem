@@ -8,10 +8,29 @@ use Illuminate\Support\Facades\Auth;
 
 class RisAdminCardController extends Controller
 {
-    public function index (){
-        $risadmincards = RisAdminCard::all();
-        return view('risadmins.index', ['risadmincards' => $risadmincards]);
+public function index(Request $request)
+{
+    $search = $request->input('search');
+
+    $risadmincards = RisAdminCard::query()
+        ->when($search, function ($query, $search) {
+            $query->where('date', 'like', "%{$search}%")
+                  ->orWhere('name', 'like', "%{$search}%")
+                  ->orWhere('office_agency', 'like', "%{$search}%");
+        })
+        ->orderBy('date', 'desc')
+        ->paginate(5);
+
+    if ($request->ajax()) {
+        return response()->json([
+            'html' => view('risadmins.index', compact('risadmincards'))->render()
+        ]);
     }
+
+    return view('risadmins.index', compact('risadmincards'));
+}
+
+
 
     public function create (){
         return view('risadmins.create');

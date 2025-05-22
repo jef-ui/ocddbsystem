@@ -279,15 +279,15 @@
 
   <!-- Live Search Section -->
   <div style="display: flex; align-items: center; gap: 10px;">
-    <input type="text" id="search" placeholder="Search Radio Logs..." 
+    {{-- <input type="text" id="search" placeholder="Search Radio Logs..." 
            style="padding: 8px 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px; height: 42px;">
     <button type="button" id="clearSearch" 
             style="background-color: #007517; color: white; border: none; border-radius: 5px;
                    padding: 0 20px; font-size: 14px; height: 42px; display: flex;
                    align-items: center; justify-content: center; cursor: pointer;">
-      <i class="bi bi-x-circle" style="margin-right: 5px;"></i> Clear
-    </button>
-  </div>
+      <i class="bi bi-x-circle" style="margin-right: 5px;"></i> Clear comment --}}
+    </button> </div>
+  
 </div>
 
 
