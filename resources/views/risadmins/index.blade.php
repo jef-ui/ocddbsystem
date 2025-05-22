@@ -145,7 +145,7 @@ td form button i.bi-trash {
 }
 
 td a {
-  color: #FF8C00;
+  color: #333333;
 }
 
 td a:hover {
@@ -352,8 +352,8 @@ td form button {
         <th>Type of Car</th>
         <th>Purpose</th>comment --}}
         <th>Receipt</th>
-        <th>Download Pdf File</th>
-        <th>Delete</th>
+        <th>Generated e-PDF</th>
+        {{-- <th>Delete</th> comment --}}
         {{-- <th>Delete</th> comment --}}
       </tr>
     </thead>
@@ -396,13 +396,15 @@ td form button {
 
 
 <td>
-  <a href="{{ route('risadmin.exportSingle', $risadmincard->id) }}" class="btn btn-sm btn-outline-primary" download>
-    <i class="bi bi-download"></i>
+  <a href="{{ route('risadmin.exportSingle', $risadmincard->id) }}" class="btn btn-sm btn-outline-primary" title="View Generated PDF" download>
+    <i class="bi bi-file-earmark-pdf-fill">e-PDF</i>
   </a>
 </td>
 
+
     </td>
 
+    {{-- 
       <td>
           <form action="{{route ('risadmin.delete', ['risadmincard' => $risadmincard])}}" method="post">
             @csrf
@@ -411,7 +413,7 @@ td form button {
               <i class="bi bi-trash delete-icon"></i>
             </button>
           </form>
-        </td>
+        </td> comment --}}
 
 
 

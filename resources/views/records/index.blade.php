@@ -145,7 +145,7 @@ td form button i.bi-trash {
 }
 
 td a {
-  color: #FF8C00;
+  color: #3a3a3a;
 }
 
 td a:hover {
@@ -345,7 +345,7 @@ td form button {
         <th>Concerned Section/Personnel</th>
         <th>Acknowledged By</th>
         <th>View File</th>
-        <th>Delete</th>
+        {{-- <th>Delete</th> comment --}}
       </tr>
     </thead>
     <tbody>
@@ -362,7 +362,7 @@ td form button {
           @if($record->file_path)
           <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
             <a href="{{ route('records.show', $record->id) }}" title="View Files">
-              <i class="bi bi-folder-fill text-dark"></i>
+              <i class="bi bi-folder-fill text-dark">View File</i>
             </a>
           </li>
           @else
@@ -371,7 +371,7 @@ td form button {
           </li>
           @endif
         </td>
-        <td>
+        {{-- <td>
           <form action="{{route ('record.delete', ['record' => $record])}}" method="post">
             @csrf
             @method ('delete')
@@ -379,7 +379,7 @@ td form button {
               <i class="bi bi-trash delete-icon"></i>
             </button>
           </form>
-        </td>
+        </td>comment --}}
       </tr>
       @endforeach
     </tbody>
