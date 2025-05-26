@@ -302,7 +302,7 @@
               <th>Gender</th>
               <th>Purpose of Visit</th>
               <th>Signature</th>
-              <th>Delete</th>
+              {{-- <th>Delete</th> comment --}}
             </tr>
           </thead>
           <tbody>
@@ -321,7 +321,7 @@
                   No Signature
                 @endif
               </td>
-              <td>
+              {{-- <td>
                 <form method="post" action="{{ route('guest.delete', ['guest' => $requestlog->id]) }}">
                   @csrf
                   @method('delete')
@@ -329,7 +329,7 @@
                     <i class="bi bi-trash delete-icon"></i>
                   </button>
                 </form>
-              </td>
+              </td>comment --}}
             </tr>
             @endforeach
           </tbody>
