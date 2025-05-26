@@ -68,19 +68,6 @@ public function index(Request $request)
 
 
 
-
-public function exportSinglePDF($id)
-{
-    $risadmin = RisAdminCard::findOrFail($id); // Get specific record
-
-    $pdf = Pdf::loadView('risadmins.print', compact('risadmin'))
-              ->setPaper('a4', 'portrait')
-              ->setOptions(['isHtml5ParserEnabled' => true, 'isPhpEnabled' => true]);
-
-    return $pdf->download("RIS-Admin-{$risadmin->id}.pdf");
-}
-
-
 public function delete (RisAdminCard $risadmincard){
 
     $risadmincard->delete();

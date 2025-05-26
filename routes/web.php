@@ -58,6 +58,7 @@ Route::middleware('auth')->group(function () {
     //Attendance Database
     Route::get('/guest/log',[GuestController::class, 'log'])->name('guest.log');
     Route::delete('/guest/{guest}/delete',[GuestController::class, 'delete'])->name('guest.delete');
+    Route::get('/guest/export/{id}', [GuestController::class, 'exportSinglePDF'])->name('guest.exportSingle');
     
     //Fecth Data from Other Controllers to Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -65,7 +66,6 @@ Route::middleware('auth')->group(function () {
     //RIS Admin Card
     Route::get('/risadmin',[RisAdminCardController::class, 'index'])->name('risadmin.index');
     Route::get('/risadmin/export/{id}', [RisAdminCardController::class, 'exportSinglePDF'])->name('risadmin.exportSingle');
-    Route::delete('/risadmin/{risadmincard}/delete', [RisAdminCardController::class, 'delete'])->name('risadmin.delete');
 
 });
  

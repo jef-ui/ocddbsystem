@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Guest;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 
 class GuestController extends Controller
 {
@@ -51,6 +53,8 @@ class GuestController extends Controller
         return redirect(route('guest.index'))->with('success', 'Thank you for your submission!');
     }
 
+
+    //fetch data from export pdf 
     public function log (){
         $requestlogs = Guest::all();
          return view('guests.log', ['requestlogs' =>  $requestlogs]); 
@@ -62,6 +66,25 @@ class GuestController extends Controller
         $guest->delete();
         return redirect()->route('guest.log')->with('success', 'Guest deleted successfully');
     }
+
+
+    //generated pdf function
+    public function exportSinglePDF($id)
+{
+    $guest = Guest::findOrFail($id);
+
+    $pdf = Pdf::loadView('guests.pdf', compact('guest')) // Make sure your view file is 'guests/pdf.blade.php'
+              ->setPaper('a4', 'portrait')
+              ->setOptions([
+                  'isHtml5ParserEnabled' => true,
+                  'isPhpEnabled' => true,
+              ]);
+
+    return $pdf->download("guest-{$guest->id}.pdf"); // use ->download instead of ->stream for download
+}
+
+
+
     
 
     

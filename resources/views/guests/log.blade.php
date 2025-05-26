@@ -302,6 +302,7 @@
               <th>Gender</th>
               <th>Purpose of Visit</th>
               <th>Signature</th>
+              <th>Generated e-PDF</th>
               {{-- <th>Delete</th> comment --}}
             </tr>
           </thead>
@@ -321,6 +322,12 @@
                   No Signature
                 @endif
               </td>
+
+              <td>
+              <a href="{{ route('guest.exportSingle', $requestlog->id) }}" class="btn btn-sm btn-outline-primary" title="View Generated PDF">
+                <i class="bi bi-file-earmark-pdf-fill"> e-PDF</i>
+            </a>
+            </td>
               {{-- <td>
                 <form method="post" action="{{ route('guest.delete', ['guest' => $requestlog->id]) }}">
                   @csrf

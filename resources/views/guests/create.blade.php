@@ -193,12 +193,13 @@ canvas {
                 </div>
             </div>
             
-            <div class="mb-3">
-                <div class="input-group">
-                    <span class="input-group-text"><i class="bi bi-pencil-square"></i></span>
-                    <input type="text" name="purpose_of_visit" class="form-control" placeholder="Purpose" required>
-                </div>
-            </div>
+     <div class="mb-3">
+    <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-pencil-square"></i></span>
+        <input type="text" name="purpose_of_visit" class="form-control" placeholder="Purpose" required style="text-transform: capitalize;">
+    </div>
+</div>
+
             
             <div class="mb-3">
                 <label class="form-label" for="signature-pad">
