@@ -64,15 +64,25 @@ public function index(Request $request)
     $risadmin = RisAdminCard::create($data);
 
     return redirect()->route('risadmin.viewSingle', $risadmin->id);
+
 }
-
-
 
 public function delete (RisAdminCard $risadmincard){
 
     $risadmincard->delete();
 
     return redirect(route('risadmin.index'))->with('success', 'RIS Deleted Successfully');
+}
+
+public function exportSinglePDF($id)
+{
+    $risadmin = RisAdminCard::findOrFail($id); // Get specific record
+
+    $pdf = Pdf::loadView('risadmins.print', compact('risadmin'))
+              ->setPaper('a4', 'portrait')
+              ->setOptions(['isHtml5ParserEnabled' => true, 'isPhpEnabled' => true]);
+
+    return $pdf->download("RIS-Admin-{$risadmin->id}.pdf");
 }
 
 public function viewSinglePDF($id)
