@@ -212,6 +212,10 @@
         <i class="bi bi-inbox"></i> Incoming Communication
     </a>
 
+    <a href="{{ route('trainingdb.index') }}" class="{{ request()->routeIs('trainingdb.index') ? 'active' : '' }}">
+        <i class="bi bi-inbox"></i> Training IMS
+    </a>
+
     <a href="/radiolog" class="{{ request()->is('radiolog') ? 'active' : '' }}">
         <i class="bi bi-journal-text"></i> Radio Log
     </a>

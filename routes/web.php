@@ -6,6 +6,7 @@ use App\Http\Controllers\RadioLogController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RisAdminCardController;
+use App\Http\Controllers\TrainingdbController;
 use App\Models\Record;
 use Illuminate\Support\Facades\Route;
 
@@ -66,6 +67,15 @@ Route::middleware('auth')->group(function () {
     //RIS Admin Card
     Route::get('/risadmin',[RisAdminCardController::class, 'index'])->name('risadmin.index');
     Route::get('/risadmin/export/{id}', [RisAdminCardController::class, 'exportSinglePDF'])->name('risadmin.exportSingle');
+
+    //TrainingDB
+    Route::get('/trainingdb', [TrainingdbController::class, 'index'])->name('trainingdb.index');
+    Route::get('/trainingdb/create', [TrainingdbController::class, 'create'])->name('trainingdb.create');
+    Route::post('/trainingdb', [TrainingdbController::class, 'store'])->name('trainingdb.store');
+    Route::get('/trainingdb/{id}', [TrainingdbController::class, 'show'])->name('trainingdb.show');
+    Route::get('/generate-ims-number', [TrainingdbController::class, 'generateIMSNumber'])->name('generate.ims.number');
+    Route::delete('/trainingdb/{trainingdb}/delete', [TrainingdbController::class, 'delete'])->name('trainingdb.delete');
+
 
 });
  

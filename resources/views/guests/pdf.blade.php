@@ -57,7 +57,8 @@ p {
 </strong> of 
         <strong>{{ \Illuminate\Support\Str::upper($guest->agency) }}</strong> appeared in the Office of Civil Defense 
         MIMAROPA, Regional Office on <strong>{{ \Carbon\Carbon::parse($guest->date_of_visit)->format('F j, Y') }}</strong> 
-        in relation to <strong>{{ $guest->purpose_of_visit }}</strong>.
+        in relation to <strong>{{ \Illuminate\Support\Str::title($guest->purpose_of_visit) }}
+</strong>.
     </p>
 
     <p>
