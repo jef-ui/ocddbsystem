@@ -67,7 +67,7 @@ public function index(Request $request)
     
         RadioLog::create($data);
     
-        return redirect(route('radiolog.index'))->with('success', 'Radio Log saved successfully!');
+        return redirect(route('radiolog.index'))->with('success', 'Radio Logs  Saved Successfully!');
     }
 
     public function edit (RadioLog $radiolog){

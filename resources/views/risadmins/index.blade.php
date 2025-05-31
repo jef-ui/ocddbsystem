@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OCD MIMAROPA E Generated RIS</title>
+  <title>OCD CLMS - E PDFGenerated RIS</title>
 
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -145,7 +145,7 @@ td form button i.bi-trash {
 }
 
 td a {
-  color: #333333;
+  color: #e67300;
 }
 
 td a:hover {
@@ -249,7 +249,7 @@ td form button {
 
     <!-- Topbar -->
     <div class="topbar">
-    <div><strong>COMMUNICATION LOGGING MANAGEMENT SYSTEM</strong></div>
+    <div>CLMS <strong>| e PDFGenerated RIS</strong></div>
     <div>
         {{ date('l, F j, Y') }} - <span id="liveTime"></span>
     </div>
@@ -315,7 +315,7 @@ td form button {
 
   <!-- Live Search Section -->
   <div style="display: flex; align-items: center; gap: 10px;">
-    <input type="text" id="search" placeholder="Search Radio Logs..." 
+    <input type="text" id="search" placeholder="Search File/Documents" 
            style="padding: 8px 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px; height: 42px;">
     <button type="button" id="clearSearch" 
             style="background-color: #007517; color: white; border: none; border-radius: 5px;

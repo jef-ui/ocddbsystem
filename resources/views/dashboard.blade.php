@@ -242,7 +242,7 @@
 
     <!-- Topbar -->
     <div class="topbar">
-    <div><strong>COMMUNICATION LOGGING MANAGEMENT SYSTEM</strong></div>
+    <div>CLMS <strong>| DASHBOARD</strong></div>
     <div>
         {{ date('l, F j, Y') }} - <span id="liveTime"></span>
     </div>

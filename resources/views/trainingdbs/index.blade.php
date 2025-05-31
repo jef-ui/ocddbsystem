@@ -146,7 +146,7 @@ td form button i.bi-trash {
 }
 
 td a {
-  color: #3a3a3a;
+  color: #e67300;
 }
 
 td a:hover {
@@ -242,6 +242,63 @@ td form button {
     border: none;
     background: none;
   }
+
+  #successOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(6px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+#successMessage {
+  background-color: #fefefe;
+  color: #222;
+  padding: 30px 50px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: "Arial", serif;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  animation: popIn 0.4s ease-in-out;
+}
+
+#successMessage .logo {
+  display: block;
+  margin: 0 auto 15px auto; /* top: 0, left/right: auto, bottom: 15px */
+  width: 80px;
+  height: auto;
+}
+
+
+#successMessage p {
+  margin: 0;
+  font-weight: bold;
+}
+
+/* Fade-in and out animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.7); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  80% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
         
   </style>
 </head>
@@ -250,7 +307,7 @@ td form button {
 
     <!-- Topbar -->
     <div class="topbar">
-    <div><strong>CLMS - INCOMING COMMUNICATIONS</strong></div>
+    <div>CLMS <strong>| TRAINING IMS</strong></div>
     <div>
         {{ date('l, F j, Y') }} - <span id="liveTime"></span>
     </div>
@@ -298,11 +355,24 @@ td form button {
   <!-- Main Content -->
   <div class="content">
     @if(session()->has('success'))
-      <div class="success-message">
-        {{ session('success') }}
-      </div>
-    @endif
+  <div id="successOverlay">
+    <div id="successMessage">
+      <img src="{{ asset('images/logo.png') }}" alt="LTMS Logo" class="logo">
+      <p>{{ session('success') }}</p>
+    </div>
+  </div>
 
+  <script>
+    setTimeout(() => {
+      const overlay = document.getElementById('successOverlay');
+      overlay.style.animation = 'fadeOut 0.5s ease-in-out forwards';
+
+      setTimeout(() => {
+        location.reload();
+      }, 500);
+    }, 2000);
+  </script>
+@endif
 
 <!-- Container for Add IComs and Search -->
 <div style="display: flex; justify-content: space-between; align-items: center; height: 70px; margin-bottom: 15px;">
@@ -316,7 +386,7 @@ td form button {
 
   <!-- Live Search Section -->
   <div style="display: flex; align-items: center; gap: 10px;">
-    <input type="text" id="search" placeholder="Search Training..." 
+    <input type="text" id="search" placeholder="Search File/Documents" 
            style="padding: 8px 12px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px; height: 42px;">
     <button type="button" id="clearSearch" 
             style="background-color: #007517; color: white; border: none; border-radius: 5px;
@@ -379,7 +449,7 @@ td form button {
           @if($trainingdb->file_path)
           <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
             <a href="{{ route('trainingdb.show', $trainingdb->id) }}" title="View Files">
-              <i class="bi bi-folder-fill text-dark">View File</i>
+              <i class="bi bi-folder-fill text-dark"></i>
             </a>
           </li>
           @else

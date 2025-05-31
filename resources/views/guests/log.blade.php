@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>OCD MIMAROPA Guests Database</title>
+  <title>CLMS - E PDFGenerated CA</title>
 
   @vite(['resources/css/app.css', 'resources/js/app.js'])
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"/>
@@ -255,7 +255,7 @@
 
     <!-- Topbar -->
     <div class="topbar">
-      <div><strong>COMMUNICATION LOGGING MANAGEMENT SYSTEM</strong></div>
+      <div>CLMS <strong>| e PDFGenerated CA</strong></div>
       <div>{{ date('l, F j, Y') }} - <span id="liveTime"></span></div>
     </div>
 
