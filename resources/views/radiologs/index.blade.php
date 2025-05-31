@@ -265,7 +265,51 @@ td form button {
   from { opacity: 1; }
   to { opacity: 0; }
 }
-  
+
+#downloadOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#downloadMessage {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 
   </style>
 </head>
@@ -305,9 +349,18 @@ td form button {
 
 <a href="{{ url('/dashboard') }}"><i class="bi bi-speedometer2"></i> Dashboard</a>
 
-<a href="{{ route('radiolog.exportPDF') }}">
+<a href="{{ route('radiolog.exportPDF') }}" class="btn btn-sm btn-outline-primary" title="Print or Download" onclick="startDownload(this)">
   <i class="bi bi-printer"></i> Print/Download
 </a>
+
+<div id="downloadOverlay">
+  <div id="downloadMessage">
+    <img src="{{ asset('images/logo.png') }}" alt="Logo" class="logo">
+    File downloaded successfully!
+  </div>
+</div>
+
+
 
 <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
   <i class="bi bi-box-arrow-right"></i> Log Out
@@ -507,6 +560,41 @@ td form button {
   updateLiveTime();
   setInterval(updateLiveTime, 1000);
 </script>
+
+<script>
+function startDownload(event) {
+  event.preventDefault(); // prevent default navigation
+  document.getElementById('downloadOverlay').style.display = 'flex';
+
+  // Trigger the download manually using an invisible link
+  const link = document.createElement('a');
+  link.href = event.currentTarget.href;
+  document.body.appendChild(link);
+  link.click();
+
+  // Wait for a few seconds then refresh
+  setTimeout(() => {
+    location.reload();
+  }, 4000); // adjust as needed
+}
+</script>
+
+<script>
+  function startDownload(element) {
+    document.getElementById('downloadOverlay').style.display = 'flex';
+
+    // Open in a new tab to allow browser to handle it properly
+    window.open(element.href, '_blank');
+
+    // Refresh after 4 seconds (to let the download complete)
+    setTimeout(() => {
+      location.reload();
+    }, 4000);
+  }
+</script>
+
+
+
 
 
 </body>

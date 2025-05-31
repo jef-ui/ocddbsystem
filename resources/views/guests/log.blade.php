@@ -225,6 +225,46 @@
       color: white;
       text-decoration: none;
     }
+
+#downloadOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+#downloadMessage {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.4);
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 80px;
+  height: auto;
+  display: block;
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
   </style>
 </head>
 <body>
@@ -324,9 +364,23 @@
               </td>
 
               <td>
-              <a href="{{ route('guest.exportSingle', $requestlog->id) }}" class="btn btn-sm btn-outline-primary" title="View Generated PDF">
-                <i class="bi bi-file-earmark-pdf-fill"> e-PDF</i>
-            </a>
+
+<a href="{{ route('guest.exportSingle', $requestlog->id) }}"
+   class="btn btn-sm btn-outline-primary"
+   title="View Generated PDF"
+   onclick="startDownload(this)">
+  <i class="bi bi-file-earmark-pdf-fill"> e-PDF</i>
+</a>
+
+
+<!-- Overlay -->
+<div id="downloadOverlay">
+  <div id="downloadMessage">
+    <img src="{{ asset('images/logo.png') }}" alt="LTMS Logo" class="logo">
+    CA e-PDF downloaded successfully!
+  </div>
+</div>
+
             </td>
               {{-- <td>
                 <form method="post" action="{{ route('guest.delete', ['guest' => $requestlog->id]) }}">
@@ -359,5 +413,21 @@
     setInterval(updateTime, 1000);
     updateTime();
   </script>
+
+<script>
+  function startDownload(link) {
+    // Show the overlay
+    document.getElementById('downloadOverlay').style.display = 'flex';
+
+    // Open download link in a new tab
+    window.open(link.href, '_blank');
+
+    // Delay page reload to allow download
+    setTimeout(() => {
+      location.reload();
+    }, 4000); // 4-second wait
+  }
+</script>
+
 </body>
 </html>
