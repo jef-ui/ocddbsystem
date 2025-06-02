@@ -21,6 +21,7 @@ public function index(Request $request)
                   ->orWhere('from_agency_office', 'like', "%{$search}%")
                   ->orWhere('type', 'like', "%{$search}%")
                   ->orWhere('subject_description', 'like', "%{$search}%")
+                  ->orWhere('concerned_section_personnel', 'like', "%{$search}%")
                   ->orWhere('received_acknowledge_by', 'like', "%{$search}%");
         })
         ->orderBy('received_date', 'desc')    // First by date
