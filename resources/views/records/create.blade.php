@@ -221,6 +221,8 @@
                     <option value="LBC" {{ old('received_via') == 'LBC' ? 'selected' : '' }}>LBC</option>
                     <option value="JNT" {{ old('received_via') == 'JNT' ? 'selected' : '' }}>JNT</option>
                     <option value="JRS" {{ old('received_via') == 'JRS' ? 'selected' : '' }}>JRS</option>
+                    <option value="HAND CARRIED" {{ old('received_via') == 'HAND CARRIED' ? 'selected' : '' }}>HAND CARRIED</option>
+                    
                 </select>
             </div>
             

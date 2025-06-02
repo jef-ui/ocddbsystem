@@ -417,6 +417,8 @@ td form button {
         <th>Subject Description</th>
         <th>Concerned Section/Personnel</th>
         <th>Acknowledged By</th>
+        <th>Compliance Deadline</th>
+        <th>Status</th>
         <th>View File</th>
         {{-- <th>Delete</th> comment --}}
       </tr>
@@ -430,7 +432,9 @@ td form button {
         <td>{{ $record->type }}</td>
         <td>{{ $record->subject_description }}</td>
         <td>{{ $record->concerned_section_personnel }}</td>
-        <td>{{ $record->received_acknowledge_by }}</td>
+        <td>{{ $record->received_acknowledge_by }}</td> 
+        <td>{{ \Carbon\Carbon::parse($record->deadline_of_compliance)->format('F j, Y') }}</td> 
+        <td>{{ $record->compliance_status }}</td>
         <td>
           @if($record->file_path)
           <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
@@ -440,7 +444,7 @@ td form button {
           </li>
           @else
           <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
-            <span class="text-muted"><i class="bi bi-file-earmark-x"></i> No files uploaded</span>
+            <span class="text-muted"><i class="bi bi-file-earmark-x"></i></span>
           </li>
           @endif
         </td>
