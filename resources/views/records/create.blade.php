@@ -337,10 +337,20 @@
                 </select>
             </div>
             
-            <div>
-                <label for="files">Upload up to 10 Files</label>
-                <input type="file" id="files" name="files[]" multiple accept=".pdf,.mp4,.avi,.mov,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif">
-            </div>
+<div class="full-width mb-3">
+    <label for="files" class="form-label d-flex align-items-center">
+        <i class="bi bi-upload me-2" style="font-size: 1.2rem; color: #030d22;"></i>
+        <span>Upload Files</span>
+        <small class="text-muted ms-2" style="font-size: 0.8rem;">
+            (Allowed: PDF, MP4, AVI, MOV, DOC, DOCX, XLS, XLSX, JPG, JPEG, PNG, GIF – Max 10)
+        </small>
+    </label>
+    <input type="file" id="files" name="files[]" multiple
+           accept=".pdf,.mp4,.avi,.mov,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif"
+           class="form-control">
+</div>
+
+
 
 
 
