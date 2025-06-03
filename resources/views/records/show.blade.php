@@ -97,47 +97,39 @@
 <h2>Viewing Document: {{ $record->name }}</h2>
 
 @php
-    $files = [
-        'File 1' => $record->file_path,
-        'File 2' => $record->file_path1,
-        'File 3' => $record->file_path2,
-    ];
+    $fileColumns = ['file_path', 'file_path1', 'file_path2', 'file_path3', 'file_path4', 'file_path5', 'file_path6', 'file_path7', 'file_path8', 'file_path9'];
 @endphp
 
-@foreach($files as $label => $path)
-    @if($path)
-        @php $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION)); @endphp
+@foreach ($fileColumns as $index => $column)
+    @php
+        $path = $record->$column;
+        if (!$path) continue;
+        $extension = pathinfo($path, PATHINFO_EXTENSION);
+        $label = 'File ' . ($index + 1);
+    @endphp
 
-        <div class="file-info">
-            <p><strong>{{ $label }}</strong></p>
-        </div>
+    <div style="margin-bottom: 20px;">
+        <h5>{{ $label }}</h5>
 
-        <div class="file-view">
-                    @if($extension === 'pdf')
-                <embed src="{{ asset('storage/' . $path) }}" type="application/pdf" width="100%" height="800px" />
-            @elseif(in_array($extension, ['mp4', 'avi', 'mov']))
-                <video width="100%" height="600" controls>
-                    <source src="{{ asset('storage/' . $path) }}" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            @elseif(in_array($extension, ['jpg', 'jpeg', 'png', 'gif']))
-                <img src="{{ asset('storage/' . $path) }}" alt="{{ $label }}" style="max-width:100%; height:auto;">
-            @elseif(in_array($extension, ['doc', 'docx', 'xls', 'xlsx']))
-                <p>Preview for DOC and Excel files is not available. You can download the file. If you want a preview, please consider converting it to PDF and uploading again.</p>
-            @else
-                <p>{{ $label }}: File type not supported for viewing in the browser.</p>
-            @endif
-
-        </div>
-
-        <div class="file-download">
-            <!-- Download Link for the file -->
-            <a href="{{ asset('storage/' . $path) }}" class="download-button" download>Download {{ $label }}</a>
-        </div>
-
-        <hr>
-    @endif
+        @if($extension === 'pdf')
+            <embed src="{{ asset('storage/' . $path) }}" type="application/pdf" width="100%" height="800px" />
+        @elseif(in_array($extension, ['mp4', 'avi', 'mov']))
+            <video width="100%" height="600" controls>
+                <source src="{{ asset('storage/' . $path) }}" type="video/{{ $extension }}">
+                Your browser does not support the video tag.
+            </video>
+        @elseif(in_array($extension, ['jpg', 'jpeg', 'png', 'gif']))
+            <img src="{{ asset('storage/' . $path) }}" alt="{{ $label }}" style="max-width:100%; height:auto;">
+        @elseif(in_array($extension, ['doc', 'docx', 'xls', 'xlsx']))
+            <p>{{ $label }}: Preview not available for Word or Excel files. Please download the file.</p>
+            <a href="{{ asset('storage/' . $path) }}" download class="btn btn-sm btn-primary">Download {{ $label }}</a>
+        @else
+            <p>{{ $label }}: File type not supported for viewing in the browser.</p>
+            <a href="{{ asset('storage/' . $path) }}" download class="btn btn-sm btn-secondary">Download {{ $label }}</a>
+        @endif
+    </div>
 @endforeach
+
 
 <a href="{{ route('record.index') }}" class="back-button">Back to Records</a>
 

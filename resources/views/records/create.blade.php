@@ -232,22 +232,23 @@
                 </label>
                 <input type="text" id="from_agency_office" name="from_agency_office" value="{{ old('from_agency_office') }}" class="form-control" required>
             </div>
-            
-            <div class="mb-3">
-                <label for="type" class="form-label">
-                    <i class="bi bi-tag-fill"></i> Type
-                </label>
-                <select id="type" name="type" class="form-select" required>
-                    <option value="Please select">-- Please select --</option>
-                    <option value="Request" {{ old('type') == 'Request' ? 'selected' : '' }}>Request</option>
-                    <option value="Invitation" {{ old('type') == 'Invitation' ? 'selected' : '' }}>Invitation</option>
-                    <option value="Submission" {{ old('type') == 'Submission' ? 'selected' : '' }}>Submission</option>
-                    <option value="For Information" {{ old('type') == 'For Information' ? 'selected' : '' }}>For Information</option>
-                    <option value="For Compliance" {{ old('type') == 'For Compliance' ? 'selected' : '' }}>For Compliance</option>
-                    <option value="Report" {{ old('type') == 'Report' ? 'selected' : '' }}>Report</option>
-                    <option value="Complaint" {{ old('type') == 'Complaint' ? 'selected' : '' }}>Complaint</option>
-                </select>
-            </div>
+                    
+                <div class="mb-3">
+            <label for="type" class="form-label">
+                <i class="bi bi-tag-fill"></i> Type
+            </label>
+            <select id="type" name="type" class="form-select" required>
+                <option value="">-- Please select --</option>
+                <option value="Request" {{ old('type') == 'Request' ? 'selected' : '' }}>Request</option>
+                <option value="Invitation" {{ old('type') == 'Invitation' ? 'selected' : '' }}>Invitation</option>
+                <option value="Submission" {{ old('type') == 'Submission' ? 'selected' : '' }}>Submission</option>
+                <option value="For Information" {{ old('type') == 'For Information' ? 'selected' : '' }}>For Information</option>
+                <option value="For Compliance" {{ old('type') == 'For Compliance' ? 'selected' : '' }}>For Compliance</option>
+                <option value="Report" {{ old('type') == 'Report' ? 'selected' : '' }}>Report</option>
+                <option value="Complaint" {{ old('type') == 'Complaint' ? 'selected' : '' }}>Complaint</option>
+            </select>
+        </div>
+
             
             <div class="mb-3">
                 <label for="subject_description" class="form-label">
@@ -286,11 +287,11 @@
             </div>
             
             <div class="mb-3">
-                <label for="concerned_section_personnel" class="form-label">
-                    <i class="bi bi-diagram-3-fill"></i> Concerned Section/Personnel
-                </label>
-                <select id="concerned_section_personnel" name="concerned_section_personnel" class="form-select" required>
-                    <option value="Please select">-- Please select --</option>
+                <label for="concerned_section_personnel" class="form-label" required>
+    <i class="bi bi-diagram-3-fill"></i> Concerned Section/Personnel
+</label>
+<select id="concerned_section_personnel" name="concerned_section_personnel" class="form-select" required>
+    <option value="">-- Please select --</option>
                     <option value="Operations Section" {{ old('type') == 'Operations Section' ? 'selected' : '' }}>Operations Section (SitReps,Advisories & etc...)</option>
                     <option value="Marc Rembrandt P. Victore" {{ old('type') == 'Marc Rembrandt P. Victore' ? 'selected' : '' }}>Marc Rembrandt P. Victore</option>
                     <option value="Aquilino P. Ducay" {{ old('type') == 'Aquilino P. Ducay' ? 'selected' : '' }}>Aquilino P. Ducay</option>
@@ -337,19 +338,11 @@
             </div>
             
             <div>
-                <label for="file_path">Upload File 1</label>
-                <input type="file" id="file_path" name="file_path" accept=".pdf,.mp4,.avi,.mov,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif">
+                <label for="files">Upload up to 10 Files</label>
+                <input type="file" id="files" name="files[]" multiple accept=".pdf,.mp4,.avi,.mov,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif">
             </div>
 
-            <div>
-                <label for="file_path1">Upload File 2</label>
-                <input type="file" id="file_path1" name="file_path1" accept=".pdf,.mp4,.avi,.mov,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif">
-            </div>
 
-            <div>
-                <label for="file_path2">Upload File 3</label>
-                <input type="file" id="file_path2" name="file_path2" accept=".pdf,.mp4,.avi,.mov,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif">
-            </div>
 
             <button type="submit">Save Record</button>
 
@@ -359,6 +352,22 @@
     <footer class="footer">
         Designed and Developed by ICTU MIMAROPA, Office of Civil Defense MIMAROPA © Copyright 2025
     </footer>
+
+    <script>
+    document.getElementById('files').addEventListener('change', function () {
+        const fileLimit = 10;
+        const fileInput = this;
+        const fileCount = fileInput.files.length;
+        const message = document.getElementById('file-limit-message');
+
+        if (fileCount > fileLimit) {
+            message.style.display = 'inline';
+            fileInput.value = ''; // clear input
+        } else {
+            message.style.display = 'none';
+        }
+    });
+</script>
 
 </body>
 </html>

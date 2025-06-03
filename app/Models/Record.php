@@ -26,6 +26,12 @@ class Record extends Model
         'file_path',
         'file_path1',
         'file_path2',
-
+        'file_path3',
+        'file_path4',
+        'file_path5',
+        'file_path6',
+        'file_path7',
+        'file_path8',
+        'file_path9',
     ];
 }

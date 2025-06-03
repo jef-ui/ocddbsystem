@@ -68,49 +68,42 @@ public function index(Request $request)
         return view('records.create');
     }
 
-    public function store(Request $request)
+public function store(Request $request)
 {
-    $data = $request->validate([
+    $request->validate([
         'received_date' => 'required|date',
         'received_time' => 'required|date_format:H:i',
-        'received_via' => 'required|string|max:255',
+        'received_via' => 'required|not_in:|string|max:255',
         'from_agency_office' => 'required|string|max:255',
-        'type' => 'required|string|max:255',
+        'type' => 'required|not_in:|string|max:255',
         'subject_description' => 'required|string|max:1000',
         'received_acknowledge_by' => 'required|string|max:255',
         'status_as_of_date' => 'required|date',
         'action_taken' => 'required|string|max:1000',
-        'concerned_section_personnel' => 'required|string|max:255',
+        'concerned_section_personnel' => 'required|not_in:|string|max:255',
         'deadline_of_compliance' => 'required|date',
         'compliance_status' => 'required|string|max:100',
-        'file_path' => 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx,jpg,jpeg,png,gif|max:20480',
-        'file_path1' => 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx,jpg,jpeg,png,gif|max:20480',
-        'file_path2' => 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx,jpg,jpeg,png,gif|max:20480',
+        'files.*' => 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx,jpg,jpeg,png,gif|max:20480',
     ]);
 
-    // Handle file uploads with filename sanitization
-    if ($request->hasFile('file_path')) {
-        $file = $request->file('file_path');
-        $filename = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $file->getClientOriginalName());
-        $data['file_path'] = $file->storeAs('documents', $filename, 'public');
-    }
+    $data = $request->except('files');
 
-    if ($request->hasFile('file_path1')) {
-        $file = $request->file('file_path1');
+    if ($request->hasFile('files')) {
+    foreach ($request->file('files') as $index => $file) {
+        if ($index > 9) break; // Limit to 10 files
         $filename = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $file->getClientOriginalName());
-        $data['file_path1'] = $file->storeAs('documents', $filename, 'public');
+        $path = $file->storeAs('documents', $filename, 'public');
+        $column = $index === 0 ? 'file_path' : 'file_path' . $index;
+        $data[$column] = $path;
     }
+}
 
-    if ($request->hasFile('file_path2')) {
-        $file = $request->file('file_path2');
-        $filename = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $file->getClientOriginalName());
-        $data['file_path2'] = $file->storeAs('documents', $filename, 'public');
-    }
 
     Record::create($data);
 
-    return redirect(route('record.index'))->with('success', 'Incoming Communication Logged Successfully');
+    return redirect()->route('record.index')->with('success', 'Incoming Communication Logged Successfully');
 }
+
 
 public function showAttachments($id)
 {
