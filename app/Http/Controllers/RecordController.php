@@ -83,9 +83,9 @@ public function index(Request $request)
         'concerned_section_personnel' => 'required|string|max:255',
         'deadline_of_compliance' => 'required|date',
         'compliance_status' => 'required|string|max:100',
-        'file_path' => 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx|max:20480',
-        'file_path1' => 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx|max:20480',
-        'file_path2' => 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx|max:20480',
+        'file_path' => 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx,jpg,jpeg,png,gif|max:20480',
+        'file_path1' => 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx,jpg,jpeg,png,gif|max:20480',
+        'file_path2' => 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx,jpg,jpeg,png,gif|max:20480',
     ]);
 
     // Handle file uploads with filename sanitization

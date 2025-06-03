@@ -285,23 +285,16 @@
                                 <small>Type: {{ $record->type }}</small>
                             </small><br>
 
-                            <small>
-                                @if ($record->file_path)
-                                    <a href="{{ asset('storage/' . $record->file_path) }}" target="_blank">
-                                        <i class="fas fa-paperclip" style="color: #007bff;"></i> View_Attachment
-                                    </a>
-                                @endif
-                                @if ($record->file_path1)
-                                    | <a href="{{ asset('storage/' . $record->file_path1) }}" target="_blank">
-                                        <i class="fas fa-paperclip" style="color: #007bff;"></i> View_Attachment_1
-                                    </a>
-                                @endif
-                                @if ($record->file_path2)
-                                    | <a href="{{ asset('storage/' . $record->file_path2) }}" target="_blank">
-                                        <i class="fas fa-paperclip" style="color: #007bff;"></i> View_Attachment_2
-                                    </a>
-                                @endif
-                            </small>
+                        <small>
+                            @if ($record->file_path || $record->file_path1 || $record->file_path2)
+                                <a href="{{ route('records.show', $record->id) }}" title="View All Files">
+                                    <i class="fas fa-paperclip" style="color: #007bff;"></i> View Files
+                                </a>
+                            @else
+                                <span class="text-muted"><i class="fas fa-paperclip"></i> No Attachments</span>
+                            @endif
+                        </small>
+
                         </li>
 
                         @if (!$loop->last)

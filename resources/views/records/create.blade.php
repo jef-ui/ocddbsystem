@@ -338,17 +338,17 @@
             
             <div>
                 <label for="file_path">Upload File 1</label>
-                <input type="file" id="file_path" name="file_path" accept=".pdf,.mp4,.avi,.mov,.doc,.docx,.xls,.xlsx">
+                <input type="file" id="file_path" name="file_path" accept=".pdf,.mp4,.avi,.mov,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif">
             </div>
 
             <div>
                 <label for="file_path1">Upload File 2</label>
-                <input type="file" id="file_path1" name="file_path1" accept=".pdf,.mp4,.avi,.mov,.doc,.docx,.xls,.xlsx">
+                <input type="file" id="file_path1" name="file_path1" accept=".pdf,.mp4,.avi,.mov,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif">
             </div>
 
             <div>
                 <label for="file_path2">Upload File 3</label>
-                <input type="file" id="file_path2" name="file_path2" accept=".pdf,.mp4,.avi,.mov,.doc,.docx,.xls,.xlsx">
+                <input type="file" id="file_path2" name="file_path2" accept=".pdf,.mp4,.avi,.mov,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif">
             </div>
 
             <button type="submit">Save Record</button>

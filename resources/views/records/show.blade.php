@@ -113,18 +113,21 @@
         </div>
 
         <div class="file-view">
-            @if($extension === 'pdf')
+                    @if($extension === 'pdf')
                 <embed src="{{ asset('storage/' . $path) }}" type="application/pdf" width="100%" height="800px" />
             @elseif(in_array($extension, ['mp4', 'avi', 'mov']))
                 <video width="100%" height="600" controls>
                     <source src="{{ asset('storage/' . $path) }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+            @elseif(in_array($extension, ['jpg', 'jpeg', 'png', 'gif']))
+                <img src="{{ asset('storage/' . $path) }}" alt="{{ $label }}" style="max-width:100%; height:auto;">
             @elseif(in_array($extension, ['doc', 'docx', 'xls', 'xlsx']))
                 <p>Preview for DOC and Excel files is not available. You can download the file. If you want a preview, please consider converting it to PDF and uploading again.</p>
             @else
                 <p>{{ $label }}: File type not supported for viewing in the browser.</p>
             @endif
+
         </div>
 
         <div class="file-download">
