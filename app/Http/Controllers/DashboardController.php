@@ -40,10 +40,11 @@ class DashboardController extends Controller
     $typeCounts = array_merge($types, $typeCounts);
     $totalLogs = Record::count();
 
-    // ✅ NEW: Get records assigned to this user
+    // Filter out 'Complied' and 'Review' status
     $myAssignedRecords = Record::where('concerned_section_personnel', $currentUserName)
+        ->whereNotIn('compliance_status', ['Complied', 'Review'])
         ->latest()
-        ->take(10) // Show latest 10; adjust as needed
+        ->take(10)
         ->get();
 
     return view('dashboard', compact(
@@ -52,8 +53,9 @@ class DashboardController extends Controller
         'totalMyComsLogs',
         'typeCounts',
         'totalLogs',
-        'myAssignedRecords' // 👈 Pass to view
+        'myAssignedRecords'
     ));
 }
+
 
 }

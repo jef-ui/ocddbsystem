@@ -54,6 +54,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/record', [RecordController::class, 'store'])->name('record.store');
     Route::get('/records/{id}/attachments', [RecordController::class, 'showAttachments'])->name('records.attachments');
     Route::get('/records/{id}', [RecordController::class, 'show'])->name('records.show');
+    Route::get('/record/{record}/edit', [RecordController::class, 'edit'])->name('record.edit');
+    Route::put('/record/{record}/update', [RecordController::class, 'update'])->name('record.update');
     Route::delete('/record/{record}/delete', [RecordController::class, 'delete'])->name('record.delete');
 
     //Attendance Database

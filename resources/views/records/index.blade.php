@@ -9,6 +9,17 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
   <style>
+
+  .edit-icon i {
+    color: #0d6efd; /* Bootstrap primary */
+    transition: color 0.2s ease;
+}
+
+.edit-icon:hover i {
+    color: #0a58ca; /* Darker blue on hover */
+}
+
+
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
@@ -419,6 +430,7 @@ td form button {
         <th>Acknowledged By</th>
         <th>Compliance Deadline</th>
         <th>Status</th>
+        <th>Edit</th>
         <th>View File</th>
         {{-- <th>Delete</th> comment --}}
       </tr>
@@ -435,6 +447,14 @@ td form button {
         <td>{{ $record->received_acknowledge_by }}</td> 
         <td>{{ \Carbon\Carbon::parse($record->deadline_of_compliance)->format('F j, Y') }}</td> 
         <td>{{ $record->compliance_status }}</td>
+
+        <td>
+    <a href="{{ route('record.edit', ['record' => $record]) }}" class="edit-icon" title="Edit">
+        <i class="bi bi-pencil-square"></i>
+    </a>
+</td>
+
+
         <td>
           @if($record->file_path)
           <li class="list-group-item" style="list-style-type: none; padding-left: 0;">

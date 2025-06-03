@@ -60,12 +60,13 @@ public function index(Request $request)
     return view('records.index', compact('records', 'typeCounts'));
 }
 
-
-
-
     public function create(){
 
         return view('records.create');
+    }
+
+    public function edit(Record $record){
+        return view('records.edit', ['record' => $record]);
     }
 
 public function store(Request $request)
@@ -103,6 +104,45 @@ public function store(Request $request)
 
     return redirect()->route('record.index')->with('success', 'Incoming Communication Logged Successfully');
 }
+
+public function update(Record $record, Request $request)
+{
+    $request->validate([
+        'concerned_section_personnel' => 'required|string|max:255|not_in:',
+        'deadline_of_compliance' => 'required|date',
+        'compliance_status' => 'required|string|max:100',
+        'files.*' => 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx,jpg,jpeg,png,gif|max:20480',
+    ]);
+
+    $data = $request->except('files');
+
+    if ($request->hasFile('files')) {
+        foreach ($request->file('files') as $index => $file) {
+            if ($index > 9) break;
+            $filename = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $file->getClientOriginalName());
+            $path = $file->storeAs('documents', $filename, 'public');
+            $column = $index === 0 ? 'file_path' : 'file_path' . $index;
+
+            if ($record->$column && Storage::disk('public')->exists($record->$column)) {
+                Storage::disk('public')->delete($record->$column);
+            }
+
+            $data[$column] = $path;
+        }
+    }
+
+    for ($i = 0; $i < 10; $i++) {
+        $column = $i === 0 ? 'file_path' : 'file_path' . $i;
+        if (!isset($data[$column])) {
+            $data[$column] = $record->$column;
+        }
+    }
+
+    $record->update($data);
+
+    return redirect()->route('dashboard')->with('success', 'Incoming Communication Updated Successfully.');
+}
+
 
 
 public function showAttachments($id)

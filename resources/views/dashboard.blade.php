@@ -277,31 +277,32 @@
                 <p class="text-muted">No records assigned to you.</p>
             @else
                 <ul class="list-group list-group-flush" style="max-height: 400px; overflow-y: auto;">
-                    @foreach ($myAssignedRecords as $record)
-                        <li class="list-group-item">
-                            <strong style="color:  #FF8C00">{{ $record->subject_description }}</strong><br>
-                            <small class="text-muted">
-                                <small>From: {{ $record->from_agency_office }}</small> |
-                                <small>Type: {{ $record->type }}</small>
-                            </small><br>
+                   @foreach ($myAssignedRecords as $record)
+    <li class="list-group-item">
+        <p></p><a href="{{ route('record.edit', $record->id) }}" style="color: #FF8C00; font-weight: bold;">
+            {{ $record->subject_description }}                                                
+        </a><br>
+        <small class="text-muted">
+            <small>From: {{ $record->from_agency_office }}</small> |
+            <small>Type: {{ $record->type }}</small>
+        </small><br>
 
-                        <small>
-                            @if ($record->file_path || $record->file_path1 || $record->file_path2)
-                                <a href="{{ route('records.show', $record->id) }}" title="View All Files">
-                                    <i class="fas fa-paperclip" style="color: #007bff;"></i> View Files
-                                </a>
-                            @else
-                                <span class="text-muted"><i class="fas fa-paperclip"></i> No Attachments</span>
-                            @endif
-                        </small>
+        <small>
+            @if ($record->file_path || $record->file_path1 || $record->file_path2)
+                <a href="{{ route('records.show', $record->id) }}" title="View All Files">
+                    <i class="fas fa-paperclip" style="color: #007bff;"></i> View Files
+                </a>
+            @else
+                <span class="text-muted"><i class="fas fa-paperclip"></i> No Attachments</span>
+            @endif
+        </small>
+    </li>
 
-                        </li>
+    @if (!$loop->last)
+        <hr style="border: 1px dotted rgb(221, 221, 221); margin: 5px 0;">
+    @endif
+@endforeach
 
-                        @if (!$loop->last)
-                            <hr style="border: 1px dotted rgb(221, 221, 221); margin: 5px 0;">
-
-                        @endif
-                    @endforeach
                 </ul>
             @endif
         </div>
