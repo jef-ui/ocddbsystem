@@ -67,7 +67,7 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
-        <!--
+        
 
             <div>
                 <x-input-label for="name" :value="__('Name')" />
