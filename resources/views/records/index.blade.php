@@ -319,7 +319,7 @@ td form button {
 
     <!-- Topbar -->
     <div class="topbar">
-    <div>CLMS <strong>| INCOMING COMMUNINCATIONS</strong></div>
+    <div>CLMS <strong>| INCOMING COMMUNICATION</strong></div>
     <div>
         {{ date('l, F j, Y') }} - <span id="liveTime"></span>
     </div>

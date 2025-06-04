@@ -309,6 +309,7 @@
                     <option value="Jorge V. Matunog" {{ old('type') == 'Jorge V. Matunog' ? 'selected' : '' }}>Jorge V. Matunog</option>
                     <option value="Jefrie G. Rodriguez" {{ old('type') == 'Jefrie G. Rodriguez' ? 'selected' : '' }}>Jefrie G. Rodriguez</option>
                     <option value="Ma. Reena Pelagio" {{ old('type') == 'Ma. Reena Pelagio' ? 'selected' : '' }}>Ma. Reena Pelagio</option>
+                    <option value="Caryn S. Tomenio" {{ old('type') == 'Caryn S. Tomenio' ? 'selected' : '' }}>Caryn S. Tomenio</option>
                     <option value="Mario D. Punzalan Jr." {{ old('type') == 'Mario D. Punzalan Jr.' ? 'selected' : '' }}>Mario D. Punzalan Jr.</option>
                     <option value="Nino G. Faltado" {{ old('type') == 'Nino G. Faltado' ? 'selected' : '' }}>Nino G. Faltado</option>
                     <option value="Sheila Marie S. Reyes" {{ old('type') == 'Sheila Marie S. Reyes' ? 'selected' : '' }}>Sheila Marie S. Reyes</option>

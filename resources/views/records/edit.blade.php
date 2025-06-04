@@ -219,6 +219,7 @@
                     <option value="Jorge V. Matunog" {{ old('type', $record->concerned_section_personnel) == 'Jorge V. Matunog' ? 'selected' : '' }}>Jorge V. Matunog</option>
                     <option value="Jefrie G. Rodriguez" {{ old('type', $record->concerned_section_personnel) == 'Jefrie G. Rodriguez' ? 'selected' : '' }}>Jefrie G. Rodriguez</option>
                     <option value="Ma. Reena Pelagio" {{ old('type', $record->concerned_section_personnel) == 'Ma. Reena Pelagio' ? 'selected' : '' }}>Ma. Reena Pelagio</option>
+                    <option value="Caryn S. Tomenio" {{ old('type', $record->concerned_section_personnel) == 'Caryn S. Tomenio' ? 'selected' : '' }}>Caryn S. Tomenio</option>
                     <option value="Mario D. Punzalan Jr." {{ old('type', $record->concerned_section_personnel) == 'Mario D. Punzalan Jr.' ? 'selected' : '' }}>Mario D. Punzalan Jr.</option>
                     <option value="Nino G. Faltado" {{ old('type', $record->concerned_section_personnel) == 'Nino G. Faltado' ? 'selected' : '' }}>Nino G. Faltado</option>
                     <option value="Sheila Marie S. Reyes" {{ old('type', $record->concerned_section_personnel) == 'Sheila Marie S. Reyes' ? 'selected' : '' }}>Sheila Marie S. Reyes</option>

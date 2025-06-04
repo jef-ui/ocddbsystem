@@ -277,17 +277,12 @@ canvas {
       <option value="Jervis Lloyd M. Atilano"></option>
       <option value="Glory Balegan"></option>
       <option value="Minerva R. Alcaraz"></option>
-      <option value="Julius Anthony M. Del Rio"></option>
-      <option value="Jorge V. Matunog"></option>
-      <option value="Ma. Reena Pelagio"></option>
       <option value="Mario D. Punzalan Jr."></option>
       <option value="Nino G. Faltado"></option>
       <option value="Sheila Marie S. Reyes"></option>
       <option value="Fernando De Leon"></option>
       <option value="Anthony M. Zoleta"></option>
       <option value="Wilmer Fabella"></option>
-       <option value="Jefrie G. Rodriguez"></option>
-      
     </datalist>
   </div>
 </div>
