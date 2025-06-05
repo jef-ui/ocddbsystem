@@ -284,21 +284,28 @@
                 <p class="text-muted">No records assigned to you.</p>
             @else
                 <ul class="list-group list-group-flush" style="max-height: 400px; overflow-y: auto;">
-                   @foreach ($myAssignedRecords as $record)
+                 @foreach ($myAssignedRecords as $record)
     <li class="list-group-item">
-        <p></p><a href="{{ route('record.edit', $record->id) }}" style="color: #FF8C00; font-weight: bold;">
-            {{ $record->subject_description }}                                                
+        {{-- Title now links to the file view --}}
+        <p></p>
+        <a href="{{ route('records.show', $record->id) }}"
+           style="color: #FF8C00; font-weight: bold;">
+            {{ $record->subject_description }}
         </a><br>
+
+        {{-- Info --}}
         <small class="text-muted">
             <small>From: {{ $record->from_agency_office }}</small> |
             <small>Type: {{ $record->type }}</small>
         </small><br>
 
+        {{-- Status link (was View Files) --}}
         <small>
             @if ($record->file_path || $record->file_path1 || $record->file_path2)
-                <a href="{{ route('records.show', $record->id) }}" title="View All Files">
-                    <i class="fas fa-paperclip" style="color: #007bff;"></i> View Files
-                </a>
+                <a href="{{ route('record.edit', $record->id) }}" title="View Status">
+    <i class="fas fa-external-link-alt" style="color: #007bff;"></i> Status
+</a>
+
             @else
                 <span class="text-muted"><i class="fas fa-paperclip"></i> No Attachments</span>
             @endif
@@ -309,6 +316,7 @@
         <hr style="border: 1px dotted rgb(221, 221, 221); margin: 5px 0;">
     @endif
 @endforeach
+
 
                 </ul>
             @endif
