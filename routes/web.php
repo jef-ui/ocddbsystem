@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RadioLogController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OutgoingController;
 use App\Http\Controllers\RisAdminCardController;
 use App\Http\Controllers\TrainingdbController;
 use App\Models\Record;
@@ -57,6 +58,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/record/{record}/edit', [RecordController::class, 'edit'])->name('record.edit');
     Route::put('/record/{record}/update', [RecordController::class, 'update'])->name('record.update');
     Route::delete('/record/{record}/delete', [RecordController::class, 'delete'])->name('record.delete');
+
+    //OCD MIMAROPA Outgoing Communications
+    Route::get('/outgoing', [OutgoingController::class,'index'])->name('outgoing.index');
+    Route::get('/outgoing/create', [OutgoingController::class, 'create'])->name('outgoing.create');
+    Route::get('/outgoing/developer', [OutgoingController::class, 'developer'])->name('outgoing.developer');
 
     //Attendance Database
     Route::get('/guest/log',[GuestController::class, 'log'])->name('guest.log');

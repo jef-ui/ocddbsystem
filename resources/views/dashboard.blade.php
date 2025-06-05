@@ -207,10 +207,17 @@
     <a href="{{ route('profile.edit') }}" class="{{ request()->routeIs('profile.edit') ? 'active' : '' }}">
         <i class="bi bi-person-circle"></i> Profile
     </a>
-
-    <a href="{{ route('record.index') }}" class="{{ request()->routeIs('record.index') ? 'active' : '' }}">
-        <i class="bi bi-inbox"></i> Incoming Communication
-    </a>
+        
+    <!-- Records Section Dropdown -->
+    <div class="dropdown">
+        <a href="#" class="dropdown-toggle">
+            <i class="bi bi-file-earmark-text"></i> Comm Records
+        </a>
+        <div class="dropdown-menu">
+            <a href="{{ route('record.index') }}" class="dropdown-item">Incoming Communication</a>
+            <a href="{{ route('outgoing.developer')}}" class="dropdown-item">Outgoing Communication</a>
+        </div>
+    </div>
 
     <a href="{{ route('trainingdb.index') }}" class="{{ request()->routeIs('trainingdb.index') ? 'active' : '' }}">
         <i class="bi bi-inbox"></i> Training IMS
