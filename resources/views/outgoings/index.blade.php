@@ -391,7 +391,7 @@ td form button {
 <div style="display: flex; justify-content: space-between; align-items: center; height: 70px; margin-bottom: 15px;">
   
   <!-- Add OutgoingComs Button with Icon -->
-  <a href="#" 
+  <a href="{{route ('outgoing.create')}}" 
      style="background-color: #b16100; color: white; border: none; padding: 8px 15px; font-size: 14px; 
             border-radius: 5px; text-decoration: none; display: flex; align-items: center;">
     <i class="bi bi-plus-circle" style="margin-right: 8px;"></i> Add OutgoingComs
@@ -421,27 +421,89 @@ td form button {
   <table id="record-table">
     <thead>
       <tr>
-        <th>Subject/Description</th>
         <th>Date Sent</th>
         <th>Time Sent</th>
+        <th>Subject/Description</th>
         <th>Sent Via</th>
         <th>Recipient</th>
         <th>Type</th>
         <th>Status</th>
-        <th>Original File</th>
+        <th>Sender</th>
+        <th>Transmitting File</th>
+        <th>Received By</th>
         <th>Receiving Copy</th>
+        {{-- <th>Update Status</th> comment --}}
         {{-- <th>Delete</th> comment --}}
       </tr>
     </thead>
     <tbody>
-     {{-- Logic --}}
+     @foreach ($outgoings as $outgoing)
+
+          <tr>
+            <td>{{ \Carbon\Carbon::parse($outgoing->date)->format('F j, Y') }}</td>
+            <td>{{ \Carbon\Carbon::parse($outgoing->time)->format('h:i A') }}</td>
+            <td>{{ $outgoing->subject_description}}</td>
+            <td>{{ $outgoing->sent_via}}</td>
+            <td>{{ $outgoing->recipient}}</td>
+            <td>{{ $outgoing->type}}</td>
+            <td>{{ $outgoing->status}}</td>
+            <td>{{ $outgoing->sender}}</td>
+
+          <td>
+          @if($outgoing->file_path)
+          <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
+            <a href="{{ route('outgoing.show', $outgoing->id) }}" title="View Files">
+              <i class="bi bi-folder-fill text-dark"></i>
+            </a>
+          </li>
+          @else
+          <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
+            <span class="text-muted"><i class="bi bi-file-earmark-x"></i></span>
+          </li>
+          @endif
+        </td>
+
+
+
+            <td>{{ $outgoing->received_by}}</td>
+
+                  <td>
+          @if($outgoing->file_path2)
+          <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
+            <a href="{{ route('outgoing.showFileTwo', $outgoing->id) }}" title="View Files">
+              <i class="bi bi-folder-fill text-dark"></i>
+            </a>
+          </li>
+          @else
+          <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
+            <span class="text-muted"><i class="bi bi-file-earmark-x"></i></span>
+          </li>
+          @endif
+        </td>
+
+
+    
+
+         
+
+      
+
+
+
+
+        
+      
+          </tr>
+
+     @endforeach
+
     </tbody>
   </table>
 
   <!-- Pagination -->
-{{-- <div class="mt-4" style="text-align: right; padding-right: 10px;">
-  {{ $records->appends(['search' => request('search')])->links('vendor.pagination.simple-icons') }}
-</div>comment --}}  
+<div class="mt-4" style="text-align: right; padding-right: 10px;">
+  {{ $outgoings->appends(['search' => request('search')])->links('vendor.pagination.simple-icons') }}
+</div>
 </div>
 
   </div>

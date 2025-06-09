@@ -63,18 +63,23 @@ Route::middleware('auth')->group(function () {
     Route::get('/outgoing', [OutgoingController::class,'index'])->name('outgoing.index');
     Route::get('/outgoing/create', [OutgoingController::class, 'create'])->name('outgoing.create');
     Route::get('/outgoing/developer', [OutgoingController::class, 'developer'])->name('outgoing.developer');
+    Route::post('/outgoing', [OutgoingController::class, 'store'])->name('outgoing.store');
+    Route::get('/outgoing/{id}', [OutgoingController::class, 'show'])->name('outgoing.show');
+    Route::get('/outgoing/{id}/fileTwo', [OutgoingController::class, 'showFileTwo'])->name('outgoing.showFileTwo');
+    
 
     //Attendance Database
     Route::get('/guest/log',[GuestController::class, 'log'])->name('guest.log');
     Route::delete('/guest/{guest}/delete',[GuestController::class, 'delete'])->name('guest.delete');
     Route::get('/guest/export/{id}', [GuestController::class, 'exportSinglePDF'])->name('guest.exportSingle');
     
-    //Fecth Data from Other Controllers to Dashboard
+    //Fecth Data from Other Controllers to Dashboard`
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     //RIS Admin Card
     Route::get('/risadmin',[RisAdminCardController::class, 'index'])->name('risadmin.index');
     Route::get('/risadmin/export/{id}', [RisAdminCardController::class, 'exportSinglePDF'])->name('risadmin.exportSingle');
+    
 
     //TrainingDB
     Route::get('/trainingdb', [TrainingdbController::class, 'index'])->name('trainingdb.index');

@@ -239,6 +239,7 @@
             </label>
             <select id="type" name="type" class="form-select" required>
                 <option value="">-- Please select --</option>
+                <option value="Advisories" {{ old('type') == 'Request' ? 'selected' : '' }}>Request</option>
                 <option value="Request" {{ old('type') == 'Request' ? 'selected' : '' }}>Request</option>
                 <option value="Invitation" {{ old('type') == 'Invitation' ? 'selected' : '' }}>Invitation</option>
                 <option value="Submission" {{ old('type') == 'Submission' ? 'selected' : '' }}>Submission</option>

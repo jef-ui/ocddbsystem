@@ -11,13 +11,15 @@ class Outgoing extends Model
 
     protected $fillable = [
 
-        'subject_description',
         'date',
         'time',
+        'subject_description',
         'sent_via',
         'recipient',
         'type',
         'status',
+        'sender',
+        'received_by',
         'file_path',
         'file_path2',
         
