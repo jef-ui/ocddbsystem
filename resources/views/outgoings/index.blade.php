@@ -449,37 +449,41 @@ td form button {
             <td>{{ $outgoing->status}}</td>
             <td>{{ $outgoing->sender}}</td>
 
-          <td>
-          @if($outgoing->file_path)
-          <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
-            <a href="{{ route('outgoing.show', $outgoing->id) }}" title="View Files">
-              <i class="bi bi-folder-fill text-dark"></i>
+  <td>
+    <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
+        @if($outgoing->file_path)
+            <a href="{{ route('outgoing.show', $outgoing->id) }}" title="View File">
+                <span style="display: inline-block; background-color: #0d6efd; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 0.75rem;">
+                    View File
+                </span>
             </a>
-          </li>
-          @else
-          <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
-            <span class="text-muted"><i class="bi bi-file-earmark-x"></i></span>
-          </li>
-          @endif
-        </td>
+        @else
+            <span style="display: inline-block; background-color: #6c757d; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 0.75rem;">
+                No File
+            </span>
+        @endif
+    </li>
+</td>
 
 
 
             <td>{{ $outgoing->received_by}}</td>
 
-                  <td>
-          @if($outgoing->file_path2)
-          <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
-            <a href="{{ route('outgoing.showFileTwo', $outgoing->id) }}" title="View Files">
-              <i class="bi bi-folder-fill text-dark"></i>
+<td>
+    <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
+        @if($outgoing->file_path2)
+            <a href="{{ route('outgoing.showFileTwo', $outgoing->id) }}" title="View File">
+                <span style="display: inline-block; background-color: #cd5500; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 0.75rem;">
+                    View File
+                </span>
             </a>
-          </li>
-          @else
-          <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
-            <span class="text-muted"><i class="bi bi-file-earmark-x"></i></span>
-          </li>
-          @endif
-        </td>
+        @else
+            <span style="display: inline-block; background-color: #405161; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 0.75rem;">
+                No File
+            </span>
+        @endif
+    </li>
+</td>
 
 
     

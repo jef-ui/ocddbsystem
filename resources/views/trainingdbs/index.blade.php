@@ -445,19 +445,21 @@ td form button {
         <td>{{$trainingdb->number_graduates}}</td>
         <td>{{$trainingdb->number_participation}}</td>
         <td>{{$trainingdb->ocd_personnel}}</td>
-        <td>
-          @if($trainingdb->file_path)
-          <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
-            <a href="{{ route('trainingdb.show', $trainingdb->id) }}" title="View Files">
-              <i class="bi bi-folder-fill text-dark"></i>
+<td>
+    <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
+        @if($trainingdb->file_path)
+            <a href="{{ route('trainingdb.show', $trainingdb->id) }}" title="View File">
+                <span style="display: inline-block; background-color: #cd5500; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 0.75rem;">
+                    View File
+                </span>
             </a>
-          </li>
-          @else
-          <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
-            <span class="text-muted"><i class="bi bi-file-earmark-x"></i> No files uploaded</span>
-          </li>
-          @endif
-        </td>
+        @else
+            <span style="display: inline-block; background-color: #405161; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 0.75rem;">
+                No File
+            </span>
+        @endif
+    </li>
+</td>
 
         <td>
           <form action="{{route ('trainingdb.delete', ['trainingdb' => $trainingdb])}}" method="post">
