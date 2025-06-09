@@ -472,9 +472,9 @@ td form button {
 <td>
     <li class="list-group-item" style="list-style-type: none; padding-left: 0;">
         @if($outgoing->file_path2)
-            <a href="{{ route('outgoing.showFileTwo', $outgoing->id) }}" title="View File">
+            <a href="{{ route('outgoing.showFileTwo', $outgoing->id) }}" title="View">
                 <span style="display: inline-block; background-color: #cd5500; color: #fff; padding: 2px 6px; border-radius: 3px; font-size: 0.75rem;">
-                    View File
+                    View
                 </span>
             </a>
         @else
