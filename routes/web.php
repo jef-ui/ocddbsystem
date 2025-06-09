@@ -62,7 +62,7 @@ Route::middleware('auth')->group(function () {
     //OCD MIMAROPA Outgoing Communications
     Route::get('/outgoing', [OutgoingController::class,'index'])->name('outgoing.index');
     Route::get('/outgoing/create', [OutgoingController::class, 'create'])->name('outgoing.create');
-    Route::get('/outgoing/developer', [OutgoingController::class, 'developer'])->name('outgoing.developer');
+    //Route::get('/outgoing/developer', [OutgoingController::class, 'developer'])->name('outgoing.developer');
     Route::post('/outgoing', [OutgoingController::class, 'store'])->name('outgoing.store');
     Route::get('/outgoing/{id}', [OutgoingController::class, 'show'])->name('outgoing.show');
     Route::get('/outgoing/{id}/fileTwo', [OutgoingController::class, 'showFileTwo'])->name('outgoing.showFileTwo');

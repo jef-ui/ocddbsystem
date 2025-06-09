@@ -40,9 +40,9 @@ class OutgoingController extends Controller
     }
 
     // 
-    public function developer(){
-        return view('outgoings.developer');
-    }
+    //public function developer(){
+        //return view('outgoings.developer');
+    //}
 
     public function store(Request $request){
     

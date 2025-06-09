@@ -215,7 +215,7 @@
         </a>
         <div class="dropdown-menu">
             <a href="{{ route('record.index') }}" class="dropdown-item">Incoming Communication</a>
-            <a href="{{ route('outgoing.developer')}}" class="dropdown-item">Outgoing Communication</a>
+            <a href="{{ route('outgoing.index')}}" class="dropdown-item">Outgoing Communication</a>
         </div>
     </div>
 
