@@ -294,6 +294,9 @@
 <select id="concerned_section_personnel" name="concerned_section_personnel" class="form-select" required>
     <option value="">-- Please select --</option>
                     <option value="Operations Section" {{ old('type') == 'Operations Section' ? 'selected' : '' }}>Operations Section (SitReps,Advisories & etc...)</option>
+                    <option value="Administrative and Financial Management Section" {{ old('type') == 'Administrative and Financial Management Section' ? 'selected' : '' }}>Administrative and Financial Management Section</option>
+                    <option value="Policy Development and Planning Section" {{ old('type') == 'Policy Development and Planning Section' ? 'selected' : '' }}>Policy Development and Planning Section</option>
+                    <option value="Disaster Preparedness Section" {{ old('type') == 'Disaster Preparedness Section' ? 'selected' : '' }}>Disaster Preparedness Section</option>
                     <option value="Marc Rembrandt P. Victore" {{ old('type') == 'Marc Rembrandt P. Victore' ? 'selected' : '' }}>Marc Rembrandt P. Victore</option>
                     <option value="Aquilino P. Ducay" {{ old('type') == 'Aquilino P. Ducay' ? 'selected' : '' }}>Aquilino P. Ducay</option>
                     <option value="Almarose S. Tabliago" {{ old('type') == 'Almarose S. Tabliago' ? 'selected' : '' }}>Almarose S. Tabliago</option>
