@@ -221,7 +221,8 @@
                     <option value="LBC" {{ old('received_via') == 'LBC' ? 'selected' : '' }}>LBC</option>
                     <option value="JNT" {{ old('received_via') == 'JNT' ? 'selected' : '' }}>JNT</option>
                     <option value="JRS" {{ old('received_via') == 'JRS' ? 'selected' : '' }}>JRS</option>
-                    <option value="HAND CARRIED" {{ old('received_via') == 'HAND CARRIED' ? 'selected' : '' }}>HAND CARRIED</option>
+                    <option value="Hand Carried" {{ old('received_via') == 'Hand Carried' ? 'selected' : '' }}>Hand Carried</option>
+                    <option value="Viber" {{ old('received_via') == 'Viber' ? 'Viber' : '' }}>Viber</option>
                     
                 </select>
             </div>
@@ -233,7 +234,7 @@
                 <input type="text" id="from_agency_office" name="from_agency_office" value="{{ old('from_agency_office') }}" class="form-control" required>
             </div>
                     
-                <div class="mb-3">
+        <div class="mb-3">
             <label for="type" class="form-label">
                 <i class="bi bi-tag-fill"></i> Type
             </label>
@@ -271,7 +272,7 @@
                 <label for="status_as_of_date" class="form-label">
                     <i class="bi bi-calendar-check-fill"></i> Status as of
                 </label>
-                <input type="date" name="status_as_of_date" id="status_as_of_date" value="{{ old('status_as_of_date') }}" class="form-control" required>
+                <input type="date" name="status_as_of_date" id="status_as_of_date" value="{{ old('status_as_of_date') }}" class="form-control">
             </div>
             
             <div class="mb-3">
@@ -327,7 +328,7 @@
                 <label for="deadline_of_compliance" class="form-label">
                     <i class="bi bi-hourglass-split"></i> Deadline of Compliance
                 </label>
-                <input type="date" name="deadline_of_compliance" id="deadline_of_compliance" value="{{ old('deadline_of_compliance') }}" class="form-control" required>
+                <input type="date" name="deadline_of_compliance" id="deadline_of_compliance" value="{{ old('deadline_of_compliance') }}" class="form-control">
             </div>
             
             <div class="mb-3">
@@ -383,6 +384,61 @@
         }
     });
 </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const typeSelect = document.getElementById('type');
+        const statusDate = document.getElementById('status_as_of_date');
+        const deadlineDate = document.getElementById('deadline_of_compliance');
+        
+
+        const disableFieldsFor = ['Advisories', 'For Information', 'Report', 'Submission'];
+
+        function toggleDateFields() {
+            const selectedType = typeSelect.value;
+
+            const disableStyle = {
+                backgroundColor: '#e9ecef',
+                opacity: '0.6',
+                pointerEvents: 'none' // prevents tabbing/clicking
+            };
+
+            const enableStyle = {
+                backgroundColor: '',
+                opacity: '1',
+                pointerEvents: 'auto'
+            };
+
+            if (disableFieldsFor.includes(selectedType)) {
+                statusDate.disabled = true;
+                deadlineDate.disabled = true;
+
+                Object.assign(statusDate.style, disableStyle);
+                Object.assign(deadlineDate.style, disableStyle);
+
+                statusDate.removeAttribute('required');
+                deadlineDate.removeAttribute('required');
+            } else {
+                statusDate.disabled = false;
+                deadlineDate.disabled = false;
+
+                Object.assign(statusDate.style, enableStyle);
+                Object.assign(deadlineDate.style, enableStyle);
+
+                statusDate.setAttribute('required', 'required');
+                deadlineDate.setAttribute('required', 'required');
+            }
+        }
+
+        // Run on page load
+        toggleDateFields();
+
+        // Run when type changes
+        typeSelect.addEventListener('change', toggleDateFields);
+    });
+</script>
+
+
 
 </body>
 </html>

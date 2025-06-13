@@ -79,10 +79,10 @@ public function store(Request $request)
         'type' => 'required|not_in:|string|max:255',
         'subject_description' => 'required|string|max:1000',
         'received_acknowledge_by' => 'required|string|max:255',
-        'status_as_of_date' => 'required|date',
+        'status_as_of_date' => 'nullable|date',
         'action_taken' => 'required|string|max:1000',
         'concerned_section_personnel' => 'required|not_in:|string|max:255',
-        'deadline_of_compliance' => 'required|date',
+        'deadline_of_compliance' => 'nullable|date',
         'compliance_status' => 'required|string|max:100',
         'files.*' => 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx,jpg,jpeg,png,gif|max:20480',
     ]);
