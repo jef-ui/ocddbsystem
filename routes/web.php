@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RadioLogController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OcdDirectoryController;
 use App\Http\Controllers\OutgoingController;
 use App\Http\Controllers\RisAdminCardController;
 use App\Http\Controllers\TrainingdbController;
@@ -17,7 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Public Guest Log
+//updated directories
+Route::get('/ocddirectory', [OcdDirectoryController::class, 'index'])->name('ocddirectory.index');
+Route::get('/ocddirectory/create', [OcdDirectoryController::class, 'create'])->name('ocddirectory.create');
+Route::post('/ocddirectory', [OcdDirectoryController::class, 'store'])->name('ocddirectory.store');
+
+//Public Guest Log  
 Route::get('/guest',[GuestController::class, 'index'])->name('guest.index');
 Route::get('/guest/create',[GuestController::class, 'create'])->name('guest.create');
 Route::post('/guest',[GuestController::class, 'store'])->name('guest.store');
