@@ -4,14 +4,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>OCD CLMS</title>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <!-- Add this in your <head> -->
+
+    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <style>
-        body {
+        body, html {
+            height: 100%;
             margin: 0;
-            font-family: Arial, sans-serif; /* Changed font-family to Arial */
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
             background: url('{{ asset('images/bg_1.png') }}') no-repeat center center fixed;
             background-size: cover;
         }
@@ -23,7 +31,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-family: Arial, sans-serif; /* Changed font-family to Arial */
         }
 
         .topbar a {
@@ -31,7 +38,6 @@
             margin-left: 1rem;
             text-decoration: none;
             font-size: 0.875rem;
-            font-family: Arial, sans-serif; /* Changed font-family to Arial */
         }
 
         .topbar a:hover {
@@ -39,6 +45,7 @@
         }
 
         .main-content {
+            flex: 1;
             text-align: center;
             color: white;
             background-color: rgba(0, 0, 0, 0.5);
@@ -47,26 +54,21 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-family: Arial, sans-serif; /* Changed font-family to Arial */
         }
 
         .main-content h1 {
-            font-family: Arial, sans-serif; /* Changed font-family to Arial */
             font-size: 3rem;
             font-weight: 800;
             margin: 1rem 0;
         }
 
         .main-content p {
-            font-family: Arial, sans-serif; /* Changed font-family to Arial */
-            font-size: 1rem; /* Reduced font size */
+            font-size: 1rem;
             max-width: 700px;
             margin: 0 auto 2rem auto;
         }
 
         .btn {
-            display: inline-block;
-            font-family: Arial, sans-serif; /* Changed font-family to Arial */
             font-weight: bold;
             padding: 0.75rem 2rem;
             border-radius: 0.375rem;
@@ -96,30 +98,81 @@
             text-align: center;
             font-size: 12px;
             padding: 10px 0;
-            font-family: Arial, sans-serif; /* Changed font-family to Arial */
         }
 
-        html, body {
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
             height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none; /* hidden by default */
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
         }
 
-        body {
-            display: flex;
-            flex-direction: column;
+        .modal-content {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            text-align: center;
         }
 
-        .main-content {
-            flex: 1;
+        .modal-content h4 {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
         }
+
+        .modal-content p {
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .modal-content .btn-primary {
+            margin-top: 1.5rem;
+            padding: 0.5rem 1.5rem;
+            background-color: #001F5B;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-content img {
+    display: block;
+    margin: 0 auto 1rem auto;
+}
+
     </style>
 </head>
 <body>
 
+    <!-- Notification Modal -->
+    <div id="notification-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="logo text-center mb-3">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo" style="width: 80px;">
+        </div>
+        <h4>Welcome!</h4>
+        <p>
+            This Communication Logging Management System (CLMS) is <strong>locally hosted</strong> by OCD MIMAROPA. <br>
+            All communication records are processed with <strong>confidentiality</strong> and stored in a <strong>secured environment</strong>.<br>
+            For any technical concerns, please report immediately to the <strong>System Administrator</strong>.
+        </p>
+        <button onclick="closeModal()" class="btn-primary">Continue</button>
+    </div>
+</div>
+
+
     <!-- Topbar -->
     <div class="topbar">
-        <div class="flex items-center space-x-3">
-            <strong>OCD CLMS</strong>
-        </div>
+        <div><strong>OCD CLMS</strong></div>
         <div>
             <a href="https://ocd.gov.ph/about-ocd.html">
                 <i class="bi bi-globe"></i> OCD OFFICIAL WEBPAGE
@@ -154,9 +207,21 @@
         @endif
     </div>
 
+    <!-- Footer -->
     <footer class="footer">
         Designed and Developed by ICTU MIMAROPA, Office of Civil Defense MIMAROPA © Copyright 2025
     </footer>
+
+    <!-- Modal Script -->
+    <script>
+        function closeModal() {
+            document.getElementById('notification-modal').style.display = 'none';
+        }
+
+        window.addEventListener('load', function () {
+            document.getElementById('notification-modal').style.display = 'flex';
+        });
+    </script>
 
 </body>
 </html>
