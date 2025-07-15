@@ -350,11 +350,11 @@
             @foreach ($requestlogs as $requestlog)
             <tr>
               <td>{{ $requestlog->date_of_visit }}</td>
-              <td>{{ $requestlog->name }}</td>
-              <td>{{ $requestlog->agency }}</td>
-              <td>{{ $requestlog->position }}</td>
-              <td>{{ $requestlog->gender }}</td>
-              <td>{{ $requestlog->purpose_of_visit }}</td>
+            <td>{{ Str::upper($requestlog->name) }}</td>
+            <td>{{ $requestlog->agency }}</td>
+            <td>{{ $requestlog->position }}</td>
+            <td>{{ ucfirst($requestlog->gender) }}</td>
+            <td>{{ $requestlog->purpose_of_visit }}</td>
               <td>
                 @if($requestlog->e_signature)
                   <img src="{{ $requestlog->e_signature }}" alt="Signature" style="height: 60px;">
@@ -388,7 +388,7 @@
                       <i class="bi bi-trash delete-icon"></i>
                     </button>
                   </form>
-              </td>
+            </td>
 
 
             @endforeach
