@@ -26,7 +26,7 @@ public function index(Request $request)
         })
         ->orderBy('received_date', 'desc')    // First by date
         ->orderBy('received_time', 'desc')    // Then by time
-        ->paginate(15);
+        ->paginate(80);
 
     // Get total counts for each type
     $typeCounts = Record::query()
