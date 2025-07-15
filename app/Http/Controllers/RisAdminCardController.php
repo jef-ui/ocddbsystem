@@ -19,7 +19,7 @@ public function index(Request $request)
                   ->orWhere('office_agency', 'like', "%{$search}%");
         })
         ->orderBy('date', 'desc')
-        ->paginate(5);
+        ->paginate(80);
 
     if ($request->ajax()) {
         return response()->json([

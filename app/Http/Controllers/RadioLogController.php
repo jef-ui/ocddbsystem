@@ -27,7 +27,7 @@ public function index(Request $request)
                 ->orWhere('notes_remarks', 'like', "%{$search}%");
         })
         ->orderBy('created_at', 'desc')
-        ->simplePaginate(15);
+        ->simplePaginate(80);
 
     $totalRadioLogs = RadioLog::count(); 
     

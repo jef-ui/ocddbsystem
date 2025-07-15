@@ -24,7 +24,7 @@ class OutgoingController extends Controller
             })
 
             ->orderBy('date', 'desc')
-            ->paginate(15);
+            ->paginate(80);
 
         if ($request->ajax()) {
         return response()->json([

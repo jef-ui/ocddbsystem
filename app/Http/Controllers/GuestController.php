@@ -19,9 +19,12 @@ class GuestController extends Controller
         return redirect()->route('guest.create')->with('error', 'Your session expired. Please submit the form again.');
     }
 
-    $guest = Guest::latest()->first();
+    // Get the latest guest by date_of_visit
+    $guest = Guest::orderBy('date_of_visit', 'desc')->first();
+
     return view('guests.index', ['guest' => $guest]);
 }
+
 
     
 
