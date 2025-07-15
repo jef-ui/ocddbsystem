@@ -343,7 +343,7 @@
               <th>Purpose of Visit</th>
               <th>Signature</th>
               <th>Generated e-PDF</th>
-              {{-- <th>Delete</th> comment --}}
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
@@ -364,7 +364,6 @@
               </td>
 
               <td>
-
 <a href="{{ route('guest.exportSingle', $requestlog->id) }}"
    class="btn btn-sm btn-outline-primary"
    title="View Generated PDF"
@@ -381,17 +380,17 @@
   </div>
 </div>
 
-            </td>
-              {{-- <td>
-                <form method="post" action="{{ route('guest.delete', ['guest' => $requestlog->id]) }}">
-                  @csrf
-                  @method('delete')
-                  <button type="submit">
-                    <i class="bi bi-trash delete-icon"></i>
-                  </button>
-                </form>
-              </td>comment --}}
-            </tr>
+            <td>
+                  <form method="POST" action="{{ route('guest.delete', ['guest' => $requestlog->id]) }}" onsubmit="return confirm('Are you sure you want to delete this entry?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-outline-danger" title="Delete">
+                      <i class="bi bi-trash delete-icon"></i>
+                    </button>
+                  </form>
+              </td>
+
+
             @endforeach
           </tbody>
         </table>
