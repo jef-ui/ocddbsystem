@@ -58,11 +58,11 @@ class GuestController extends Controller
 
 
     //fetch data from export pdf 
-    public function log (){
-        $requestlogs = Guest::all();
-         return view('guests.log', ['requestlogs' =>  $requestlogs]); 
+    public function log() {
+    $requestlogs = Guest::orderBy('date_of_visit', 'desc')->get(); // fetch all, ordered
+    return view('guests.log', ['requestlogs' => $requestlogs]);
+}
 
-    }
 
     public function delete(Guest $guest)
     {
