@@ -24,9 +24,11 @@ public function index(Request $request)
                   ->orWhere('concerned_section_personnel', 'like', "%{$search}%")
                   ->orWhere('received_acknowledge_by', 'like', "%{$search}%");
         })
-        ->orderBy('received_date', 'desc')    // First by date
-        ->orderBy('received_time', 'desc')    // Then by time
-        ->paginate(80);
+        ->orderBy('received_date', 'desc')
+        ->orderBy('received_time', 'desc')
+        ->paginate(80)
+        ->withQueryString(); // 🔥 Keeps the ?search=... in pagination links
+
 
     // Get total counts for each type
     $typeCounts = Record::query()
