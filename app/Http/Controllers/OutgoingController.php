@@ -94,6 +94,39 @@ class OutgoingController extends Controller
 
     }
 
+    public function edit (Outgoing $outgoing){
+        return view ('outgoings.edit', ['outgoing' => $outgoing]);
+    }
+
+public function update(Outgoing $outgoing, Request $request)
+{
+    $request->validate([
+        'subject_description' => 'required|string|max:1000',
+        'received_by' => 'nullable|string|max:255',
+        'file_path'=> 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx,jpg,jpeg,png,gif|max:20480',
+        'file_path2'=> 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx,jpg,jpeg,png,gif|max:20480',
+    ]);
+
+    $data = $request->except('files');
+
+    if ($request->hasFile('file_path')) {
+        $file = $request->file('file_path');
+        $filename = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $file->getClientOriginalName());
+        $data['file_path'] = $file->storeAs('documents', $filename, 'public');
+    }
+
+    if ($request->hasFile('file_path2')) {
+        $file = $request->file('file_path2');
+        $filename = preg_replace('/[^A-Za-z0-9_\-\.]/', '_', $file->getClientOriginalName());
+        $data['file_path2'] = $file->storeAs('documents', $filename, 'public');
+    }
+
+    $outgoing->update($data);
+
+    return redirect()->route('outgoing.index')->with('success', 'Outgoing Communication Updated Successfully');
+}
+
+
     
 
 

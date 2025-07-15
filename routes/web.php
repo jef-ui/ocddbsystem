@@ -72,6 +72,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/outgoing', [OutgoingController::class, 'store'])->name('outgoing.store');
     Route::get('/outgoing/{id}', [OutgoingController::class, 'show'])->name('outgoing.show');
     Route::get('/outgoing/{id}/fileTwo', [OutgoingController::class, 'showFileTwo'])->name('outgoing.showFileTwo');
+    Route::get('/outgoing/{outgoing}/edit', [OutgoingController::class, 'edit'])->name('outgoing.edit');
+    Route::put('/outgoing/{outgoing}/update', [OutgoingController::class, 'update'])->name('outgoing.update');
     
 
     //Attendance Database

@@ -432,7 +432,7 @@ td form button {
         <th>Transmitting File</th>
         <th>Received By</th>
         <th>Receiving Copy</th>
-        {{-- <th>Update Status</th> comment --}}
+        <th>Update Status</th>
         {{-- <th>Delete</th> comment --}}
       </tr>
     </thead>
@@ -485,18 +485,12 @@ td form button {
     </li>
 </td>
 
+    <td>  
+      <a href="{{ route('outgoing.edit', ['outgoing' => $outgoing])}}" class="edit-icon" title="Update">
+        <i class="bi bi-pencil-square"></i>
+      </a>
+    </td>
 
-    
-
-         
-
-      
-
-
-
-
-        
-      
           </tr>
 
      @endforeach

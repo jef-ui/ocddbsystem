@@ -430,7 +430,7 @@ td form button {
         <th>Acknowledged By</th>
         <th>Compliance Deadline</th>
         <th>Status</th>
-        <th>Edit</th>
+        <th>Update Status</th>
         <th>View File</th>
         {{-- <th>Delete</th> comment --}}
       </tr>
