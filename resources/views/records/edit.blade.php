@@ -195,6 +195,26 @@
     <img src="{{ asset('images/logo.png') }}" alt="Logo" style="height: 2.5rem; width: auto; margin-right: 1rem;">
     UPDATE STATUS OF INCOMING COMMUNICATION
 </h2>
+
+<div class="mb-3">
+    <label for="received_time" class="form-label">
+        <i class="bi bi-clock"></i> Received Time
+    </label>
+    <input type="time" name="received_time" id="received_time"
+        value="{{ old('received_time', \Carbon\Carbon::parse($record->received_time)->format('H:i')) }}"
+        class="form-control" required>
+</div>
+
+{{-- Subject / Description --}}
+<div class="mb-3">
+    <label for="subject_description" class="form-label">
+        <i class="bi bi-chat-left-text-fill"></i> Subject / Description
+    </label>
+    <input type="text" id="subject_description" name="subject_description"
+        value="{{ old('subject_description', $record->subject_description) }}"
+        class="form-control" required>
+</div>
+
             
             <div class="mb-3">
                 <label for="concerned_section_personnel" class="form-label" required>
@@ -229,12 +249,15 @@
                 </select>
             </div>
             
-            <div class="mb-3">
-                <label for="deadline_of_compliance" class="form-label">
-                    <i class="bi bi-hourglass-split"></i> Deadline of Compliance
-                </label>
-                <input type="date" name="deadline_of_compliance" id="deadline_of_compliance" value="{{ old('deadline_of_compliance', $record->deadline_of_compliance) }}" class="form-control" required>
-            </div>
+      <div class="mb-3">
+    <label for="deadline_of_compliance" class="form-label">
+        <i class="bi bi-hourglass-split"></i> Deadline of Compliance
+    </label>
+    <input type="date" name="deadline_of_compliance" id="deadline_of_compliance"
+        value="{{ old('deadline_of_compliance', $record->deadline_of_compliance ? \Carbon\Carbon::parse($record->deadline_of_compliance)->format('Y-m-d') : '') }}"
+        class="form-control">
+</div>
+
             
             <div class="mb-3">
                 <label for="compliance_status" class="form-label">
