@@ -197,6 +197,16 @@
 </h2>
 
 <div class="mb-3">
+    <label for="received_date" class="form-label">
+        <i class="bi bi-calendar-date"></i> Received Date
+    </label>
+    <input type="date" name="received_date" id="received_date"
+        value="{{ old('received_date', $record->received_date ? \Carbon\Carbon::parse($record->received_date)->format('Y-m-d') : '') }}"
+        class="form-control" required>
+</div>
+
+
+<div class="mb-3">
     <label for="received_time" class="form-label">
         <i class="bi bi-clock"></i> Received Time
     </label>

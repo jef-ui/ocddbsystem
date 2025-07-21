@@ -111,7 +111,7 @@ public function update(Record $record, Request $request)
 {
     $request->validate([
         'concerned_section_personnel' => 'required|string|max:255|not_in:',
-        'deadline_of_compliance' => 'required|date',
+        'deadline_of_compliance' => 'nullable|date',
         'compliance_status' => 'required|string|max:100',
         'files.*' => 'nullable|file|mimes:pdf,mp4,avi,mov,doc,docx,xls,xlsx,jpg,jpeg,png,gif|max:20480',
     ]);
