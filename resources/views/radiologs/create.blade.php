@@ -210,28 +210,32 @@
                 </select>
             </div>
             
-            <div>
-                <label for="band" style="color: black;">
-                    <i class="bi bi-broadcast" style="color: rgb(0, 0, 0);"></i> Band
-                </label>
-                <select name="band" id="band" required>
-                    <option value="" disabled {{ old('band') ? '' : 'selected' }}>Select Band</option>
-                    <option value="UHF" {{ old('band', 'UHF') == 'UHF' ? 'selected' : '' }}>UHF</option>
-                    <option value="HF" {{ old('band') == 'HF' ? 'selected' : '' }}>HF</option>
-                </select>
-            </div>
-            
-            <div>
-                <label for="mode" style="color: black;">
-                    <i class="bi bi-sliders" style="color: rgb(0, 0, 0);"></i> Mode
-                </label>
-                <select name="mode" id="mode" required>
-                    <option value="" disabled {{ old('mode') ? '' : 'selected' }}>Select Mode</option>
-                    <option value="DMR" {{ old('mode', 'DMR') == 'DMR' ? 'selected' : '' }}>DMR</option>
-                    <option value="SSB" {{ old('mode') == 'SSB' ? 'selected' : '' }}>SSB</option>
-                    <option value="LSB" {{ old('mode') == 'LSB' ? 'selected' : '' }}>LSB</option>
-                </select>
-            </div>
+                <div>
+                    <label for="band" style="color: black;">
+                        <i class="bi bi-broadcast" style="color: rgb(0, 0, 0);"></i> Band
+                    </label>
+                    <select name="band" id="band" required>
+                        <option value="" disabled {{ old('band') ? '' : 'selected' }}>Select Band</option>
+                        <option value="VOIP" {{ old('band', 'VOIP') == 'VOIP' ? 'selected' : '' }}>Voice over Internet Protocol (VOIP)</option>
+                        <option value="VIBER" {{ old('band') == 'VIBER' ? 'selected' : '' }}>VIBER</option>
+                        <option value="UHF" {{ old('band') == 'UHF' ? 'selected' : '' }}>UHF</option>
+                        <option value="HF" {{ old('band') == 'HF' ? 'selected' : '' }}>HF</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="mode" style="color: black;">
+                        <i class="bi bi-sliders" style="color: rgb(0, 0, 0);"></i> Mode
+                    </label>
+                    <select name="mode" id="mode" required>
+                        <option value="" disabled {{ old('mode') ? '' : 'selected' }}>Select Mode</option>
+                        <option value="LEASED LINE" {{ old('mode', 'LEASED LINE') == 'LEASED LINE' ? 'selected' : '' }}>LEASED LINE</option>
+                        <option value="CHAT" {{ old('mode') == 'CHAT' ? 'selected' : '' }}>CHAT</option>
+                        <option value="DMR" {{ old('mode') == 'DMR' ? 'selected' : '' }}>DMR</option>
+                        <option value="SSB" {{ old('mode') == 'SSB' ? 'selected' : '' }}>SSB</option>
+                        <option value="LSB" {{ old('mode') == 'LSB' ? 'selected' : '' }}>LSB</option>
+                    </select>
+                </div>
             
             <div>
                 <label for="signal_strength" style="color: black;">
@@ -279,8 +283,8 @@
                 </label>
                 <select name="notes_remarks" id="notes_remarks">
                     <option value="" disabled {{ old('notes_remarks') ? '' : 'selected' }}>Select Notes/Remarks</option>
-                    <option value="Radio Check & Weather Update" {{ old('notes_remarks', 'Radio Check & Weather Update') == 'Radio Check & Weather Update' ? 'selected' : '' }}>Radio Check & Weather Update</option>
-                    <option value="Radio Check / Net Call" {{ old('notes_remarks', 'Radio Check & Weather Update') == 'Radio Check / Net Call' ? 'selected' : '' }}>Radio Check / Net Call</option>
+                    <option value="Weather Update" {{ old('notes_remarks', 'Weather Update') == 'Weather Update' ? 'selected' : '' }}>Weather Update</option>
+                    <option value="Radio Check / Net Call" {{ old('notes_remarks') == 'Radio Check / Net Call' ? 'selected' : '' }}>Radio Check / Net Call</option>
                     <option value="Incident Follow-up" {{ old('notes_remarks') == 'Incident Follow-up' ? 'selected' : '' }}>Incident Follow-up</option>
                     <option value="ComEx" {{ old('notes_remarks') == 'ComEx' ? 'selected' : '' }}>ComEx</option>
                     <option value="Unit Movement" {{ old('notes_remarks') == 'Unit Movement' ? 'selected' : '' }}>Unit Movement</option>
@@ -300,6 +304,39 @@
     <footer class="footer">
         Designed and Developed by ICTU MIMAROPA, Office of Civil Defense MIMAROPA © Copyright 2025
     </footer>
+
+
+    {{-- ####################################### SCRIPT ################################# --}}
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const bandSelect = document.getElementById('band');
+        const modeSelect = document.getElementById('mode');
+
+        bandSelect.addEventListener('change', function () {
+            const band = this.value;
+
+            if (band === 'VIBER') {
+                modeSelect.value = 'CHAT';
+            } else if (band === 'UHF') {
+                modeSelect.value = 'DMR';
+            }
+              else if (band == 'VOIP') {
+                modeSelect.value = 'LEASED LINE';
+              }
+        });
+
+        // Handle old values on page load (optional)
+        const oldBand = "{{ old('band') }}";
+        if (oldBand === 'VIBER') {
+            modeSelect.value = 'CHAT';
+        } else if (oldBand === 'UHF') {
+            modeSelect.value = 'DMR';
+        } else if (oldBand === 'VOIP'){
+            modeSelect.value = 'LEASED LINE';
+        }
+    });
+</script>
 
 </body>
 </html>
