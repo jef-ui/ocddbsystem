@@ -32,7 +32,7 @@
 <body>
 
  @php
-    $image = base64_encode(file_get_contents(public_path('images/lhead.png')));
+    $image = base64_encode(file_get_contents(public_path('images/lhead_new.png')));
 @endphp
 
 <div class="letterhead">

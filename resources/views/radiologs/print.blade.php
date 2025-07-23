@@ -49,7 +49,7 @@
 <body>
 
     <div class="letterhead">
-        <img src="{{ public_path('images/lhead.png') }}" style="width: 100%; max-width: 700px; margin-bottom: 10px;">
+        <img src="{{ public_path('images/lhead_new.png') }}" style="width: 100%; max-width: 700px; margin-bottom: 10px;">
     </div>
 
     <h1>OCD MIMAROPA RADIO LOGBOOK</h1>
