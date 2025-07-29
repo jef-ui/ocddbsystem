@@ -209,11 +209,31 @@
                 </label>
                 <input type="text" id="received_by" name="received_by" value="{{ old('received_by', $outgoing->received_by) }}" class="form-control" >
             </div>
+
+                        <div class="mb-3">
+    <label for="type" class="form-label">
+        <i class="bi bi-tag-fill"></i> Type
+    </label>
+    <select id="type" name="type" class="form-select" required>
+        <option value="">-- Please select --</option>
+        <option value="Notice of Meeting" {{ (old('type', $outgoing->type) == 'Notice of Meeting') ? 'selected' : '' }}>Notice of Meeting</option>
+        <option value="Request" {{ (old('type', $outgoing->type) == 'Request') ? 'selected' : '' }}>Request</option>
+        <option value="Invitation" {{ (old('type', $outgoing->type) == 'Invitation') ? 'selected' : '' }}>Invitation</option>
+        <option value="Submission" {{ (old('type', $outgoing->type) == 'Submission') ? 'selected' : '' }}>Submission</option>
+        <option value="For Information" {{ (old('type', $outgoing->type) == 'For Information') ? 'selected' : '' }}>For Information</option>
+        <option value="For Compliance" {{ (old('type', $outgoing->type) == 'For Compliance') ? 'selected' : '' }}>For Compliance</option>
+        <option value="Report" {{ (old('type', $outgoing->type) == 'Report') ? 'selected' : '' }}>Report</option>
+        <option value="Complaint" {{ (old('type', $outgoing->type) == 'Complaint') ? 'selected' : '' }}>Complaint</option>
+    </select>
+</div>
             
             <div>
                 <label for="file_path2">Upload Receiving Copy</label>
                 <input type="file" id="file_path2" name="file_path2" accept=".pdf,.mp4,.avi,.mov,.doc,.docx,.xls,.xlsx,.jpg,.jpeg,.png,.gif">
             </div>
+
+
+
 
             <button type="submit">Update Outgoing Communication</button>
         </form>

@@ -245,6 +245,7 @@
             </label>
             <select id="type" name="type" class="form-select" required>
                 <option value="">-- Please select --</option>
+                <option value="Notice of Meeting" {{ old('type') == 'Notice of Meeting' ? 'selected' : '' }}>Notice of Meeting</option>
                 <option value="Request" {{ old('type') == 'Request' ? 'selected' : '' }}>Request</option>
                 <option value="Invitation" {{ old('type') == 'Invitation' ? 'selected' : '' }}>Invitation</option>
                 <option value="Submission" {{ old('type') == 'Submission' ? 'selected' : '' }}>Submission</option>
