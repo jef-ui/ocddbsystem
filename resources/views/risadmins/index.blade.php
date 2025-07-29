@@ -432,7 +432,11 @@ td form button {
                 <img src="{{ $fileUrl }}" alt="Uploaded Image" width="100" style="display: block; margin: 0 auto;">
             </a>
         @else
-            <a href="{{ $fileUrl }}" target="_blank" style="display: inline-block;">View PDF File</a>
+           <a href="{{ $fileUrl }}" target="_blank" title="View PDF File"
+   style="display: inline-block; background-color: #0d6efd; color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 0.8rem; text-decoration: none;">
+   <i class="fas fa-file-pdf me-1"></i> Scanned Receipt
+</a>
+
         @endif
     @else
         No File
