@@ -39,6 +39,8 @@ class DashboardController extends Controller
 
     $typeCounts = array_merge($types, $typeCounts);
     $totalLogs = Record::count();
+    $totalIncomingLogs = array_sum($typeCounts);
+
 
     // Filter out 'Complied' and 'Review' status
     $myAssignedRecords = Record::where('concerned_section_personnel', $currentUserName)
@@ -53,6 +55,7 @@ class DashboardController extends Controller
         'totalMyComsLogs',
         'typeCounts',
         'totalLogs',
+        'totalIncomingLogs',
         'myAssignedRecords'
     ));
 }

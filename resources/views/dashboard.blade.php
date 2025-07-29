@@ -330,25 +330,31 @@
         </div>
 
         <!-- Incoming Communications Overview -->
-        <div class="card" style="flex: 1 1 25%; min-width: 200px;">
-            <h3 style="font-weight: bold; font-size: 1rem;">Incoming Communications Overview</h3>
-            
-            <div class="row">
-                <div class="col">
-                    <p><span style="color: #007bff; font-weight: bold;">Reports:</span> {{ $typeCounts['Report'] }}</p>
-                    <p><span style="color: #007bff; font-weight: bold;">Request:</span> {{ $typeCounts['Request'] }}</p>
-                    <p><span style="color: #007bff; font-weight: bold;">Submission:</span> {{ $typeCounts['Submission'] }}</p>
-                </div>
-                <div class="col">
-                    <p><span style="color: #007bff; font-weight: bold;">Invitation:</span> {{ $typeCounts['Invitation'] }}</p>
-                    <p><span style="color: #007bff; font-weight: bold;">For Information:</span> {{ $typeCounts['For Information'] }}</p>
-                </div>
-                <div class="col">
-                    <p><span style="color: #007bff; font-weight: bold;">For Compliance:</span> {{ $typeCounts['For Compliance'] }}</p>
-                    <p><span style="color: #007bff; font-weight: bold;">Complaint:</span> {{ $typeCounts['Complaint'] }}</p>
-                </div>
-            </div>
+<div class="card" style="flex: 1 1 25%; min-width: 200px;">
+    <h3 style="font-weight: bold; font-size: 1rem;">Incoming Communications Overview</h3>
+
+  <p style="font-weight: bold; font-size: 0.9rem; color: #030d22;">
+    <i class="fas fa-envelope-open-text" style="color: #030d22; margin-right: 6px;"></i>
+    Total IComs: {{ $totalIncomingLogs }}
+</p>
+
+
+    <div class="row">
+        <div class="col">
+            <p><span style="color: #007bff; font-weight: bold;">Reports:</span> {{ $typeCounts['Report'] }}</p>
+            <p><span style="color: #007bff; font-weight: bold;">Request:</span> {{ $typeCounts['Request'] }}</p>
+            <p><span style="color: #007bff; font-weight: bold;">Submission:</span> {{ $typeCounts['Submission'] }}</p>
         </div>
+        <div class="col">
+            <p><span style="color: #007bff; font-weight: bold;">Invitation:</span> {{ $typeCounts['Invitation'] }}</p>
+            <p><span style="color: #007bff; font-weight: bold;">For Information:</span> {{ $typeCounts['For Information'] }}</p>
+        </div>
+        <div class="col">
+            <p><span style="color: #007bff; font-weight: bold;">For Compliance:</span> {{ $typeCounts['For Compliance'] }}</p>
+            <p><span style="color: #007bff; font-weight: bold;">Complaint:</span> {{ $typeCounts['Complaint'] }}</p>
+        </div>
+    </div>
+</div>
 
         <!-- Radio Logs Totals Line Chart -->
         <div class="card" style="flex: 1 1 25%; min-width: 200px;">
