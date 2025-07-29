@@ -398,7 +398,7 @@ td form button {
         <th>Purpose</th>comment --}}
         <th>Receipt</th>
         <th>Generated e-PDF</th>
-        {{-- <th>Delete</th> comment --}}
+        <th>Delete</th> comment
         {{-- <th>Delete</th> comment --}}
       </tr>
     </thead>
@@ -467,7 +467,7 @@ td form button {
 
     </td>
 
-    {{-- 
+    
       <td>
           <form action="{{route ('risadmin.delete', ['risadmincard' => $risadmincard])}}" method="post">
             @csrf
@@ -476,7 +476,7 @@ td form button {
               <i class="bi bi-trash delete-icon"></i>
             </button>
           </form>
-        </td> comment --}}
+        </td>
 
 
 

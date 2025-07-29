@@ -87,6 +87,8 @@ Route::middleware('auth')->group(function () {
     //RIS Admin Card
     Route::get('/risadmin',[RisAdminCardController::class, 'index'])->name('risadmin.index');
     Route::get('/risadmin/export/{id}', [RisAdminCardController::class, 'exportSinglePDF'])->name('risadmin.exportSingle');
+    Route::delete('/risadmin/{risadmincard}', [RisAdminCardController::class, 'delete'])->name('risadmin.delete');
+
     
 
     //TrainingDB

@@ -169,6 +169,49 @@ canvas {
     width: 100%;
 }
 
+/* Hide overlay by default */
+#loadingOverlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Use JS to toggle this class */
+.overlay-hidden {
+    display: none !important;
+}
+
+.loader {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #007bff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+#loadingOverlay p {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+
+
     </style>
 </head>
 <body>
@@ -177,7 +220,7 @@ canvas {
             <div class="alert alert-success">{{ session('success') }}</div>
         @endif
 
-         <form action="{{route ('risadmin.store')}}" method="post" class="form-container" enctype="multipart/form-data">
+         <form action="{{ route('risadmin.store') }}" method="POST" enctype="multipart/form-data" id="pdfForm">
             @csrf
 
             @if(session('error'))
@@ -497,11 +540,23 @@ canvas {
 </div>
 
 
-{{-- Submit --}}
-<div class="d-grid">
-                <button type="submit" class="btn btn-submit">Submit</button>
-            </div>
-        </form>
+    <div class="d-grid">
+        <button type="submit" id="submitBtn" class="btn btn-submit">Submit</button>
+    </div>
+</form>
+
+<!-- Loading Overlay -->
+<div id="loadingOverlay" class="overlay-hidden">
+    <div class="text-center">
+        <div class="logo mb-3">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo">
+        </div>
+        <p>Generating PDF, please wait...</p>
+        <div class="spinner-border text-primary mt-2" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</div>
 
 
 
@@ -708,6 +763,27 @@ document.querySelector('input[name="position"]').addEventListener('input', funct
     this.value = this.value.toUpperCase();
 });
 </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('pdfForm');
+    const overlay = document.getElementById('loadingOverlay');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (form && overlay && submitBtn) {
+        form.addEventListener('submit', function (e) {
+            // Only proceed if form is valid (optional check)
+            if (form.checkValidity()) {
+                overlay.classList.remove('overlay-hidden');
+                submitBtn.disabled = true;
+                submitBtn.innerText = 'Please wait...';
+            }
+        });
+    }
+});
+
+</script>
+
 
 
 
