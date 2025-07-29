@@ -216,6 +216,7 @@
     </label>
     <select id="type" name="type" class="form-select" required>
         <option value="">-- Please select --</option>
+        <option value="Memorandum" {{ (old('type', $outgoing->type) == 'Memoranduum') ? 'selected' : '' }}>Memorandum</option>
         <option value="Notice of Meeting" {{ (old('type', $outgoing->type) == 'Notice of Meeting') ? 'selected' : '' }}>Notice of Meeting</option>
         <option value="Request" {{ (old('type', $outgoing->type) == 'Request') ? 'selected' : '' }}>Request</option>
         <option value="Invitation" {{ (old('type', $outgoing->type) == 'Invitation') ? 'selected' : '' }}>Invitation</option>

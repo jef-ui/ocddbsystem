@@ -239,12 +239,13 @@
                 <input type="text" id="recipient" name="recipient" value="{{ old('recipient') }}" class="form-control" required>
             </div>
                     
-                <div class="mb-3">
+        <div class="mb-3">
             <label for="type" class="form-label">
                 <i class="bi bi-tag-fill"></i> Type
             </label>
             <select id="type" name="type" class="form-select" required>
                 <option value="">-- Please select --</option>
+                <option value="Memorandum" {{ old('type') == 'Memorandum' ? 'selected' : '' }}>Memorandum</option>
                 <option value="Notice of Meeting" {{ old('type') == 'Notice of Meeting' ? 'selected' : '' }}>Notice of Meeting</option>
                 <option value="Request" {{ old('type') == 'Request' ? 'selected' : '' }}>Request</option>
                 <option value="Invitation" {{ old('type') == 'Invitation' ? 'selected' : '' }}>Invitation</option>
