@@ -10,7 +10,7 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('{{ asset('images/bg_1.png') }}') no-repeat center center fixed;
+            background: url('{{ asset('images/bg_3.png') }}') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             flex-direction: column;
