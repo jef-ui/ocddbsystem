@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RadioLogController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\OcdDirectoryController;
 use App\Http\Controllers\OutgoingController;
 use App\Http\Controllers\RisAdminCardController;
@@ -98,6 +99,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/trainingdb/{id}', [TrainingdbController::class, 'show'])->name('trainingdb.show');
     Route::get('/generate-ims-number', [TrainingdbController::class, 'generateIMSNumber'])->name('generate.ims.number');
     Route::delete('/trainingdb/{trainingdb}/delete', [TrainingdbController::class, 'delete'])->name('trainingdb.delete');
+
+    //Module Loading
+
+    Route::get('/developer', [DeveloperController::class, 'index'])->name('developer.index');
 
 
 });

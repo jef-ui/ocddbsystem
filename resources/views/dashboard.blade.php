@@ -223,6 +223,10 @@
         <i class="bi bi-inbox"></i> Training IMS
     </a>
 
+     <a href="{{ route('developer.index') }}" class="{{ request()->routeIs('developer.index') ? 'active' : '' }}" style="color: #5a5a5a">
+         <i class="bi bi-calendar"></i> Calendar of Activities
+    </a>
+
     <a href="/radiolog" class="{{ request()->is('radiolog') ? 'active' : '' }}">
         <i class="bi bi-journal-text"></i> Radio Log
     </a>
