@@ -240,14 +240,16 @@
             </label>
             <select id="type" name="type" class="form-select" required>
                 <option value="">-- Please select --</option>
-                <option value="Advisories" {{ old('type') == 'Advisories' ? 'selected' : '' }}>Advisories</option>
+                <option value="Memo" {{ old('type') == 'Memo' ? 'selected' : '' }}>Memo</option>
+                <option value="Advisory" {{ old('type') == 'Advisory' ? 'selected' : '' }}>Advisory</option>
+                <option value="Report" {{ old('type') == 'Report' ? 'selected' : '' }}>Report</option>
                 <option value="Request" {{ old('type') == 'Request' ? 'selected' : '' }}>Request</option>
                 <option value="Invitation" {{ old('type') == 'Invitation' ? 'selected' : '' }}>Invitation</option>
                 <option value="Submission" {{ old('type') == 'Submission' ? 'selected' : '' }}>Submission</option>
                 <option value="For Information" {{ old('type') == 'For Information' ? 'selected' : '' }}>For Information</option>
                 <option value="For Compliance" {{ old('type') == 'For Compliance' ? 'selected' : '' }}>For Compliance</option>
-                <option value="Report" {{ old('type') == 'Report' ? 'selected' : '' }}>Report</option>
                 <option value="Complaint" {{ old('type') == 'Complaint' ? 'selected' : '' }}>Complaint</option>
+                <option value="Others" {{ old('type') == 'Others' ? 'selected' : '' }}>Others</option>
             </select>
         </div>
 
@@ -392,7 +394,7 @@
         const deadlineDate = document.getElementById('deadline_of_compliance');
         
 
-        const disableFieldsFor = ['Advisories', 'For Information', 'Report', 'Submission'];
+        const disableFieldsFor = ['Advisory', 'For Information', 'Report', 'Submission', 'Memo', 'Others', 'Invitation'];
 
         function toggleDateFields() {
             const selectedType = typeSelect.value;

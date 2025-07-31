@@ -142,7 +142,7 @@ public function update(Record $record, Request $request)
 
     $record->update($data);
 
-    return redirect()->route('dashboard')->with('success', 'Incoming Communication Updated Successfully.');
+    return redirect()->route('record.index')->with('success', 'Incoming Communication Updated Successfully.');
 }
 
 

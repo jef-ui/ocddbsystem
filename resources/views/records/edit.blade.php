@@ -259,14 +259,25 @@
                 </select>
             </div>
             
-      <div class="mb-3">
-    <label for="deadline_of_compliance" class="form-label">
-        <i class="bi bi-hourglass-split"></i> Deadline of Compliance
-    </label>
-    <input type="date" name="deadline_of_compliance" id="deadline_of_compliance"
-        value="{{ old('deadline_of_compliance', $record->deadline_of_compliance ? \Carbon\Carbon::parse($record->deadline_of_compliance)->format('Y-m-d') : '') }}"
-        class="form-control">
-</div>
+
+<div class="mb-3">
+            <label for="type" class="form-label">
+                <i class="bi bi-tag-fill"></i> Type
+            </label>
+            <select id="type" name="type" class="form-select" required>
+                <option value="">-- Please select --</option>
+                <option value="Memo" {{ old('type',  $record->type) == 'Memo' ? 'selected' : '' }}>Memo</option>
+                <option value="Advisory" {{ old('type',  $record->type) == 'Advisory' ? 'selected' : '' }}>Advisory</option>
+                <option value="Report" {{ old('type',  $record->type) == 'Report' ? 'selected' : '' }}>Report</option>
+                <option value="Request" {{ old('type',  $record->type) == 'Request' ? 'selected' : '' }}>Request</option>
+                <option value="Invitation" {{ old('type',  $record->type) == 'Invitation' ? 'selected' : '' }}>Invitation</option>
+                <option value="Submission" {{ old('type',  $record->type) == 'Submission' ? 'selected' : '' }}>Submission</option>
+                <option value="For Information" {{ old('type',  $record->type) == 'For Information' ? 'selected' : '' }}>For Information</option>
+                <option value="For Compliance" {{ old('type',  $record->type) == 'For Compliance' ? 'selected' : '' }}>For Compliance</option>
+                <option value="Complaint" {{ old('type',  $record->type) == 'Complaint' ? 'selected' : '' }}>Complaint</option>
+                <option value="Others" {{ old('type',  $record->type) == 'Others' ? 'selected' : '' }}>Others</option>
+            </select>
+        </div>
 
             
             <div class="mb-3">
