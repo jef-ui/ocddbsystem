@@ -343,7 +343,7 @@
               <th>Purpose of Visit</th>
               <th>Signature</th>
               <th>Generated e-PDF</th>
-              <th>Delete</th>
+              {{-- <th>Delete</th> comment --}}
             </tr>
           </thead>
           <tbody>
@@ -380,7 +380,7 @@
   </div>
 </div>
 
-            <td>
+          {{--   <td>
                   <form method="POST" action="{{ route('guest.delete', ['guest' => $requestlog->id]) }}" onsubmit="return confirm('Are you sure you want to delete this entry?');">
                     @csrf
                     @method('DELETE')
@@ -388,7 +388,7 @@
                       <i class="bi bi-trash delete-icon"></i>
                     </button>
                   </form>
-            </td>
+            </td> comment --}}
 
 
             @endforeach
