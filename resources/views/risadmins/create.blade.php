@@ -362,7 +362,7 @@ canvas {
             <option value="DRRMD">DRRMD</option>
             <option value="AFMS">AFMS</option>
             <option value="OPCEN">OPCEN</option>
-            <option value="PDPSS">PDPSS</option>
+            <option value="PDPS">PDPSS</option>
             <option value="DPS">DPS</option>
             <option value="RRMS">RRMS</option>
         </select>
