@@ -360,7 +360,6 @@ canvas {
         <select name="division" class="form-select" id="division-select" required>
             <option value="" disabled selected hidden>-- SELECT DIVISION/SECTION --</option>
             <option value="DRRMD">DRRMD</option>
-            <option value="HR">HR</option>
             <option value="AFMS">AFMS</option>
             <option value="OPCEN">OPCEN</option>
             <option value="PDPS">PDPS</option>
