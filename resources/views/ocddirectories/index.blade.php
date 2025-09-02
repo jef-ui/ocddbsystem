@@ -189,7 +189,7 @@ h1 {
                 </a>
     
                 <a href="{{ asset('images/org-structure.png') }}" class="card-link">
-                    <i class="bi bi-diagram-3"></i> View Organizational Structure
+                    <i class="bi bi-diagram-3"></i> View OCD MIMAROPA Organizational Structure
                 </a>
             </div>
         </div>
