@@ -485,7 +485,7 @@ td form button {
 
         @endforeach
     </tbody>
-    -- <tbody>
+    {{-- <tbody>
       @foreach ($records as $record)
       <tr>
         <td>{{ \Carbon\Carbon::parse($record->received_date)->format('F j, Y') }}</td>
