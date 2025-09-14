@@ -329,6 +329,7 @@ canvas {
       <option value="Fernando De Leon"></option>
       <option value="Anthony M. Zoleta"></option>
       <option value="Wilmer Fabella"></option>
+      <option value="Ray Jonmat R. La Rosa"></option>
     </datalist>
   </div>
 </div>

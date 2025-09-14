@@ -323,6 +323,7 @@
                     <option value="Fernando De Leon" {{ old('type') == 'Fernando De Leon' ? 'selected' : '' }}>Fernando De Leon</option>
                     <option value="Anthony M. Zoleta" {{ old('type') == 'Anthony M. Zoleta' ? 'selected' : '' }}>Anthony M. Zoleta</option>
                     <option value="Wilmer Fabella" {{ old('type') == 'Wilmer Fabella' ? 'selected' : '' }}>Wilmer Fabella</option>
+                    <option value="Ray Jonmat R. La Rosa" {{ old('type') == 'Ray Jonmat R. La Rosa' ? 'selected' : '' }}>Ray Jonmat R. La Rosa</option>
                 </select>
             </div>
             
