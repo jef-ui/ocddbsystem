@@ -177,6 +177,9 @@
             <a href="https://ocd.gov.ph/about-ocd.html">
                 <i class="bi bi-globe"></i> OCD OFFICIAL WEBPAGE
             </a>
+            <a href="{{ url ('directory')}}">
+                <i class="bi bi-envelope-at"></i> DIRECTORIES
+            </a>
             <a href="{{ asset('images/citizens-charter.png') }}">
                 <i class="bi bi-envelope-at"></i> CITIZEN'S CHARTER
             </a>

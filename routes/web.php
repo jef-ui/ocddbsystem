@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/directory', function() {
+    return view('directory');
+});
+
 //updated directories
 Route::get('/ocddirectory', [OcdDirectoryController::class, 'index'])->name('ocddirectory.index');
 Route::get('/ocddirectory/create', [OcdDirectoryController::class, 'create'])->name('ocddirectory.create');
