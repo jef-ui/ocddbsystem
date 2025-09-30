@@ -34,6 +34,10 @@ class LdrrmoController extends Controller
     return view('ldrrmos.index', compact('ldrrmos'));
 }
 
+    public function create (){
+        return view ('ldrrmos.create');
+    }
+
 
     public function store (Request $request){
         $data = $request->validate([
