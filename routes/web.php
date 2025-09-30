@@ -10,8 +10,11 @@ use App\Http\Controllers\OcdDirectoryController;
 use App\Http\Controllers\OutgoingController;
 use App\Http\Controllers\RisAdminCardController;
 use App\Http\Controllers\TrainingdbController;
+use App\Http\Controllers\LdrrmoController;
 use App\Models\Record;
 use Illuminate\Support\Facades\Route;
+
+
 
 
 
@@ -22,6 +25,11 @@ Route::get('/', function () {
 Route::get('/directory', function() {
     return view('directory');
 });
+
+//ldrrmo
+Route::get('/ldrrmo', [LdrrmoController::class, 'index'])->name('ldrrmo.index');
+Route::get('/ldrrmo/create', [LdrrmoController::class, 'create'])->name('ldrrmo.create');
+Route::post('/ldrrmo', [LdrrmoController::class, 'store'])->name('ldrrmo.store');
 
 //updated directories
 Route::get('/ocddirectory', [OcdDirectoryController::class, 'index'])->name('ocddirectory.index');
