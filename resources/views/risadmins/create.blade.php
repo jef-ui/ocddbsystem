@@ -331,6 +331,7 @@ canvas {
       <option value="Wilmer Fabella"></option>
       <option value="Joe Mark A. Cabador"></option>
       <option value="Ray Jonmat R. La Rosa"></option>
+      <option value="Rodelio Gucela Jr."></option>
     </datalist>
   </div>
 </div>

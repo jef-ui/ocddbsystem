@@ -283,11 +283,9 @@
                 </label>
                 <select name="notes_remarks" id="notes_remarks">
                     <option value="" disabled {{ old('notes_remarks') ? '' : 'selected' }}>Select Notes/Remarks</option>
-                    <option value="Weather Update" {{ old('notes_remarks', 'Weather Update') == 'Weather Update' ? 'selected' : '' }}>Weather Update</option>
-                    <option value="Radio Check / Net Call" {{ old('notes_remarks') == 'Radio Check / Net Call' ? 'selected' : '' }}>Radio Check / Net Call</option>
-                    <option value="Incident Follow-up" {{ old('notes_remarks') == 'Incident Follow-up' ? 'selected' : '' }}>Incident Follow-up</option>
-                    <option value="ComEx" {{ old('notes_remarks') == 'ComEx' ? 'selected' : '' }}>ComEx</option>
-                    <option value="Unit Movement" {{ old('notes_remarks') == 'Unit Movement' ? 'selected' : '' }}>Unit Movement</option>
+                    <option value="Radio Check & Weather Update" {{ old('notes_remarks', 'Radio Check & Weather Update') == 'Radio Check & Weather Update' ? 'selected' : '' }}>Radio Check & Weather Update</option>
+                    <option value="NSED ComEx" {{ old('notes_remarks') == 'NSED ComEx' ? 'selected' : '' }}>NSED ComEx</option>
+                    <option value="RDRRMC MIMAROPA ComEx" {{ old('notes_remarks') == 'RDRRMC MIMAROPA ComEx' ? 'selected' : '' }}>RDRRMC MIMAROPA ComEx</option>
                 </select>
             </div>
             
